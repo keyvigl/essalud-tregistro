@@ -17,6 +17,17 @@
   <input type="hidden" class="combo-value" value="{{ t|attr(field) }}"><div class="combo-list" hidden></div></div><span class="fh"></span>
 </td>
 {% endmacro %}
+{% macro ocuppracc(t,row) %}
+<td class="gc" data-field="ocupacion" data-row="{{row}}">
+  <select>
+    <option value="">—</option>
+    <option value="258010" {% if t.ocupacion=='258010' %}selected{% endif %}>Derecho/Otros</option>
+    <option value="343004" {% if t.ocupacion=='343004' %}selected{% endif %}>Medicina</option>
+    <option value="347005" {% if t.ocupacion=='347005' %}selected{% endif %}>Odontología</option>
+    <option value="351003" {% if t.ocupacion=='351003' %}selected{% endif %}>Farmacia</option>
+  </select><span class="fh"></span>
+</td>
+{% endmacro %}
 {% macro incell(t,row,field,type='text',default='') %}
 <td class="gc" data-field="{{field}}" data-row="{{row}}"><input type="{{type}}" value="{{ t|attr(field) or default }}"><span class="fh"></span></td>
 {% endmacro %}
@@ -76,7 +87,16 @@
     <div class="mblocks">
       {% if modo==CAT_PRACTICANTE %}
         {{ msel('Modalidad','modalidad_formativa','modalidad_formativa') }}
-        {{ mcombo('Ocupación','ocupacion') }}
+        <div class="mblock"><span>Ocupación</span>
+          <select class="master" data-field="ocupacion">
+            <option value="">—</option>
+            <option value="258010">Derecho/Otros</option>
+            <option value="343004">Medicina</option>
+            <option value="347005">Odontología</option>
+            <option value="351003">Farmacia</option>
+          </select>
+          <button type="button" class="aplicar" data-field="ocupacion">↓ todos</button>
+        </div>
         <div class="mblock"><span>Centro</span>
           <select class="master" data-field="tipo_centro_formacion"><option value="1">Centro educ.</option><option value="2" selected>Universidad</option><option value="3">Instituto</option><option value="4">Otros</option></select>
           <button type="button" class="aplicar" data-field="tipo_centro_formacion">↓ todos</button></div>
@@ -115,7 +135,7 @@
         <td class="nom">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
         {% if modo==CAT_PRACTICANTE %}
           {{ selcell(t,loop.index0,'modalidad_formativa','modalidad_formativa') }}
-          {{ combocell(t,loop.index0,'ocupacion') }}
+          {{ ocuppracc(t,loop.index0) }}
           {{ centrocell(t,loop.index0) }}
           {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
           {{ incell(t,loop.index0,'cod_establecimiento','text',estab) }}

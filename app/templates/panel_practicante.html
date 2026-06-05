@@ -42,13 +42,14 @@
     <legend>Datos de formación</legend>
     <div class="grid">
       {{ sel('modalidad_formativa', 'modalidad_formativa', 'Modalidad formativa', True) }}
-      <label>Ocupación (según su carrera/área) <span class="req">*</span> <small class="muted">(solo EsSalud)</small>
-        <div class="combo" data-name="ocupacion" data-source="url" data-url="/api/ocupaciones">
-          <input type="text" class="combo-input" placeholder="🔎 busca la ocupación…" autocomplete="off">
-          <input type="hidden" name="ocupacion" class="combo-value" value="{{ t.ocupacion }}">
-          <div class="combo-list" hidden></div>
-        </div>
-        <small class="hint"><label style="font-weight:400"><input type="checkbox" id="vertodas" style="width:auto;margin-right:4px"> ver TODAS las ocupaciones</label></small>
+      <label>Ocupación (según su área) <span class="req">*</span>
+        <select name="ocupacion" required>
+          <option value="">— elige —</option>
+          <option value="258010" {% if t.ocupacion=='258010' %}selected{% endif %}>Trabajadores y Practicantes de Derecho, Otros</option>
+          <option value="343004" {% if t.ocupacion=='343004' %}selected{% endif %}>Practicante en Medicina</option>
+          <option value="347005" {% if t.ocupacion=='347005' %}selected{% endif %}>Practicante de Odontología</option>
+          <option value="351003" {% if t.ocupacion=='351003' %}selected{% endif %}>Practicante de Farmacia</option>
+        </select>
       </label>
       {# situacion_educativa la llena el practicante al registrarse (Etapa 1) #}
       <label>Tipo de centro de formación
@@ -79,12 +80,4 @@
 </form>
 {% endblock %}
 
-{% block scripts %}
-<script src="/static/combobox.js"></script>
-<script>
-  const c = new Combobox(document.querySelector('[data-name="ocupacion"]'));
-  const vt = document.getElementById('vertodas');
-  if (vt) vt.addEventListener('change', () =>
-    fetch('/api/ocupaciones' + (vt.checked ? '?todas=1' : '')).then(r=>r.json()).then(d=>c.setData(d)));
-</script>
 {% endblock %}
