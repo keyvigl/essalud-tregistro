@@ -166,7 +166,12 @@ def validar_etapa2(d: dict, trab=None) -> list[str]:
 def validar_practicante(d: dict, trab=None) -> list[str]:
     """Valida los datos de practicante (Personal en Formación Laboral) que completa EsSalud."""
     e = []
-    g = lambda k: (d.get(k) or "").strip()
+    # Para campos que el practicante llenó en Etapa 1, usar BD como fallback
+    def g(k):
+        v = (d.get(k) or "").strip()
+        if not v and trab is not None:
+            v = (getattr(trab, k, "") or "").strip()
+        return v
     if not g("modalidad_formativa"):
         e.append("Selecciona la modalidad formativa.")
     if not g("ocupacion"):
@@ -175,9 +180,6 @@ def validar_practicante(d: dict, trab=None) -> list[str]:
         e.append("Indica la situación educativa.")
     if not g("fecha_inicio_vinculo"):
         e.append("Ingresa la fecha de inicio del período formativo.")
-    if g("tipo_pago") == "2" and trab is not None:
-        if not (g("entidad_bancaria") or trab.entidad_bancaria) or not (g("numero_cuenta") or trab.numero_cuenta):
-            e.append("El pago es 'Depósito en cuenta' pero falta la cuenta bancaria.")
     return e
 
 
@@ -206,7 +208,7 @@ def verificar_alta(t) -> list[str]:
         f.append("Celular (9 dígitos)")
     if not EMAIL_RE.match(g("email")):
         f.append("Correo electrónico")
-    if not g("situacion_educativa"):
+    if not es_practicante and not g("situacion_educativa"):
         f.append("Situación educativa")
 
     # --- Pensión: practicantes en formación laboral no requieren régimen pensionario
