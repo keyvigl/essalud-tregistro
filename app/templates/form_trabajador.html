@@ -168,7 +168,7 @@
           {% for o in cat.tabla('entidad_bancaria') %}<option value="{{o.codigo}}" {% if v.get('entidad_bancaria')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
         </select>
       </label>
-      <label>Número de cuenta<input name="numero_cuenta" maxlength="20" inputmode="numeric" value="{{ v.get('numero_cuenta','') }}"><small class="hint">Solo números, sin guiones.</small></label>
+      <label>Número de cuenta (CCI)<input id="numero_cuenta" name="numero_cuenta" maxlength="20" inputmode="numeric" value="{{ v.get('numero_cuenta','') }}"><small class="hint">CCI: 18 a 20 dígitos, solo números, sin guiones ni espacios.</small></label>
     </div>
   </fieldset>
 
@@ -315,6 +315,8 @@ document.getElementById('ficha').addEventListener('submit', (ev)=>{
   if(td.value==='1' && !/^\d{8}$/.test(num)) errs.push('El DNI debe tener 8 dígitos.');
   if(!/^9\d{8}$/.test(document.getElementById('telefono').value.trim())) errs.push('El celular debe tener 9 dígitos y empezar con 9.');
   if(categoria()==='trabajador' && AFP.includes(rp.value) && cuspp.value.trim().length!==12) errs.push('El CUSPP debe tener 12 caracteres.');
+  const cci = document.getElementById('numero_cuenta').value.trim();
+  if(cci && (!/^\d+$/.test(cci) || cci.length < 18 || cci.length > 20)) errs.push('El número de cuenta (CCI) debe tener entre 18 y 20 dígitos, solo números.');
   if(errs.length){ ev.preventDefault(); alert('Revisa:\n\n• '+errs.join('\n• ')); }
 });
 
