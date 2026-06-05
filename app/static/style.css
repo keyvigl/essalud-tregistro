@@ -78,7 +78,7 @@ table.lote select:focus,table.lote input:focus{border-color:var(--azul2);backgro
 tr:hover td{background:#f7f9ff}
 tr.row-err:hover td{background:#fdecea}
 .gc{position:relative}
-.gc[data-field="modalidad_formativa"]{min-width:200px}
+.gc[data-field="modalidad_formativa"]{min-width:320px}
 .gc[data-field="ocupacion"]{min-width:200px}
 .gc[data-field="situacion_educativa"]{min-width:215px}
 .gc[data-field="tipo_centro_formacion"]{min-width:130px}

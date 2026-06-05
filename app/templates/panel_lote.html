@@ -7,7 +7,7 @@
 {% macro selcell(t,row,field,tabla) %}
 <td class="gc" data-field="{{field}}" data-row="{{row}}">
   <select><option value="">—</option>
-  {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}" {% if (t|attr(field))==o.codigo %}selected{% endif %}>{{o.descripcion[:22]}}</option>{% endfor %}
+  {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}" {% if (t|attr(field))==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
   </select><span class="fh"></span>
 </td>
 {% endmacro %}
@@ -35,7 +35,7 @@
 {% macro msel(label,field,tabla) %}
 <div class="mblock"><span>{{label}}</span>
   <select class="master" data-field="{{field}}"><option value="">—</option>
-  {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}">{{o.descripcion[:26]}}</option>{% endfor %}</select>
+  {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}">{{o.descripcion}}</option>{% endfor %}</select>
   <button type="button" class="aplicar" data-field="{{field}}">↓ todos</button>
 </div>
 {% endmacro %}
