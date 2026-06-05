@@ -101,13 +101,12 @@ def lineas_per(t) -> list[str]:
         out.append(_linea(base + [tipo, fi, fdate(ff), ind, eps]))
 
     if es_practicante:
-        # PFL requiere EXACTAMENTE estos 4 tipos juntos (EPR1.30):
-        # 4=período formativo, 9=pensión, 11=salud, 23=SCTR salud
-        add("4",  t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))
+        # EPR1.30: para PFL alta se requieren AMBOS tipos juntos:
+        # tipo 1 = período de formación laboral (vínculo)
+        # tipo 4 = régimen pensionario (obligatorio; "99" si sin régimen)
+        add("1", t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))
         pension = z(t.regimen_pensionario, 2) if t.regimen_pensionario else "99"
-        add("9",  t.fecha_inicio_pension,  t.fecha_fin_pension,  pension)
-        add("11", t.fecha_inicio_salud,    t.fecha_fin_salud,    z(t.regimen_salud or "00", 2))
-        add("23", t.fecha_inicio_sctr,     t.fecha_fin_sctr,     t.sctr_salud or "1")
+        add("4", t.fecha_inicio_pension, t.fecha_fin_pension, pension)
         return out
 
     add("1", t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))     # vínculo
