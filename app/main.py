@@ -36,7 +36,7 @@ CAMPOS_ETAPA2 = [
 # Campos que edita EsSalud para un PRACTICANTE (los fijos -seguro médico EsSalud,
 # horario nocturno No- van por defecto y no se preguntan).
 CAMPOS_PRACTICANTE = [
-    "modalidad_formativa", "ocupacion", "situacion_educativa", "tipo_centro_formacion",
+    "modalidad_formativa", "ocupacion", "tipo_centro_formacion",
     "madre_resp_familiar", "discapacidad",
     "regimen_pensionario", "cuspp", "entidad_bancaria", "numero_cuenta", "tipo_pago",
     "cod_establecimiento", "fecha_inicio_vinculo", "fecha_fin_vinculo", "motivo_baja",

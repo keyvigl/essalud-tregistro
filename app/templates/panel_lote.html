@@ -73,7 +73,6 @@
       {% if modo==CAT_PRACTICANTE %}
         {{ msel('Modalidad','modalidad_formativa','modalidad_formativa') }}
         {{ mcombo('Ocupación','ocupacion') }}
-        {{ msel('Situación educativa','situacion_educativa','situacion_educativa') }}
         <div class="mblock"><span>Centro</span>
           <select class="master" data-field="tipo_centro_formacion"><option value="1">Centro educ.</option><option value="2" selected>Universidad</option><option value="3">Instituto</option><option value="4">Otros</option></select>
           <button type="button" class="aplicar" data-field="tipo_centro_formacion">↓ todos</button></div>
@@ -98,7 +97,7 @@
     <thead><tr>
       <th>#</th><th>DNI</th><th>Nombre</th>
       {% if modo==CAT_PRACTICANTE %}
-        <th>Modalidad</th><th>Ocupación</th><th>Sit. educativa</th><th>Centro</th><th>Fecha inicio</th><th>Estab.</th>
+        <th>Modalidad</th><th>Ocupación</th><th>Centro</th><th>Fecha inicio</th><th>Estab.</th>
       {% else %}
         <th>Tipo trab.</th><th>Rég. laboral</th><th>Cat. ocup.</th><th>Ocupación</th><th>Contrato</th><th>Periodic.</th><th>Sueldo</th><th>T. pago</th><th>Fecha inicio</th><th>Estab.</th>
       {% endif %}
@@ -113,7 +112,6 @@
         {% if modo==CAT_PRACTICANTE %}
           {{ selcell(t,loop.index0,'modalidad_formativa','modalidad_formativa') }}
           {{ combocell(t,loop.index0,'ocupacion') }}
-          {{ selcell(t,loop.index0,'situacion_educativa','situacion_educativa') }}
           {{ centrocell(t,loop.index0) }}
           {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
           {{ incell(t,loop.index0,'cod_establecimiento','text',estab) }}

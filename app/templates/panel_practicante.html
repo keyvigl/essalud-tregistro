@@ -50,7 +50,7 @@
         </div>
         <small class="hint"><label style="font-weight:400"><input type="checkbox" id="vertodas" style="width:auto;margin-right:4px"> ver TODAS las ocupaciones</label></small>
       </label>
-      {{ sel('situacion_educativa', 'situacion_educativa', 'Situación educativa', True) }}
+      {# situacion_educativa la llena el practicante al registrarse (Etapa 1) #}
       <label>Tipo de centro de formación
         <select name="tipo_centro_formacion">
           <option value="1" {% if t.tipo_centro_formacion=='1' %}selected{% endif %}>Centro educativo</option>
