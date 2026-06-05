@@ -308,6 +308,9 @@ function toggleCategoria(){
 }
 document.querySelectorAll('input[name=categoria]').forEach(r=>r.addEventListener('change', ()=>{toggleCategoria();toggleCuspp();}));
 
+// Inicializar estado al cargar la página
+togglePais(); toggleCuspp(); toggleCategoria(); toggleEdu();
+
 // ---- Validación rápida antes de enviar (mensajes claros) ----
 document.getElementById('ficha').addEventListener('submit', (ev)=>{
   const errs=[];
