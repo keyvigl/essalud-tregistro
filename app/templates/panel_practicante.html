@@ -77,7 +77,19 @@
   <fieldset>
     <legend>Pensión y pago <small>(viene de RRHH; puedes ajustar)</small></legend>
     <div class="grid">
-      {{ sel('regimen_pensionario', 'regimen_pensionario', 'Régimen pensionario') }}
+      <label>Régimen pensionario
+        <select name="regimen_pensionario">
+          <option value="">— elige —</option>
+          <option value="02" {% if t.regimen_pensionario=='02' %}selected{% endif %}>Decreto Ley 19990 - Sistema Nacional de Pensiones - ONP</option>
+          <option value="03" {% if t.regimen_pensionario=='03' %}selected{% endif %}>Decreto Ley 20530</option>
+          <option value="21" {% if t.regimen_pensionario=='21' %}selected{% endif %}>SPP Integra</option>
+          <option value="23" {% if t.regimen_pensionario=='23' %}selected{% endif %}>SPP Profuturo</option>
+          <option value="22" {% if t.regimen_pensionario=='22' %}selected{% endif %}>SPP Horizonte</option>
+          <option value="24" {% if t.regimen_pensionario=='24' %}selected{% endif %}>SPP Prima</option>
+          <option value="25" {% if t.regimen_pensionario=='25' %}selected{% endif %}>SPP Habitat</option>
+          <option value="99" {% if t.regimen_pensionario=='99' %}selected{% endif %}>Sin Régimen Pensionario / No Aplica</option>
+        </select>
+      </label>
       <label>CUSPP <small>(solo AFP)</small><input name="cuspp" maxlength="12" value="{{ t.cuspp }}"></label>
       {{ sel('entidad_bancaria', 'entidad_bancaria', 'Entidad bancaria') }}
       <label>N° de cuenta<input name="numero_cuenta" maxlength="20" value="{{ t.numero_cuenta }}"></label>

@@ -41,7 +41,8 @@
       <label>Tipo de documento <span class="req">*</span>
         <select name="tipo_documento" id="tipo_documento" required>
           <option value="">— elige —</option>
-          {% for o in cat.tabla('tipo_documento') %}<option value="{{o.codigo}}" {% if v.get('tipo_documento')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+          <option value="1" {% if v.get('tipo_documento')=='1' %}selected{% endif %}>DNI - Documento Nacional de Identidad</option>
+          <option value="4" {% if v.get('tipo_documento')=='4' %}selected{% endif %}>Carnet de Extranjería</option>
         </select>
       </label>
       <label>N° de documento <span class="req">*</span>
@@ -131,7 +132,14 @@
       <label>Régimen pensionario <span class="req">*</span>
         <select name="regimen_pensionario" id="regimen_pensionario" required>
           <option value="">— elige —</option>
-          {% for o in cat.tabla('regimen_pensionario') %}<option value="{{o.codigo}}" {% if v.get('regimen_pensionario')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+          <option value="02" {% if v.get('regimen_pensionario')=='02' %}selected{% endif %}>Decreto Ley 19990 - Sistema Nacional de Pensiones - ONP</option>
+          <option value="03" {% if v.get('regimen_pensionario')=='03' %}selected{% endif %}>Decreto Ley 20530</option>
+          <option value="21" {% if v.get('regimen_pensionario')=='21' %}selected{% endif %}>SPP Integra</option>
+          <option value="23" {% if v.get('regimen_pensionario')=='23' %}selected{% endif %}>SPP Profuturo</option>
+          <option value="22" {% if v.get('regimen_pensionario')=='22' %}selected{% endif %}>SPP Horizonte</option>
+          <option value="24" {% if v.get('regimen_pensionario')=='24' %}selected{% endif %}>SPP Prima</option>
+          <option value="25" {% if v.get('regimen_pensionario')=='25' %}selected{% endif %}>SPP Habitat</option>
+          <option value="99" {% if v.get('regimen_pensionario')=='99' %}selected{% endif %}>Sin Régimen Pensionario / No Aplica</option>
         </select>
       </label>
       <label id="campo_cuspp">CUSPP
