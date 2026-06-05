@@ -309,6 +309,30 @@ def panel_verificar(request: Request, clave: str = "", session: Session = Depend
     })
 
 
+# ---------------- Eliminar registros ----------------
+@app.delete("/panel/eliminar/{tid:int}")
+def eliminar_uno(tid: int, clave: str = "", session: Session = Depends(get_session)):
+    if clave != config.PANEL_PASSWORD:
+        return JSONResponse({"ok": False}, status_code=403)
+    t = session.get(Trabajador, tid)
+    if not t:
+        return JSONResponse({"ok": False, "msg": "No encontrado"}, status_code=404)
+    session.delete(t)
+    session.commit()
+    return JSONResponse({"ok": True})
+
+
+@app.delete("/panel/eliminar/todo")
+def eliminar_todo(clave: str = "", session: Session = Depends(get_session)):
+    if clave != config.PANEL_PASSWORD:
+        return JSONResponse({"ok": False}, status_code=403)
+    todos = session.exec(select(Trabajador)).all()
+    for t in todos:
+        session.delete(t)
+    session.commit()
+    return JSONResponse({"ok": True, "eliminados": len(todos)})
+
+
 # ---------------- Generar carga masiva (ZIP) ----------------
 @app.get("/panel/generar/zip")
 def generar(clave: str = "", session: Session = Depends(get_session)):

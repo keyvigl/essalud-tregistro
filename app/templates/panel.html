@@ -5,13 +5,13 @@
   <div class="panel-head">
     <div>
       <h1>Trabajadores registrados</h1>
-      <p class="muted">{{ registros|length }} registro(s) · {{ n_listos }} listo(s) para exportar.</p>
+      <p class="muted" id="resumen-cnt">{{ registros|length }} registro(s) · {{ n_listos }} listo(s) para exportar.</p>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="btn-sec" href="/panel/lote?clave={{ clave }}">📋 Completar en lote (tabla)</a>
-      <a class="btn-sec" href="/panel/verificar?clave={{ clave }}">🔎 Verificar listos para alta</a>
+      <a class="btn-sec" href="/panel/lote?clave={{ clave }}">📋 Completar en lote</a>
+      <a class="btn-sec" href="/panel/verificar?clave={{ clave }}">🔎 Verificar</a>
       {% if n_listos %}
-      <a class="btn" href="/panel/generar/zip?clave={{ clave }}">⬇️ Generar carga masiva ({{ n_listos }})</a>
+      <a class="btn" href="/panel/generar/zip?clave={{ clave }}">⬇️ Generar ZIP ({{ n_listos }})</a>
       {% endif %}
     </div>
   </div>
@@ -24,13 +24,42 @@
     <input type="file" name="archivo" accept=".xlsx,.xls" required>
     <button class="btn-sec" type="submit">Importar</button>
   </form>
-  <table class="tabla">
-    <thead><tr><th>#</th><th>Categoría</th><th>Documento</th><th>Apellidos y nombres</th><th>Estado</th><th></th></tr></thead>
+
+  {# ── Barra de búsqueda y filtros ── #}
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 6px">
+    <input id="buscar" type="search" placeholder="🔎 Buscar por nombre o DNI…"
+           style="flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--bord);border-radius:8px;font-size:14px">
+    <select id="filtro-estado" style="padding:9px 10px;border:1px solid var(--bord);border-radius:8px;font-size:14px">
+      <option value="">Todos los estados</option>
+      <option value="pendiente">Pendiente</option>
+      <option value="completado">Completado</option>
+      <option value="exportado">Exportado</option>
+    </select>
+    <select id="filtro-cat" style="padding:9px 10px;border:1px solid var(--bord);border-radius:8px;font-size:14px">
+      <option value="">Todas las categorías</option>
+      <option value="practicante">Practicante</option>
+      <option value="trabajador">Trabajador</option>
+    </select>
+    <button id="btn-eliminar-todo" class="btn-sec" style="border-color:#c0392b;color:#c0392b"
+            title="Eliminar todos los registros">🗑️ Eliminar todo</button>
+  </div>
+  <p id="cnt-visible" class="muted" style="font-size:13px;margin:0 0 6px"></p>
+
+  <table class="tabla" id="tabla-registros">
+    <thead><tr>
+      <th>#</th><th>Categoría</th><th>Documento</th><th>Apellidos y nombres</th><th>Estado</th><th></th><th></th>
+    </tr></thead>
     <tbody>
     {% for r in registros %}
-      <tr>
-        <td data-l="#">{{ r.id }}</td>
-        <td data-l="Categoría">{% if r.categoria == CAT_PRACTICANTE %}<span class="badge blue">Practicante</span>{% else %}<span class="badge">Trabajador</span>{% endif %}</td>
+      <tr data-nombre="{{ (r.ap_paterno~' '~r.ap_materno~' '~r.nombres)|lower }}"
+          data-dni="{{ r.numero_documento }}"
+          data-estado="{{ r.estado }}"
+          data-cat="{{ r.categoria }}">
+        <td data-l="#">{{ loop.index }}</td>
+        <td data-l="Categoría">
+          {% if r.categoria == CAT_PRACTICANTE %}<span class="badge blue">Practicante</span>
+          {% else %}<span class="badge">Trabajador</span>{% endif %}
+        </td>
         <td data-l="Documento">{{ cat.descripcion('tipo_documento', r.tipo_documento) }} <b>{{ r.numero_documento }}</b></td>
         <td data-l="Apellidos y nombres">{{ r.ap_paterno }} {{ r.ap_materno }}, {{ r.nombres }}</td>
         <td data-l="Estado">
@@ -39,11 +68,64 @@
           {% else %}<span class="badge blue">Exportado</span>{% endif %}
         </td>
         <td data-l=""><a class="link" href="/panel/{{ r.id }}?clave={{ clave }}">Completar →</a></td>
+        <td data-l="">
+          <button class="btn-eliminar" data-id="{{ r.id }}" title="Eliminar registro"
+                  style="background:none;border:none;cursor:pointer;color:#c0392b;font-size:16px;padding:4px 8px">🗑️</button>
+        </td>
       </tr>
     {% else %}
-      <tr><td colspan="5" class="muted">Aún no hay registros.</td></tr>
+      <tr id="fila-vacia"><td colspan="7" class="muted">Aún no hay registros.</td></tr>
     {% endfor %}
     </tbody>
   </table>
 </div>
+
+<script>
+const CLAVE = "{{ clave }}";
+
+// ── Búsqueda y filtros en tiempo real ──
+function filtrar(){
+  const q = document.getElementById('buscar').value.toLowerCase().trim();
+  const est = document.getElementById('filtro-estado').value;
+  const cat = document.getElementById('filtro-cat').value;
+  let vis = 0;
+  document.querySelectorAll('#tabla-registros tbody tr[data-dni]').forEach(tr=>{
+    const ok = (!q || tr.dataset.nombre.includes(q) || tr.dataset.dni.includes(q))
+             && (!est || tr.dataset.estado === est)
+             && (!cat || tr.dataset.cat === cat);
+    tr.style.display = ok ? '' : 'none';
+    if(ok) vis++;
+  });
+  document.getElementById('cnt-visible').textContent = vis + ' registro(s) mostrado(s)';
+}
+document.getElementById('buscar').addEventListener('input', filtrar);
+document.getElementById('filtro-estado').addEventListener('change', filtrar);
+document.getElementById('filtro-cat').addEventListener('change', filtrar);
+filtrar();
+
+// ── Eliminar registro individual ──
+document.querySelectorAll('.btn-eliminar').forEach(btn=>{
+  btn.addEventListener('click', async ()=>{
+    if(!confirm('¿Eliminar este registro? Esta acción no se puede deshacer.')) return;
+    const id = btn.dataset.id;
+    const r = await fetch(`/panel/eliminar/${id}?clave=${encodeURIComponent(CLAVE)}`, {method:'DELETE'});
+    const res = await r.json();
+    if(res.ok){ btn.closest('tr').remove(); filtrar(); }
+    else alert('Error al eliminar.');
+  });
+});
+
+// ── Eliminar todos ──
+document.getElementById('btn-eliminar-todo').addEventListener('click', async ()=>{
+  const total = document.querySelectorAll('#tabla-registros tbody tr[data-dni]').length;
+  if(!confirm(`¿Eliminar los ${total} registros? Esta acción no se puede deshacer.`)) return;
+  const r = await fetch(`/panel/eliminar/todo?clave=${encodeURIComponent(CLAVE)}`, {method:'DELETE'});
+  const res = await r.json();
+  if(res.ok){
+    document.querySelectorAll('#tabla-registros tbody tr[data-dni]').forEach(tr=>tr.remove());
+    filtrar();
+    document.getElementById('resumen-cnt').textContent = '0 registro(s)';
+  } else alert('Error al eliminar.');
+});
+</script>
 {% endblock %}
