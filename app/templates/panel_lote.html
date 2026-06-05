@@ -65,10 +65,14 @@
     <button class="btn" id="guardar">💾 Guardar todo</button>
   </div>
   <div id="aviso"></div>
-  <label class="hint" style="display:inline-block;margin:4px 0"><input type="checkbox" id="vertodas" style="width:auto;margin-right:4px"> ver TODAS las ocupaciones (no solo EsSalud) en los buscadores</label>
 
   <div class="masivo">
-    <div class="mtitle">⚡ Aplicar a todos <small>(si toda la carga comparte el mismo valor, ponlo aquí y dale "↓ todos"; luego cambia solo las excepciones)</small></div>
+    <div class="mtitle" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
+      <span>⚡ Aplicar a todos <small>— pon un valor común y presiona "↓ todos"; luego ajusta excepciones fila por fila</small></span>
+      <label style="font-size:12px;font-weight:400;color:#3a4258;display:flex;align-items:center;gap:5px;cursor:pointer">
+        <input type="checkbox" id="vertodas" style="width:auto"> Ver todas las ocupaciones
+      </label>
+    </div>
     <div class="mblocks">
       {% if modo==CAT_PRACTICANTE %}
         {{ msel('Modalidad','modalidad_formativa','modalidad_formativa') }}

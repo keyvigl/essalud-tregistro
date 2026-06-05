@@ -66,6 +66,18 @@ select{height:46px}
   background:#fff;border-radius:10px;padding:14px;cursor:pointer;font-size:15px}
 .cat-op input{width:auto}
 .cat-op:has(input:checked){border-color:var(--azul2);box-shadow:0 0 0 2px var(--azul2) inset}
+/* ── Barra "Aplicar a todos" ── */
+.masivo{background:#f0f4ff;border:1px solid #c8d8f8;border-radius:10px;padding:10px 14px;margin:10px 0}
+.mtitle{font-weight:700;color:var(--azul2);font-size:13px;margin-bottom:8px}
+.mtitle small{font-weight:400;color:#6b7a9a;font-size:12px}
+.mblocks{display:flex;flex-wrap:wrap;gap:8px}
+.mblock{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #d4e0f7;border-radius:8px;padding:8px 10px;min-width:160px;flex:1}
+.mblock>span{font-size:11px;font-weight:700;color:#3a4258;text-transform:uppercase;letter-spacing:.03em}
+.mblock select,.mblock input{font-size:13px;padding:6px 8px;border:1px solid var(--bord);border-radius:6px;width:100%;background:#fff}
+.mblock .combo-input{font-size:13px;padding:6px 8px;border:1px solid var(--bord);border-radius:6px;width:100%}
+.aplicar{margin-top:4px;background:var(--azul2);color:#fff;border:none;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;width:100%}
+.aplicar:hover{background:var(--azul)}
+
 /* Vista en lote (Excel) */
 .grid-wrap{overflow:auto;max-height:70vh;border:1px solid var(--bord);border-radius:8px;margin-top:10px}
 table.lote{border-collapse:collapse;width:max-content;min-width:100%;font-size:13px}
