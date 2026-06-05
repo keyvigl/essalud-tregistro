@@ -101,10 +101,13 @@ def lineas_per(t) -> list[str]:
         out.append(_linea(base + [tipo, fi, fdate(ff), ind, eps]))
 
     if es_practicante:
-        # Practicante: período de formación (1) y régimen pensionario (4) si aplica
-        add("1", t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))
-        if t.regimen_pensionario:
-            add("4", t.fecha_inicio_pension, t.fecha_fin_pension, z(t.regimen_pensionario, 2))
+        # PFL requiere EXACTAMENTE estos 4 tipos juntos (EPR1.30):
+        # 4=período formativo, 9=pensión, 11=salud, 23=SCTR salud
+        add("4",  t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))
+        pension = z(t.regimen_pensionario, 2) if t.regimen_pensionario else "99"
+        add("9",  t.fecha_inicio_pension,  t.fecha_fin_pension,  pension)
+        add("11", t.fecha_inicio_salud,    t.fecha_fin_salud,    z(t.regimen_salud or "00", 2))
+        add("23", t.fecha_inicio_sctr,     t.fecha_fin_sctr,     t.sctr_salud or "1")
         return out
 
     add("1", t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))     # vínculo
@@ -120,11 +123,13 @@ def lineas_per(t) -> list[str]:
 
 def linea_pfl(t) -> str:
     """E-9: Personal en Formación Laboral (practicantes)."""
+    # EPF6.2: madre_resp_familiar solo aplica si sexo=2 (femenino)
+    madre = (t.madre_resp_familiar or "0") if t.sexo == "2" else "0"
     return _linea([
         z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
         z(t.modalidad_formativa, 2), t.seguro_medico or "1",
         z(t.situacion_educativa, 2), z(t.ocupacion, 6),
-        t.madre_resp_familiar or "0", t.discapacidad or "0",
+        madre, t.discapacidad or "0",
         t.tipo_centro_formacion or "2", t.horario_nocturno or "0",
     ])
 
