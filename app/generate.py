@@ -101,12 +101,9 @@ def lineas_per(t) -> list[str]:
         out.append(_linea(base + [tipo, fi, fdate(ff), ind, eps]))
 
     if es_practicante:
-        # EPR1.30: para PFL alta se requieren AMBOS tipos juntos:
-        # tipo 1 = período de formación laboral (vínculo)
-        # tipo 4 = régimen pensionario (obligatorio; "99" si sin régimen)
+        # Para PFL solo se genera el tipo 1 (período formativo/vínculo).
+        # El tipo 4 (pensión) en .per aplica únicamente a trabajadores (cat 1).
         add("1", t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))
-        pension = z(t.regimen_pensionario, 2) if t.regimen_pensionario else "99"
-        add("4", t.fecha_inicio_pension, t.fecha_fin_pension, pension)
         return out
 
     add("1", t.fecha_inicio_vinculo, t.fecha_fin_vinculo, z(t.motivo_baja, 2))     # vínculo
@@ -122,8 +119,8 @@ def lineas_per(t) -> list[str]:
 
 def linea_pfl(t) -> str:
     """E-9: Personal en Formación Laboral (practicantes)."""
-    # EPF6.2: madre_resp_familiar solo aplica si sexo=2 (femenino)
-    madre = (t.madre_resp_familiar or "0") if t.sexo == "2" else "0"
+    # EPF6.2: para varones el campo debe ir vacío (no "0"); solo se indica si sexo=2
+    madre = (t.madre_resp_familiar or "0") if t.sexo == "2" else ""
     return _linea([
         z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
         z(t.modalidad_formativa, 2), t.seguro_medico or "1",
