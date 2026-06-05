@@ -38,9 +38,7 @@ CAMPOS_ETAPA2 = [
 CAMPOS_PRACTICANTE = [
     "modalidad_formativa", "ocupacion", "tipo_centro_formacion",
     "madre_resp_familiar", "discapacidad",
-    "regimen_pensionario", "cuspp", "entidad_bancaria", "numero_cuenta", "tipo_pago",
     "cod_establecimiento", "fecha_inicio_vinculo", "fecha_fin_vinculo", "motivo_baja",
-    "fecha_inicio_pension", "fecha_fin_pension",
 ]
 
 BASE = Path(__file__).resolve().parent
