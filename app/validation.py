@@ -209,11 +209,13 @@ def verificar_alta(t) -> list[str]:
     if not g("situacion_educativa"):
         f.append("Situación educativa")
 
-    # --- Pensión (ambas categorías) ---
-    if not g("regimen_pensionario"):
-        f.append("Régimen pensionario")
-    elif g("regimen_pensionario") in AFP_CODES and len(g("cuspp")) != 12:
-        f.append("CUSPP (12 caracteres, por ser AFP)")
+    # --- Pensión: practicantes en formación laboral no requieren régimen pensionario
+    #     (se usa 99 = Sin régimen / No aplica por defecto) ---
+    if not es_practicante:
+        if not g("regimen_pensionario"):
+            f.append("Régimen pensionario")
+        elif g("regimen_pensionario") in AFP_CODES and len(g("cuspp")) != 12:
+            f.append("CUSPP (12 caracteres, por ser AFP)")
 
     # --- Cuenta bancaria (si el pago es depósito) ---
     if g("tipo_pago") == "2" and not (g("entidad_bancaria") and g("numero_cuenta")):
