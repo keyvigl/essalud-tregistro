@@ -84,6 +84,11 @@
         <input type="email" name="email" required maxlength="50" value="{{ v.get('email','') }}">
         <small class="hint">Lo usará SUNAT/EsSalud para notificarte.</small>
       </label>
+      <label class="wide">Sucursal / Establecimiento EsSalud donde trabajas <span class="req">*</span>
+        <input name="cod_establecimiento" id="cod_establecimiento" required maxlength="4" inputmode="numeric"
+               value="{{ v.get('cod_establecimiento', '') }}" placeholder="Ej: 0537">
+        <small class="hint">Código de 4 dígitos de tu centro de trabajo. Si no lo sabes, consúltalo con RRHH.</small>
+      </label>
     </div>
   </fieldset>
 
