@@ -38,6 +38,11 @@ def ocupaciones_essalud():
     return _load("ocupaciones_essalud.json")
 
 
+def establecimientos():
+    """Lista de sucursales EsSalud [{codigo, nombre}]. Editar establecimientos.json."""
+    return _load("establecimientos.json")
+
+
 def tabla(tid):
     """Lista [{codigo, descripcion}] de una tabla simple."""
     return tablas().get(tid, [])

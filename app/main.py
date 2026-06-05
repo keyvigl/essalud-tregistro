@@ -75,6 +75,7 @@ def _render_form(request, valores=None, errores=None):
         "cat": cat,
         "departamentos": cat.departamentos(),
         "instituciones": cat.lista_instituciones(),
+        "establecimientos": cat.establecimientos(),
         "v": valores or {},
         "errores": errores or [],
     })

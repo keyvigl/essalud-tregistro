@@ -85,9 +85,12 @@
         <small class="hint">Lo usará SUNAT/EsSalud para notificarte.</small>
       </label>
       <label class="wide">Sucursal / Establecimiento EsSalud donde trabajas <span class="req">*</span>
-        <input name="cod_establecimiento" id="cod_establecimiento" required maxlength="4" inputmode="numeric"
-               value="{{ v.get('cod_establecimiento', '') }}" placeholder="Ej: 0537">
-        <small class="hint">Código de 4 dígitos de tu centro de trabajo. Si no lo sabes, consúltalo con RRHH.</small>
+        <select name="cod_establecimiento" id="cod_establecimiento" required>
+          <option value="">— elige tu centro de trabajo —</option>
+          {% for e in establecimientos %}
+          <option value="{{ e.codigo }}" {% if v.get('cod_establecimiento')==e.codigo %}selected{% endif %}>{{ e.nombre }}</option>
+          {% endfor %}
+        </select>
       </label>
     </div>
   </fieldset>
