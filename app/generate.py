@@ -132,9 +132,13 @@ def linea_pfl(t) -> str:
 
 def linea_est(t) -> str:
     estab = (t.cod_establecimiento or "").strip() or config.COD_ESTABLECIMIENTO
+    es_practicante = getattr(t, "categoria", "trabajador") == "practicante"
+    # Estructura 17 (trabajador): col4 = RUC empleador
+    # Estructura 23 (PFL): col4 = categoria "5" (no el RUC)
+    col4 = "5" if es_practicante else config.RUC_EMPLEADOR
     return _linea([
         z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
-        config.RUC_EMPLEADOR, z(estab, 4),
+        col4, z(estab, 4),
     ])
 
 
