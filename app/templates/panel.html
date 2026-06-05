@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block subtitle %}Panel EsSalud — registros{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="panel-head">
+    <div>
+      <h1>Trabajadores registrados</h1>
+      <p class="muted">{{ registros|length }} registro(s) · {{ n_listos }} listo(s) para exportar.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn-sec" href="/panel/lote?clave={{ clave }}">📋 Completar en lote (tabla)</a>
+      <a class="btn-sec" href="/panel/verificar?clave={{ clave }}">🔎 Verificar listos para alta</a>
+      {% if n_listos %}
+      <a class="btn" href="/panel/generar/zip?clave={{ clave }}">⬇️ Generar carga masiva ({{ n_listos }})</a>
+      {% endif %}
+    </div>
+  </div>
+  <p class="ayuda">Descarga el ZIP con los archivos y valídalos en el <b>PVS – T-Registro</b> antes de subirlos a SUNAT.</p>
+
+  {% if msg %}<div class="aviso-ok">{{ msg }}</div>{% endif %}
+
+  <form class="importar" method="post" action="/panel/importar?clave={{ clave }}" enctype="multipart/form-data">
+    <b>📥 Importar altas (Excel de RRHH):</b> <small class="muted">detecta la categoría de cada fila</small>
+    <input type="file" name="archivo" accept=".xlsx,.xls" required>
+    <button class="btn-sec" type="submit">Importar</button>
+  </form>
+  <table class="tabla">
+    <thead><tr><th>#</th><th>Categoría</th><th>Documento</th><th>Apellidos y nombres</th><th>Estado</th><th></th></tr></thead>
+    <tbody>
+    {% for r in registros %}
+      <tr>
+        <td data-l="#">{{ r.id }}</td>
+        <td data-l="Categoría">{% if r.categoria == CAT_PRACTICANTE %}<span class="badge blue">Practicante</span>{% else %}<span class="badge">Trabajador</span>{% endif %}</td>
+        <td data-l="Documento">{{ cat.descripcion('tipo_documento', r.tipo_documento) }} <b>{{ r.numero_documento }}</b></td>
+        <td data-l="Apellidos y nombres">{{ r.ap_paterno }} {{ r.ap_materno }}, {{ r.nombres }}</td>
+        <td data-l="Estado">
+          {% if r.estado == PENDIENTE %}<span class="badge amber">Pendiente</span>
+          {% elif r.estado == COMPLETADO %}<span class="badge green">Completado</span>
+          {% else %}<span class="badge blue">Exportado</span>{% endif %}
+        </td>
+        <td data-l=""><a class="link" href="/panel/{{ r.id }}?clave={{ clave }}">Completar →</a></td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">Aún no hay registros.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

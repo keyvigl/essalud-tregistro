@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block subtitle %}Verificación · listo para alta{% endblock %}
+{% block content %}
+<div class="card">
+  <a class="link" href="/panel?clave={{ clave }}">← Volver al listado</a>
+  <h1>Verificación para el alta en SUNAT</h1>
+  <p class="muted">Revisa que cada registro tenga el <b>mínimo obligatorio</b>. Solo los marcados
+     <span class="badge green">Listo</span> se incluirán correctamente en la carga.</p>
+
+  <div class="resumen-verif">
+    <span class="big">{{ listos }}</span> de {{ total }} listos para registrar
+    {% if listos < total %}<span class="muted"> · faltan {{ total - listos }} por completar</span>{% endif %}
+  </div>
+
+  <table class="tabla">
+    <thead><tr><th>#</th><th>Categoría</th><th>Documento</th><th>Nombre</th><th>¿Listo?</th><th>Qué falta</th></tr></thead>
+    <tbody>
+    {% for t, faltan in filas %}
+      <tr class="{% if faltan %}row-err{% endif %}">
+        <td data-l="#">{{ t.id }}</td>
+        <td data-l="Categoría">{% if t.categoria==CAT_PRACTICANTE %}🎓 Practicante{% else %}👷 Trabajador{% endif %}</td>
+        <td data-l="Documento">{{ cat.descripcion('tipo_documento', t.tipo_documento) }} <b>{{ t.numero_documento }}</b></td>
+        <td data-l="Nombre">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
+        <td data-l="¿Listo?">{% if faltan %}<span class="badge amber">Faltan {{ faltan|length }}</span>{% else %}<span class="badge green">Listo</span>{% endif %}</td>
+        <td data-l="Qué falta">
+          {% if faltan %}<span class="faltan">{{ faltan|join(' · ') }}</span>
+          {% else %}<span class="ok-txt">✓ Cumple el mínimo</span>{% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted" style="padding:16px">Aún no hay registros.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

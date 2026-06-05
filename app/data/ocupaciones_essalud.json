@@ -1,0 +1,1386 @@
+[
+ {
+  "codigo": "254001",
+  "descripcion": "ABOGADO"
+ },
+ {
+  "codigo": "254002",
+  "descripcion": "ABOGADO PATROCINANTE"
+ },
+ {
+  "codigo": "254003",
+  "descripcion": "ABOGADO PENALISTA"
+ },
+ {
+  "codigo": "254004",
+  "descripcion": "ABOGADO, CIVIL-LABORAL/DERECHO PRIVADO"
+ },
+ {
+  "codigo": "254005",
+  "descripcion": "ABOGADO, CRIMINALISTA/DERECHO PUBLICO (CONSTIT.PENAL, ADMIN"
+ },
+ {
+  "codigo": "254007",
+  "descripcion": "ABOGADO, DERECHO INTERNACIONAL"
+ },
+ {
+  "codigo": "254008",
+  "descripcion": "ABOGADOS Y OTROS"
+ },
+ {
+  "codigo": "252001",
+  "descripcion": "ADMINISTRADOR DE EMPRESAS"
+ },
+ {
+  "codigo": "364001",
+  "descripcion": "ADMINISTRADOR, ABASTECIMIENTO"
+ },
+ {
+  "codigo": "112001",
+  "descripcion": "ADMINISTRADOR, ADMINISTRACION PUBLICA"
+ },
+ {
+  "codigo": "364004",
+  "descripcion": "ADMINISTRADOR, PERSONAL"
+ },
+ {
+  "codigo": "252003",
+  "descripcion": "ADMINISTRADORES, OTROS"
+ },
+ {
+  "codigo": "421001",
+  "descripcion": "ALMACENERO"
+ },
+ {
+  "codigo": "217002",
+  "descripcion": "ANALISTA, SISTEMAS INFORMATICOS"
+ },
+ {
+  "codigo": "217003",
+  "descripcion": "ANALISTA, SISTEMAS INFORMATICOS/BANCO DE DATOS"
+ },
+ {
+  "codigo": "217004",
+  "descripcion": "ANALISTA, SISTEMAS INFORMATICOS/COMPUTADORAS"
+ },
+ {
+  "codigo": "217005",
+  "descripcion": "ANALISTA, SISTEMAS INFORMATICOS/TELECOMUNICACIONES"
+ },
+ {
+  "codigo": "217006",
+  "descripcion": "ANALISTAS, TRANSMISIONES/SISTEMAS INFORMATICOS"
+ },
+ {
+  "codigo": "259001",
+  "descripcion": "ARCHIVERO, DE BIBLIOTECA Y SERVICIOS DE ARCHIVOS"
+ },
+ {
+  "codigo": "442001",
+  "descripcion": "ARCHIVERO, DE MUSEO"
+ },
+ {
+  "codigo": "259002",
+  "descripcion": "ARCHIVERO, PALEOLOGO"
+ },
+ {
+  "codigo": "347001",
+  "descripcion": "ASISTENTE DENTISTA, ESCUELAS"
+ },
+ {
+  "codigo": "343001",
+  "descripcion": "ASISTENTE MEDICO"
+ },
+ {
+  "codigo": "269001",
+  "descripcion": "ASISTENTE MEDICO SOCIAL"
+ },
+ {
+  "codigo": "343002",
+  "descripcion": "ASISTENTE MEDICO, PLANIFICACION FAMILIAR"
+ },
+ {
+  "codigo": "269002",
+  "descripcion": "ASISTENTE SOCIAL"
+ },
+ {
+  "codigo": "269003",
+  "descripcion": "ASISTENTE SOCIAL, BIENESTAR SOCIAL"
+ },
+ {
+  "codigo": "269004",
+  "descripcion": "ASISTENTE SOCIAL, DELINCUENCIA"
+ },
+ {
+  "codigo": "269005",
+  "descripcion": "ASISTENTE SOCIAL, DELINCUENCIA/LIBERTAD CONDICIONAL"
+ },
+ {
+  "codigo": "269006",
+  "descripcion": "ASISTENTE SOCIAL, DELINCUENCIA/PREVENCION Y REHABILITACION"
+ },
+ {
+  "codigo": "269007",
+  "descripcion": "ASISTENTE SOCIAL, EMPRESA"
+ },
+ {
+  "codigo": "269008",
+  "descripcion": "ASISTENTE SOCIAL, HOSPITAL"
+ },
+ {
+  "codigo": "269009",
+  "descripcion": "ASISTENTE SOCIAL, PRISIONES"
+ },
+ {
+  "codigo": "269010",
+  "descripcion": "ASISTENTE SOCIAL, PROTECCION DE LA FAMILIA"
+ },
+ {
+  "codigo": "269011",
+  "descripcion": "ASISTENTE SOCIAL, PROTECCION DE LA INFANCIA"
+ },
+ {
+  "codigo": "269012",
+  "descripcion": "ASISTENTE SOCIAL, PSIQUIATRIA"
+ },
+ {
+  "codigo": "269013",
+  "descripcion": "ASISTENTE SOCIAL, REHABILITACION/INCAPACITADOS FISICOS"
+ },
+ {
+  "codigo": "269014",
+  "descripcion": "ASISTENTE SOCIAL, SERVICIOS COMUNITARIOS"
+ },
+ {
+  "codigo": "269015",
+  "descripcion": "ASISTENTE SOCIAL, SERVICIOS CULTURALES"
+ },
+ {
+  "codigo": "269016",
+  "descripcion": "ASISTENTE SOCIAL, SERVICIOS DE AYUDA FAMILIAR"
+ },
+ {
+  "codigo": "269017",
+  "descripcion": "ASISTENTE SOCIAL, SERVICIOS SOCIALES"
+ },
+ {
+  "codigo": "351001",
+  "descripcion": "ASISTENTE, FARMACEUTICO"
+ },
+ {
+  "codigo": "351002",
+  "descripcion": "AUXILIAR FARMACEUTICO"
+ },
+ {
+  "codigo": "343003",
+  "descripcion": "AUXILIAR MEDICO"
+ },
+ {
+  "codigo": "347002",
+  "descripcion": "AUXILIAR, DENTISTA"
+ },
+ {
+  "codigo": "531001",
+  "descripcion": "AUXILIAR, ENFERMERIA"
+ },
+ {
+  "codigo": "531002",
+  "descripcion": "AUXILIAR, ENFERMERIA/PRIMEROS AUXILIOS"
+ },
+ {
+  "codigo": "531005",
+  "descripcion": "AYUDANTE, ENFERMERIA"
+ },
+ {
+  "codigo": "531006",
+  "descripcion": "AYUDANTE, ENFERMERIA/AMBULANCIA"
+ },
+ {
+  "codigo": "531007",
+  "descripcion": "AYUDANTE, ENFERMERIA/CLINICA"
+ },
+ {
+  "codigo": "531011",
+  "descripcion": "AYUDANTE, ENFERMERIA/DOMICILIO"
+ },
+ {
+  "codigo": "531008",
+  "descripcion": "AYUDANTE, ENFERMERIA/HOSPITAL"
+ },
+ {
+  "codigo": "231001",
+  "descripcion": "BACTERIOLOGO"
+ },
+ {
+  "codigo": "231002",
+  "descripcion": "BACTERIOLOGO, AGRICULTURA"
+ },
+ {
+  "codigo": "231003",
+  "descripcion": "BACTERIOLOGO, ALIMENTACION"
+ },
+ {
+  "codigo": "231004",
+  "descripcion": "BACTERIOLOGO, FARMACIA"
+ },
+ {
+  "codigo": "231005",
+  "descripcion": "BACTERIOLOGO, INDUSTRIA"
+ },
+ {
+  "codigo": "231006",
+  "descripcion": "BACTERIOLOGO, INDUSTRIA, LACTEAS"
+ },
+ {
+  "codigo": "231007",
+  "descripcion": "BACTERIOLOGO, MEDICINA"
+ },
+ {
+  "codigo": "231010",
+  "descripcion": "BACTERIOLOGO, SUELOS"
+ },
+ {
+  "codigo": "348001",
+  "descripcion": "BAÐOS MEDICINALES, TRATAMIENTO"
+ },
+ {
+  "codigo": "231011",
+  "descripcion": "BIOLOGO"
+ },
+ {
+  "codigo": "451001",
+  "descripcion": "CAJERO, ALMACEN/AUTOSERVICIO"
+ },
+ {
+  "codigo": "451002",
+  "descripcion": "CAJERO, APUESTAS"
+ },
+ {
+  "codigo": "451003",
+  "descripcion": "CAJERO, BANCO"
+ },
+ {
+  "codigo": "451004",
+  "descripcion": "CAJERO, COBRADOR DE PEAJES"
+ },
+ {
+  "codigo": "451005",
+  "descripcion": "CAJERO, CONTABILIDAD DE CAJA"
+ },
+ {
+  "codigo": "451006",
+  "descripcion": "CAJERO, EMPRESA/ALMACEN"
+ },
+ {
+  "codigo": "451007",
+  "descripcion": "CAJERO, HOTEL"
+ },
+ {
+  "codigo": "451008",
+  "descripcion": "CAJERO, MOSTRADOR"
+ },
+ {
+  "codigo": "451009",
+  "descripcion": "CAJERO, OFICINA"
+ },
+ {
+  "codigo": "451010",
+  "descripcion": "CAJERO, RESTAURANTE"
+ },
+ {
+  "codigo": "451011",
+  "descripcion": "CAJERO, TIENDA"
+ },
+ {
+  "codigo": "451012",
+  "descripcion": "CAJERO, VENTA DE BILLETES"
+ },
+ {
+  "codigo": "235004",
+  "descripcion": "CARDIOLOGO"
+ },
+ {
+  "codigo": "718003",
+  "descripcion": "CEMENTADOR DE METALES POR NUTRICION"
+ },
+ {
+  "codigo": "885002",
+  "descripcion": "CHOFER DE ENTREGA DE COCHES NUEVOS"
+ },
+ {
+  "codigo": "885001",
+  "descripcion": "CHOFER DE TAXI"
+ },
+ {
+  "codigo": "885003",
+  "descripcion": "CHOFER PARTICULAR"
+ },
+ {
+  "codigo": "235005",
+  "descripcion": "CIRUJANO"
+ },
+ {
+  "codigo": "235012",
+  "descripcion": "CIRUJANO PLASTICO"
+ },
+ {
+  "codigo": "236001",
+  "descripcion": "CIRUJANO, BUCODENTAL"
+ },
+ {
+  "codigo": "235006",
+  "descripcion": "CIRUJANO, CARDIOLOGIA"
+ },
+ {
+  "codigo": "235007",
+  "descripcion": "CIRUJANO, CIRUGIA GENERAL"
+ },
+ {
+  "codigo": "235008",
+  "descripcion": "CIRUJANO, CIRUGIA PLASTICA"
+ },
+ {
+  "codigo": "236002",
+  "descripcion": "CIRUJANO, DENTISTA"
+ },
+ {
+  "codigo": "235009",
+  "descripcion": "CIRUJANO, NEUROCIRUGIA"
+ },
+ {
+  "codigo": "235010",
+  "descripcion": "CIRUJANO, ORTOPEDIA"
+ },
+ {
+  "codigo": "235011",
+  "descripcion": "CIRUJANO, OSTEOPATA"
+ },
+ {
+  "codigo": "235013",
+  "descripcion": "CIRUJANO, TORAX"
+ },
+ {
+  "codigo": "941007",
+  "descripcion": "COCINERO"
+ },
+ {
+  "codigo": "522001",
+  "descripcion": "COCINERO, BARCO"
+ },
+ {
+  "codigo": "522002",
+  "descripcion": "COCINERO, CHEF"
+ },
+ {
+  "codigo": "522003",
+  "descripcion": "COCINERO, CONSERVACION DE ALIMENTOS"
+ },
+ {
+  "codigo": "522004",
+  "descripcion": "COCINERO, DIETAS ESPECIALES"
+ },
+ {
+  "codigo": "522005",
+  "descripcion": "COCINERO, VEGETALES"
+ },
+ {
+  "codigo": "943002",
+  "descripcion": "CONSERJE"
+ },
+ {
+  "codigo": "943003",
+  "descripcion": "CONSERJE, EDIFICIO/APARTAMENTOS"
+ },
+ {
+  "codigo": "952002",
+  "descripcion": "CONSERJE, HOTEL"
+ },
+ {
+  "codigo": "251003",
+  "descripcion": "CONTADOR"
+ },
+ {
+  "codigo": "366001",
+  "descripcion": "CONTADOR MERCANTIL"
+ },
+ {
+  "codigo": "251004",
+  "descripcion": "CONTADOR, AUDITORIA DE EMPRESAS"
+ },
+ {
+  "codigo": "251005",
+  "descripcion": "CONTADOR, CONTABILIDAD MUNICIPAL"
+ },
+ {
+  "codigo": "251006",
+  "descripcion": "CONTADOR, COSTOS"
+ },
+ {
+  "codigo": "251007",
+  "descripcion": "CONTADOR, COSTOS Y PRECIOS"
+ },
+ {
+  "codigo": "251008",
+  "descripcion": "CONTADOR, EMPRESA"
+ },
+ {
+  "codigo": "236003",
+  "descripcion": "DENTISTA"
+ },
+ {
+  "codigo": "236004",
+  "descripcion": "DENTISTA, PROTESIS DENTALES"
+ },
+ {
+  "codigo": "235014",
+  "descripcion": "DERMATOLOGO"
+ },
+ {
+  "codigo": "233002",
+  "descripcion": "DIETISTAS-NUTRICIONISTAS"
+ },
+ {
+  "codigo": "415001",
+  "descripcion": "DIGITADOR"
+ },
+ {
+  "codigo": "262002",
+  "descripcion": "ECONOMISTA (INGENIERO)"
+ },
+ {
+  "codigo": "262003",
+  "descripcion": "ECONOMISTA, AGRICULTURA"
+ },
+ {
+  "codigo": "262004",
+  "descripcion": "ECONOMISTA, COMERCIO INTERNACIONAL"
+ },
+ {
+  "codigo": "262005",
+  "descripcion": "ECONOMISTA, DESARROLLO"
+ },
+ {
+  "codigo": "262006",
+  "descripcion": "ECONOMISTA, ECONOMETRIA"
+ },
+ {
+  "codigo": "262007",
+  "descripcion": "ECONOMISTA, ESPECIALISTA EN MERCADOTECNIA"
+ },
+ {
+  "codigo": "262008",
+  "descripcion": "ECONOMISTA, OTROS"
+ },
+ {
+  "codigo": "783010",
+  "descripcion": "ELECTRICISTA BOBINADOR"
+ },
+ {
+  "codigo": "783013",
+  "descripcion": "ELECTRICISTA DE BARCOS Y AVIONES"
+ },
+ {
+  "codigo": "783014",
+  "descripcion": "ELECTRICISTA DE VEHICULOS"
+ },
+ {
+  "codigo": "783011",
+  "descripcion": "ELECTRICISTA-MONTADOR,AIRE ACONDICIONADO"
+ },
+ {
+  "codigo": "783012",
+  "descripcion": "ELECTRICISTAS GRAL., CONSTRUC. INSTAL. ELEC., CINE"
+ },
+ {
+  "codigo": "348002",
+  "descripcion": "ELECTROTERAPEUTA"
+ },
+ {
+  "codigo": "352002",
+  "descripcion": "ENFERMERA, NIVEL MEDIO"
+ },
+ {
+  "codigo": "352003",
+  "descripcion": "ENFERMERA, NIVEL MEDIO/CLINICA, CENTRO DE SALUD, ETC."
+ },
+ {
+  "codigo": "352004",
+  "descripcion": "ENFERMERA, NIVEL MEDIO/MATERNIDAD"
+ },
+ {
+  "codigo": "352005",
+  "descripcion": "ENFERMERA, NIVEL MEDIO/OBSTETRICIA"
+ },
+ {
+  "codigo": "352006",
+  "descripcion": "ENFERMERA, NIVEL MEDIO/ORTOPEDIA"
+ },
+ {
+  "codigo": "352007",
+  "descripcion": "ENFERMERA, NIVEL MEDIO/PEDIATRIA"
+ },
+ {
+  "codigo": "352001",
+  "descripcion": "ENFERMERA, NIVEL SUPERIOR (DIPLOMADOS)"
+ },
+ {
+  "codigo": "239003",
+  "descripcion": "ENFERMERA, NIVEL SUPERIOR/CLINICA"
+ },
+ {
+  "codigo": "239004",
+  "descripcion": "ENFERMERA, NIVEL SUPERIOR/CONSULTORIO"
+ },
+ {
+  "codigo": "239005",
+  "descripcion": "ENFERMERA, NIVEL SUPERIOR/HOSPITAL"
+ },
+ {
+  "codigo": "239006",
+  "descripcion": "ENFERMERA, NIVEL SUPERIOR/MATERNIDAD"
+ },
+ {
+  "codigo": "239007",
+  "descripcion": "ENFERMERA, NIVEL SUPERIOR/OBSTETRICIA"
+ },
+ {
+  "codigo": "239002",
+  "descripcion": "ENFERMERA, TECMICO"
+ },
+ {
+  "codigo": "239001",
+  "descripcion": "ENFERMERA, TECNICO"
+ },
+ {
+  "codigo": "531010",
+  "descripcion": "ENFERMERO, AMBULANCIA"
+ },
+ {
+  "codigo": "352008",
+  "descripcion": "ENFERMERO, NIVEL MEDIO"
+ },
+ {
+  "codigo": "352009",
+  "descripcion": "ENFERMERO, NIVEL MEDIO/CLINICA"
+ },
+ {
+  "codigo": "352010",
+  "descripcion": "ENFERMERO, NIVEL MEDIO/OBSTETRICIA"
+ },
+ {
+  "codigo": "352011",
+  "descripcion": "ENFERMERO, NIVEL MEDIO/ORTOPEDIA"
+ },
+ {
+  "codigo": "352012",
+  "descripcion": "ENFERMERO, NIVEL MEDIO/PEDIATRIA"
+ },
+ {
+  "codigo": "239009",
+  "descripcion": "ENFERMERO, NIVEL SUPERIOR"
+ },
+ {
+  "codigo": "239008",
+  "descripcion": "ENFERMERO, NIVEL SUPERIOR (DIPLOMADOS)"
+ },
+ {
+  "codigo": "239010",
+  "descripcion": "ENFERMERO, NIVEL SUPERIOR/CLINICA"
+ },
+ {
+  "codigo": "239011",
+  "descripcion": "ENFERMERO, NIVEL SUPERIOR/HOSPITAL"
+ },
+ {
+  "codigo": "232004",
+  "descripcion": "EPIDEMIOLOGO"
+ },
+ {
+  "codigo": "348003",
+  "descripcion": "ERGOTERAPEUTA"
+ },
+ {
+  "codigo": "216004",
+  "descripcion": "ESTADISTICO"
+ },
+ {
+  "codigo": "216005",
+  "descripcion": "ESTADISTICO, AGRICULTURA"
+ },
+ {
+  "codigo": "216006",
+  "descripcion": "ESTADISTICO, BIOESTADISTICA"
+ },
+ {
+  "codigo": "216007",
+  "descripcion": "ESTADISTICO, BIOMETRIA"
+ },
+ {
+  "codigo": "216008",
+  "descripcion": "ESTADISTICO, ECONOMIA"
+ },
+ {
+  "codigo": "216009",
+  "descripcion": "ESTADISTICO, ENCUESTAS"
+ },
+ {
+  "codigo": "216010",
+  "descripcion": "ESTADISTICO, ENCUESTAS POR SONDEO"
+ },
+ {
+  "codigo": "216011",
+  "descripcion": "ESTADISTICO, ESTADISTICA APLICADA"
+ },
+ {
+  "codigo": "216012",
+  "descripcion": "ESTADISTICO, FINANZAS"
+ },
+ {
+  "codigo": "216013",
+  "descripcion": "ESTADISTICO, INVESTIGACION"
+ },
+ {
+  "codigo": "216014",
+  "descripcion": "ESTADISTICO, MATEMATICO"
+ },
+ {
+  "codigo": "216015",
+  "descripcion": "ESTADISTICO, MUESTRISTA"
+ },
+ {
+  "codigo": "238001",
+  "descripcion": "FARMACEUTICO"
+ },
+ {
+  "codigo": "238002",
+  "descripcion": "FARMACEUTICO, COMERCIO"
+ },
+ {
+  "codigo": "238003",
+  "descripcion": "FARMACEUTICO, HOSPITAL"
+ },
+ {
+  "codigo": "232008",
+  "descripcion": "FISIOLOGO, ENDOCRINOLOGIA"
+ },
+ {
+  "codigo": "232009",
+  "descripcion": "FISIOLOGO, EPIDEMIOLOGIA"
+ },
+ {
+  "codigo": "348004",
+  "descripcion": "FISIOTERAPEUTA (TERAPEUTA)"
+ },
+ {
+  "codigo": "322011",
+  "descripcion": "FOTOGRAFO MEDICO"
+ },
+ {
+  "codigo": "235015",
+  "descripcion": "GINECOLOGO"
+ },
+ {
+  "codigo": "564003",
+  "descripcion": "GUARDIA DE SEGURIDAD (PRIVADOS)"
+ },
+ {
+  "codigo": "352013",
+  "descripcion": "HERMANA, ENFERMERA/NIVEL MEDIO"
+ },
+ {
+  "codigo": "348005",
+  "descripcion": "HIDROTERAPEUTA"
+ },
+ {
+  "codigo": "232011",
+  "descripcion": "HISTOPATOLOGO"
+ },
+ {
+  "codigo": "234011",
+  "descripcion": "INGENIERO AGROINDUSTRIAL"
+ },
+ {
+  "codigo": "223001",
+  "descripcion": "INGENIERO BIOQUIMICO INDUSTRIAL"
+ },
+ {
+  "codigo": "227004",
+  "descripcion": "INGENIERO CONSULTOR, ORGANIZACION INDUSTRIAL"
+ },
+ {
+  "codigo": "221016",
+  "descripcion": "INGENIERO DE CONTROLES INDUSTRIALES Y ELECTRONICA"
+ },
+ {
+  "codigo": "227005",
+  "descripcion": "INGENIERO INDUSTRIAL"
+ },
+ {
+  "codigo": "227006",
+  "descripcion": "INGENIERO INDUSTRIAL, HIGIENE Y SEGURIDAD INDUSTRIAL"
+ },
+ {
+  "codigo": "222011",
+  "descripcion": "INGENIERO MECANICO, MAQUINARIA Y HERRAMIENTAS INDUSTRIALES"
+ },
+ {
+  "codigo": "221023",
+  "descripcion": "INGENIERO TELECOMUNICACIONES/SISTEMAS DE SEÐALES"
+ },
+ {
+  "codigo": "217008",
+  "descripcion": "INGENIERO, APLICACIONES DE LA INFORMATICA"
+ },
+ {
+  "codigo": "222026",
+  "descripcion": "INGENIERO, FRIO INDUSTRIAL"
+ },
+ {
+  "codigo": "222027",
+  "descripcion": "INGENIERO, MAQUINARIA Y HERRAMIENTAS INDUSTRIALES"
+ },
+ {
+  "codigo": "227008",
+  "descripcion": "INGENIERO, ORGANIZACION INDUSTRIAL"
+ },
+ {
+  "codigo": "219027",
+  "descripcion": "INGENIERO, SANITARIO"
+ },
+ {
+  "codigo": "217007",
+  "descripcion": "INGENIERO, SISTEMAS INFORMATICOS"
+ },
+ {
+  "codigo": "227002",
+  "descripcion": "INGENIERO, SISTEMAS/EXCEPTO INFORMATICOS"
+ },
+ {
+  "codigo": "945020",
+  "descripcion": "JARDINERO"
+ },
+ {
+  "codigo": "971024",
+  "descripcion": "JARDINERO (OBRERO)"
+ },
+ {
+  "codigo": "614014",
+  "descripcion": "JARDINERO, SEMILLERO"
+ },
+ {
+  "codigo": "614015",
+  "descripcion": "JARDINERO, VIVEROS"
+ },
+ {
+  "codigo": "348006",
+  "descripcion": "KINESITERAPEUTA (KINESIOLOGOS)"
+ },
+ {
+  "codigo": "941011",
+  "descripcion": "LAVANDERO"
+ },
+ {
+  "codigo": "942004",
+  "descripcion": "LAVANDERO, A MANO/LAVANDERIA"
+ },
+ {
+  "codigo": "768008",
+  "descripcion": "LIMPIADOR DE CAMARONES"
+ },
+ {
+  "codigo": "764014",
+  "descripcion": "LIMPIADOR DE FRUTAS Y HORTALIZAS,PARA CONSERVAS"
+ },
+ {
+  "codigo": "882004",
+  "descripcion": "LIMPIADOR DE MAQUINAS.BARCOS"
+ },
+ {
+  "codigo": "719003",
+  "descripcion": "LIMPIADOR DE METALES"
+ },
+ {
+  "codigo": "719004",
+  "descripcion": "LIMPIADOR DE METALES POR ONDAS ULTRASONICAS"
+ },
+ {
+  "codigo": "944003",
+  "descripcion": "LIMPIADOR DE VENTANAS"
+ },
+ {
+  "codigo": "942008",
+  "descripcion": "LIMPIADOR DE: FABRICAS, HOTELES, OFICINAS Y RESTAURANTES"
+ },
+ {
+  "codigo": "719005",
+  "descripcion": "LIMPIADOR POR CHORRO DE ARENA, METALES"
+ },
+ {
+  "codigo": "942007",
+  "descripcion": "LIMPIADOR, EN SECO/A MANO"
+ },
+ {
+  "codigo": "791018",
+  "descripcion": "MECANICO DE INSTRUMENTOS DE ODONTOLOGIA"
+ },
+ {
+  "codigo": "791022",
+  "descripcion": "MECANICO DENTISTA"
+ },
+ {
+  "codigo": "235016",
+  "descripcion": "MEDICO"
+ },
+ {
+  "codigo": "235023",
+  "descripcion": "MEDICO FORENSE"
+ },
+ {
+  "codigo": "235017",
+  "descripcion": "MEDICO, ACUPUNTURA"
+ },
+ {
+  "codigo": "235018",
+  "descripcion": "MEDICO, ANESTESIA"
+ },
+ {
+  "codigo": "235019",
+  "descripcion": "MEDICO, CARDIOLOGIA"
+ },
+ {
+  "codigo": "235020",
+  "descripcion": "MEDICO, DERMATOLOGIA"
+ },
+ {
+  "codigo": "235021",
+  "descripcion": "MEDICO, ENDOCRINOLOGO"
+ },
+ {
+  "codigo": "235022",
+  "descripcion": "MEDICO, ESTOMATOLOGIA"
+ },
+ {
+  "codigo": "235024",
+  "descripcion": "MEDICO, GASTROENTEROLOGO"
+ },
+ {
+  "codigo": "235025",
+  "descripcion": "MEDICO, GERIATRA"
+ },
+ {
+  "codigo": "235026",
+  "descripcion": "MEDICO, GINECOLOGIA"
+ },
+ {
+  "codigo": "235027",
+  "descripcion": "MEDICO, LARINGOLOGO"
+ },
+ {
+  "codigo": "235028",
+  "descripcion": "MEDICO, MEDICINA GENERAL"
+ },
+ {
+  "codigo": "235029",
+  "descripcion": "MEDICO, NEFROLOGO"
+ },
+ {
+  "codigo": "235030",
+  "descripcion": "MEDICO, NEUMOLOGO"
+ },
+ {
+  "codigo": "235031",
+  "descripcion": "MEDICO, NEUROLOGO"
+ },
+ {
+  "codigo": "235032",
+  "descripcion": "MEDICO, OBSTETRA"
+ },
+ {
+  "codigo": "236005",
+  "descripcion": "MEDICO, ODONTOLOGO"
+ },
+ {
+  "codigo": "235033",
+  "descripcion": "MEDICO, OFTALMOLOGIA (OCULISTA)"
+ },
+ {
+  "codigo": "235034",
+  "descripcion": "MEDICO, OSTEOPATIA"
+ },
+ {
+  "codigo": "235035",
+  "descripcion": "MEDICO, OTORRINOLARINGOLOGIA"
+ },
+ {
+  "codigo": "235036",
+  "descripcion": "MEDICO, PATOLOGO"
+ },
+ {
+  "codigo": "235037",
+  "descripcion": "MEDICO, PEDIATRIA"
+ },
+ {
+  "codigo": "235038",
+  "descripcion": "MEDICO, PSIQUIATRIA"
+ },
+ {
+  "codigo": "235039",
+  "descripcion": "MEDICO, PUERICULTOR"
+ },
+ {
+  "codigo": "235040",
+  "descripcion": "MEDICO, RADIOLOGIA"
+ },
+ {
+  "codigo": "235041",
+  "descripcion": "MEDICO, UROLOGO"
+ },
+ {
+  "codigo": "235042",
+  "descripcion": "MEDICO, VENEREOLOGO"
+ },
+ {
+  "codigo": "951006",
+  "descripcion": "MENSAJERO"
+ },
+ {
+  "codigo": "443009",
+  "descripcion": "MENSAJERO, CORRESPONDENCIA"
+ },
+ {
+  "codigo": "951007",
+  "descripcion": "MENSAJERO, TELEGRAMAS"
+ },
+ {
+  "codigo": "231042",
+  "descripcion": "MICROBIOLOGO"
+ },
+ {
+  "codigo": "235043",
+  "descripcion": "NEUROCIRUJANO"
+ },
+ {
+  "codigo": "232012",
+  "descripcion": "NEUROPATOLOGO"
+ },
+ {
+  "codigo": "236006",
+  "descripcion": "ODONTOLOGO"
+ },
+ {
+  "codigo": "236007",
+  "descripcion": "ODONTOLOGO, ENDODONCIA"
+ },
+ {
+  "codigo": "236008",
+  "descripcion": "ODONTOLOGO, ORTODONCIA"
+ },
+ {
+  "codigo": "236009",
+  "descripcion": "ODONTOLOGO, PEDODONCIA"
+ },
+ {
+  "codigo": "236010",
+  "descripcion": "ODONTOLOGO, PERIODONCIA"
+ },
+ {
+  "codigo": "413008",
+  "descripcion": "OFICINISTA-MECANOGRAFA"
+ },
+ {
+  "codigo": "235044",
+  "descripcion": "OFTALMOLOGO"
+ },
+ {
+  "codigo": "346003",
+  "descripcion": "OPTICO, OFTALMOLOGIA"
+ },
+ {
+  "codigo": "346004",
+  "descripcion": "OPTOMETRISTA"
+ },
+ {
+  "codigo": "235048",
+  "descripcion": "PEDIATRA"
+ },
+ {
+  "codigo": "942010",
+  "descripcion": "PEON DE LIMPIEZA DE: AERONAVES, AUTOBUSES, FABRICAS ETC."
+ },
+ {
+  "codigo": "348009",
+  "descripcion": "PODOLOGO"
+ },
+ {
+  "codigo": "952014",
+  "descripcion": "PORTERO"
+ },
+ {
+  "codigo": "952015",
+  "descripcion": "PORTERO, HOTEL"
+ },
+ {
+  "codigo": "952016",
+  "descripcion": "PORTERO, HOTEL/VESTIBULO DE RECEPCION"
+ },
+ {
+  "codigo": "943007",
+  "descripcion": "PORTERO-CUIDADOR"
+ },
+ {
+  "codigo": "347005",
+  "descripcion": "PRACTICANTE DE ODONTOLOGIA"
+ },
+ {
+  "codigo": "343004",
+  "descripcion": "PRACTICANTE EN MEDICINA"
+ },
+ {
+  "codigo": "242020",
+  "descripcion": "PROFESOR, EDUCACION SECUNDARIA/ENFERMERIA BASICA"
+ },
+ {
+  "codigo": "241012",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/BACTERIOLOGIA"
+ },
+ {
+  "codigo": "241025",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/CIENCIAS MEDICAS"
+ },
+ {
+  "codigo": "241051",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/ENFERMERIA"
+ },
+ {
+  "codigo": "241066",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/FISIOTERAPIA"
+ },
+ {
+  "codigo": "241093",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/OBSTETRICIA"
+ },
+ {
+  "codigo": "241094",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/ODONTOLOGIA"
+ },
+ {
+  "codigo": "241095",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/OPTOMETRIA"
+ },
+ {
+  "codigo": "241097",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/PATOLOGIA"
+ },
+ {
+  "codigo": "241107",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/PSICOLOGIA"
+ },
+ {
+  "codigo": "241111",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/RADIOLOGIA"
+ },
+ {
+  "codigo": "241119",
+  "descripcion": "PROFESOR, EDUCACION SUPERIOR/TRATAMIENTOS MEDICOS"
+ },
+ {
+  "codigo": "319004",
+  "descripcion": "PROGRAMADOR, CODIFICADOR DE LOS PROGRAMAS"
+ },
+ {
+  "codigo": "319005",
+  "descripcion": "PROGRAMADOR, DESARROLLO DE LA LOGICA DEL PROCESO"
+ },
+ {
+  "codigo": "319007",
+  "descripcion": "PROGRAMADOR, INFORMATICA/ANALISIS DE BASE DE DATOS"
+ },
+ {
+  "codigo": "319008",
+  "descripcion": "PROGRAMADOR, INFORMATICA/ANALISIS DE SISTEMAS"
+ },
+ {
+  "codigo": "319006",
+  "descripcion": "PROGRAMADOR, INFORMATICA/POR COMPUTADORA"
+ },
+ {
+  "codigo": "319009",
+  "descripcion": "PROGRAMADOR, PRUEBA Y EJECUCION DEL PROGRAMA EN COMPUTADORA"
+ },
+ {
+  "codigo": "268001",
+  "descripcion": "PSICOLOGO"
+ },
+ {
+  "codigo": "268002",
+  "descripcion": "PSICOLOGO CLINICO"
+ },
+ {
+  "codigo": "268003",
+  "descripcion": "PSICOLOGO, EXPERIMENTOS"
+ },
+ {
+  "codigo": "268004",
+  "descripcion": "PSICOLOGO, INDUSTRIAS"
+ },
+ {
+  "codigo": "268005",
+  "descripcion": "PSICOLOGO, OCUPACIONES"
+ },
+ {
+  "codigo": "268006",
+  "descripcion": "PSICOLOGO, PEDAGOGIA"
+ },
+ {
+  "codigo": "268007",
+  "descripcion": "PSICOLOGO, PROBLEMAS SOCIALES"
+ },
+ {
+  "codigo": "268008",
+  "descripcion": "PSICOLOGO, TRABAJO"
+ },
+ {
+  "codigo": "235049",
+  "descripcion": "PSIQUIATRA"
+ },
+ {
+  "codigo": "213009",
+  "descripcion": "QUIMICO, FARMACIA"
+ },
+ {
+  "codigo": "213010",
+  "descripcion": "QUIMICO, FARMACIA/ INDUSTRIA"
+ },
+ {
+  "codigo": "238004",
+  "descripcion": "QUIMICO-FARMACEUTICO"
+ },
+ {
+  "codigo": "454009",
+  "descripcion": "RECEPCIONISTA"
+ },
+ {
+  "codigo": "454010",
+  "descripcion": "RECEPCIONISTA, DENTISTA"
+ },
+ {
+  "codigo": "454011",
+  "descripcion": "RECEPCIONISTA, HOSPITAL/CONSULTORIO MEDICO"
+ },
+ {
+  "codigo": "454012",
+  "descripcion": "RECEPCIONISTA, HOTEL"
+ },
+ {
+  "codigo": "454013",
+  "descripcion": "RECEPCIONISTA, MEDICO"
+ },
+ {
+  "codigo": "945036",
+  "descripcion": "RECEPCIONISTA-ACOMPAÐANTE, CABARET, CLUB ETC."
+ },
+ {
+  "codigo": "343005",
+  "descripcion": "SANITARIO"
+ },
+ {
+  "codigo": "413009",
+  "descripcion": "SECRETARIA"
+ },
+ {
+  "codigo": "413010",
+  "descripcion": "SECRETARIA, BILINGUE"
+ },
+ {
+  "codigo": "413011",
+  "descripcion": "SECRETARIA, COMERCIAL"
+ },
+ {
+  "codigo": "413012",
+  "descripcion": "SECRETARIA, EJECUTIVA/BILINGUE"
+ },
+ {
+  "codigo": "413014",
+  "descripcion": "SECRETARIA, MEDICO"
+ },
+ {
+  "codigo": "413016",
+  "descripcion": "SECRETARIA, OTROS"
+ },
+ {
+  "codigo": "413015",
+  "descripcion": "SECRETARIA-MECANOGRAFA"
+ },
+ {
+  "codigo": "413017",
+  "descripcion": "SECRETARIA-TAQUIGRAFA"
+ },
+ {
+  "codigo": "413018",
+  "descripcion": "SECRETARIA-TAQUIMECANOGRAFA"
+ },
+ {
+  "codigo": "258008",
+  "descripcion": "SECRETARIO DE CORTE"
+ },
+ {
+  "codigo": "112018",
+  "descripcion": "SECRETARIO DE EMBAJADA"
+ },
+ {
+  "codigo": "111022",
+  "descripcion": "SECRETARIO DE ESTADO"
+ },
+ {
+  "codigo": "423012",
+  "descripcion": "SECRETARIO DE JUZGADO, EMPLEADO DE OFICINA"
+ },
+ {
+  "codigo": "258009",
+  "descripcion": "SECRETARIO DE JUZGADO, PROFESIONAL"
+ },
+ {
+  "codigo": "112019",
+  "descripcion": "SECRETARIO GENERAL ADJUNTO, ADMINISTRACION PUBLICA"
+ },
+ {
+  "codigo": "112020",
+  "descripcion": "SECRETARIO GENERAL, ADMINISTRACION PUBLICA"
+ },
+ {
+  "codigo": "115003",
+  "descripcion": "SECRETARIO GENERAL, ORGANIZACION DE EMPLEADORES"
+ },
+ {
+  "codigo": "116003",
+  "descripcion": "SECRETARIO GENERAL, ORGANIZACION DE PROTECCION DEL MEDIO AM"
+ },
+ {
+  "codigo": "114002",
+  "descripcion": "SECRETARIO GENERAL, PARTIDO POLITICO"
+ },
+ {
+  "codigo": "115004",
+  "descripcion": "SECRETARIO GENERAL, SINDICATO DE TRABAJADORES"
+ },
+ {
+  "codigo": "381014",
+  "descripcion": "SECRETARIO, JUZGADO, TECNICO"
+ },
+ {
+  "codigo": "114003",
+  "descripcion": "SECRETARIO, PARTIDO POLITICO"
+ },
+ {
+  "codigo": "263013",
+  "descripcion": "SOCIOLOGO, PATOLOGIA SOCIAL"
+ },
+ {
+  "codigo": "356002",
+  "descripcion": "TECNICO DE SALUD"
+ },
+ {
+  "codigo": "345004",
+  "descripcion": "TECNICO DIETISTA, DIETETICO MEDICA"
+ },
+ {
+  "codigo": "356001",
+  "descripcion": "TECNICO EN LABORATORIO CLINICO"
+ },
+ {
+  "codigo": "345005",
+  "descripcion": "TECNICO NUTRICIONISTA, SALUD PUBLICA"
+ },
+ {
+  "codigo": "355003",
+  "descripcion": "TECNICO RADIOLOGO"
+ },
+ {
+  "codigo": "341004",
+  "descripcion": "TECNICO, BACTERIOLOGIA"
+ },
+ {
+  "codigo": "348012",
+  "descripcion": "TECNICO, GIMNASIA MEDICA"
+ },
+ {
+  "codigo": "312014",
+  "descripcion": "TECNICO, INGENIERIA CIVIL/SANITARIA"
+ },
+ {
+  "codigo": "341016",
+  "descripcion": "TECNICO, LABORATORIO BIOLOGICO"
+ },
+ {
+  "codigo": "311006",
+  "descripcion": "TECNICO, LABORATORISTA FISICO O QUIMICO"
+ },
+ {
+  "codigo": "341017",
+  "descripcion": "TECNICO, PATOLOGIA"
+ },
+ {
+  "codigo": "355004",
+  "descripcion": "TECNOLOGO MEDICO"
+ },
+ {
+  "codigo": "455003",
+  "descripcion": "TELEFONISTA, PUBLICA O PRIVADA"
+ },
+ {
+  "codigo": "348014",
+  "descripcion": "TERAPEUTA, READAPTACION FISICA"
+ },
+ {
+  "codigo": "348015",
+  "descripcion": "TERAPEUTA, READAPTACION PROFESIONAL"
+ },
+ {
+  "codigo": "916002",
+  "descripcion": "VENDEDOR AMBULANTE, CORTEZAS Y HIERBAS/ USO MEDICINAL"
+ },
+ {
+  "codigo": "916001",
+  "descripcion": "VENDEDOR AMBULANTE, PRODUCTOS FARMACEUTICOS: ALCOHOL, ALGOD"
+ },
+ {
+  "codigo": "916003",
+  "descripcion": "VENDEDOR AMBULANTE, RAICES DE PLANTAS/ USO MEDICINAL"
+ },
+ {
+  "codigo": "952019",
+  "descripcion": "VIGILANTE"
+ },
+ {
+  "codigo": "563004",
+  "descripcion": "VIGILANTE DE ESTABLECIMIENTO PENAL Y OTROS CENTROS TUTELARE"
+ },
+ {
+  "codigo": "971078",
+  "descripcion": "VIGILANTE DE MONTE"
+ },
+ {
+  "codigo": "564005",
+  "descripcion": "VIGILANTE DE SEGURIDAD (PRIVADOS)"
+ },
+ {
+  "codigo": "952020",
+  "descripcion": "VIGILANTE, HORARIOS DE TRABAJO"
+ },
+ {
+  "codigo": "952021",
+  "descripcion": "VIGILANTE, MUSEO"
+ },
+ {
+  "codigo": "952022",
+  "descripcion": "VIGILANTE, NOCTURNO"
+ },
+ {
+  "codigo": "873015",
+  "descripcion": "VIGILANTES DE COMPUERTAS,SERVICIOS DE AGUA"
+ },
+ {
+  "codigo": "375020",
+  "descripcion": "VISITADOR MEDICO"
+ }
+]

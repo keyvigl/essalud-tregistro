@@ -1,0 +1,3352 @@
+{
+ "tipo_documento": [
+  {
+   "codigo": "1",
+   "descripcion": "DOCUMENTO NACIONAL DE IDENTIDAD"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "CARNÉ DE EXTRANJERÍA"
+  },
+  {
+   "codigo": "06",
+   "descripcion": "REG. ÚNICO DE CONTRIBUYENTES (1)"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "PASAPORTE"
+  },
+  {
+   "codigo": "9",
+   "descripcion": "CARNÉ DE SOLICIT DE REFUGIO"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "PARTIDA DE NACIMIENTO (2)"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "CARNÉ DE IDENTIDAD - RELACIONES EXTERIORES"
+  },
+  {
+   "codigo": "23",
+   "descripcion": "PERM.TEMP.PERMANENCIA"
+  },
+  {
+   "codigo": "24",
+   "descripcion": "DOC. DE IDENTIDAD EXTRANJERO (3)"
+  },
+  {
+   "codigo": "26",
+   "descripcion": "CARNÉ DE PERMISO TEMP DE PERMANENCIA"
+  }
+ ],
+ "nacionalidad": [
+  {
+   "codigo": "9001",
+   "descripcion": "BOUVET ISLAND"
+  },
+  {
+   "codigo": "9002",
+   "descripcion": "COTE D IVOIRE"
+  },
+  {
+   "codigo": "9003",
+   "descripcion": "FALKLAND ISLANDS (MALVINAS)"
+  },
+  {
+   "codigo": "9004",
+   "descripcion": "FRANCE, METROPOLITAN"
+  },
+  {
+   "codigo": "9005",
+   "descripcion": "FRENCH SOUTHERN TERRITORIES"
+  },
+  {
+   "codigo": "9006",
+   "descripcion": "HEARD AND MC DONALD ISLANDS"
+  },
+  {
+   "codigo": "9007",
+   "descripcion": "MAYOTTE"
+  },
+  {
+   "codigo": "9008",
+   "descripcion": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS"
+  },
+  {
+   "codigo": "9009",
+   "descripcion": "SVALBARD AND JAN MAYEN ISLANDS"
+  },
+  {
+   "codigo": "9010",
+   "descripcion": "UNITED STATES MINOR OUTLYING ISLANDS"
+  },
+  {
+   "codigo": "9011",
+   "descripcion": "OTROS PAISES O LUGARES"
+  },
+  {
+   "codigo": "9013",
+   "descripcion": "AFGANISTAN"
+  },
+  {
+   "codigo": "9017",
+   "descripcion": "ALBANIA"
+  },
+  {
+   "codigo": "9019",
+   "descripcion": "ALDERNEY"
+  },
+  {
+   "codigo": "9023",
+   "descripcion": "ALEMANIA"
+  },
+  {
+   "codigo": "9026",
+   "descripcion": "ARMENIA"
+  },
+  {
+   "codigo": "9027",
+   "descripcion": "ARUBA"
+  },
+  {
+   "codigo": "9028",
+   "descripcion": "ASCENCION"
+  },
+  {
+   "codigo": "9029",
+   "descripcion": "BOSNIA-HERZEGOVINA"
+  },
+  {
+   "codigo": "9031",
+   "descripcion": "BURKINA FASO"
+  },
+  {
+   "codigo": "9037",
+   "descripcion": "ANDORRA"
+  },
+  {
+   "codigo": "9040",
+   "descripcion": "ANGOLA"
+  },
+  {
+   "codigo": "9041",
+   "descripcion": "ANGUILLA"
+  },
+  {
+   "codigo": "9043",
+   "descripcion": "ANTIGUA Y BARBUDA"
+  },
+  {
+   "codigo": "9047",
+   "descripcion": "ANTILLAS HOLANDESAS"
+  },
+  {
+   "codigo": "9053",
+   "descripcion": "ARABIA SAUDITA"
+  },
+  {
+   "codigo": "9059",
+   "descripcion": "ARGELIA"
+  },
+  {
+   "codigo": "9063",
+   "descripcion": "ARGENTINA"
+  },
+  {
+   "codigo": "9069",
+   "descripcion": "AUSTRALIA"
+  },
+  {
+   "codigo": "9072",
+   "descripcion": "AUSTRIA"
+  },
+  {
+   "codigo": "9074",
+   "descripcion": "AZERBAIJÁN"
+  },
+  {
+   "codigo": "9077",
+   "descripcion": "BAHAMAS"
+  },
+  {
+   "codigo": "9080",
+   "descripcion": "BAHREIN"
+  },
+  {
+   "codigo": "9081",
+   "descripcion": "BANGLA DESH"
+  },
+  {
+   "codigo": "9083",
+   "descripcion": "BARBADOS"
+  },
+  {
+   "codigo": "9087",
+   "descripcion": "BÉLGICA"
+  },
+  {
+   "codigo": "9088",
+   "descripcion": "BELICE"
+  },
+  {
+   "codigo": "9090",
+   "descripcion": "BERMUDAS"
+  },
+  {
+   "codigo": "9091",
+   "descripcion": "BELARUS"
+  },
+  {
+   "codigo": "9093",
+   "descripcion": "MYANMAR"
+  },
+  {
+   "codigo": "9097",
+   "descripcion": "BOLIVIA"
+  },
+  {
+   "codigo": "9101",
+   "descripcion": "BOTSWANA"
+  },
+  {
+   "codigo": "9105",
+   "descripcion": "BRASIL"
+  },
+  {
+   "codigo": "9108",
+   "descripcion": "BRUNEI DARUSSALAM"
+  },
+  {
+   "codigo": "9111",
+   "descripcion": "BULGARIA"
+  },
+  {
+   "codigo": "9115",
+   "descripcion": "BURUNDI"
+  },
+  {
+   "codigo": "9119",
+   "descripcion": "BUTÁN"
+  },
+  {
+   "codigo": "9127",
+   "descripcion": "CABO VERDE"
+  },
+  {
+   "codigo": "9137",
+   "descripcion": "CAIMÁN, ISLAS"
+  },
+  {
+   "codigo": "9141",
+   "descripcion": "CAMBOYA"
+  },
+  {
+   "codigo": "9145",
+   "descripcion": "CAMERÚN, REPUBLICA UNIDA DEL"
+  },
+  {
+   "codigo": "9147",
+   "descripcion": "CAMPIONE D TALIA"
+  },
+  {
+   "codigo": "9149",
+   "descripcion": "CANADÁ"
+  },
+  {
+   "codigo": "9155",
+   "descripcion": "CANAL (NORMANDAS), ISLAS"
+  },
+  {
+   "codigo": "9157",
+   "descripcion": "CANTÓN Y ENDERBURRY"
+  },
+  {
+   "codigo": "9159",
+   "descripcion": "SANTA SEDE"
+  },
+  {
+   "codigo": "9165",
+   "descripcion": "COCOS (KEELING),ISLAS"
+  },
+  {
+   "codigo": "9169",
+   "descripcion": "COLOMBIA"
+  },
+  {
+   "codigo": "9173",
+   "descripcion": "COMORAS"
+  },
+  {
+   "codigo": "9177",
+   "descripcion": "CONGO"
+  },
+  {
+   "codigo": "9183",
+   "descripcion": "COOK, ISLAS"
+  },
+  {
+   "codigo": "9187",
+   "descripcion": "COREA (NORTE), REPUBLICA POPULAR DEMOCRATICA DE"
+  },
+  {
+   "codigo": "9190",
+   "descripcion": "COREA (SUR), REPUBLICA DE"
+  },
+  {
+   "codigo": "9193",
+   "descripcion": "COSTA DE MARFIL"
+  },
+  {
+   "codigo": "9196",
+   "descripcion": "COSTA RICA"
+  },
+  {
+   "codigo": "9198",
+   "descripcion": "CROACIA"
+  },
+  {
+   "codigo": "9199",
+   "descripcion": "CUBA"
+  },
+  {
+   "codigo": "9203",
+   "descripcion": "CHAD"
+  },
+  {
+   "codigo": "9207",
+   "descripcion": "CHECOSLOVAQUIA"
+  },
+  {
+   "codigo": "9211",
+   "descripcion": "CHILE"
+  },
+  {
+   "codigo": "9215",
+   "descripcion": "CHINA"
+  },
+  {
+   "codigo": "9218",
+   "descripcion": "TAIWAN (FORMOSA)"
+  },
+  {
+   "codigo": "9221",
+   "descripcion": "CHIPRE"
+  },
+  {
+   "codigo": "9229",
+   "descripcion": "BENIN"
+  },
+  {
+   "codigo": "9232",
+   "descripcion": "DINAMARCA"
+  },
+  {
+   "codigo": "9235",
+   "descripcion": "DOMINICA"
+  },
+  {
+   "codigo": "9239",
+   "descripcion": "ECUADOR"
+  },
+  {
+   "codigo": "9240",
+   "descripcion": "EGIPTO"
+  },
+  {
+   "codigo": "9242",
+   "descripcion": "EL SALVADOR"
+  },
+  {
+   "codigo": "9243",
+   "descripcion": "ERITREA"
+  },
+  {
+   "codigo": "9244",
+   "descripcion": "EMIRATOS ARABES UNIDOS"
+  },
+  {
+   "codigo": "9245",
+   "descripcion": "ESPAÑA"
+  },
+  {
+   "codigo": "9246",
+   "descripcion": "ESLOVAQUIA"
+  },
+  {
+   "codigo": "9247",
+   "descripcion": "ESLOVENIA"
+  },
+  {
+   "codigo": "9249",
+   "descripcion": "ESTADOS UNIDOS"
+  },
+  {
+   "codigo": "9251",
+   "descripcion": "ESTONIA"
+  },
+  {
+   "codigo": "9253",
+   "descripcion": "ETIOPIA"
+  },
+  {
+   "codigo": "9259",
+   "descripcion": "FEROE, ISLAS"
+  },
+  {
+   "codigo": "9267",
+   "descripcion": "FILIPINAS"
+  },
+  {
+   "codigo": "9271",
+   "descripcion": "FINLANDIA"
+  },
+  {
+   "codigo": "9275",
+   "descripcion": "FRANCIA"
+  },
+  {
+   "codigo": "9281",
+   "descripcion": "GABON"
+  },
+  {
+   "codigo": "9285",
+   "descripcion": "GAMBIA"
+  },
+  {
+   "codigo": "9286",
+   "descripcion": "GAZA Y JERICO"
+  },
+  {
+   "codigo": "9287",
+   "descripcion": "GEORGIA"
+  },
+  {
+   "codigo": "9289",
+   "descripcion": "GHANA"
+  },
+  {
+   "codigo": "9293",
+   "descripcion": "GIBRALTAR"
+  },
+  {
+   "codigo": "9297",
+   "descripcion": "GRANADA"
+  },
+  {
+   "codigo": "9301",
+   "descripcion": "GRECIA"
+  },
+  {
+   "codigo": "9305",
+   "descripcion": "GROENLANDIA"
+  },
+  {
+   "codigo": "9309",
+   "descripcion": "GUADALUPE"
+  },
+  {
+   "codigo": "9313",
+   "descripcion": "GUAM"
+  },
+  {
+   "codigo": "9317",
+   "descripcion": "GUATEMALA"
+  },
+  {
+   "codigo": "9325",
+   "descripcion": "GUAYANA FRANCESA"
+  },
+  {
+   "codigo": "9327",
+   "descripcion": "GUERNSEY"
+  },
+  {
+   "codigo": "9329",
+   "descripcion": "GUINEA"
+  },
+  {
+   "codigo": "9331",
+   "descripcion": "GUINEA ECUATORIAL"
+  },
+  {
+   "codigo": "9334",
+   "descripcion": "GUINEA-BISSAU"
+  },
+  {
+   "codigo": "9337",
+   "descripcion": "GUYANA"
+  },
+  {
+   "codigo": "9341",
+   "descripcion": "HAITI"
+  },
+  {
+   "codigo": "9345",
+   "descripcion": "HONDURAS"
+  },
+  {
+   "codigo": "9348",
+   "descripcion": "HONDURAS BRITANICAS"
+  },
+  {
+   "codigo": "9351",
+   "descripcion": "HONG KONG"
+  },
+  {
+   "codigo": "9355",
+   "descripcion": "HUNGRIA"
+  },
+  {
+   "codigo": "9361",
+   "descripcion": "INDIA"
+  },
+  {
+   "codigo": "9365",
+   "descripcion": "INDONESIA"
+  },
+  {
+   "codigo": "9369",
+   "descripcion": "IRAK"
+  },
+  {
+   "codigo": "9372",
+   "descripcion": "IRAN, REPUBLICA ISLAMICA DEL"
+  },
+  {
+   "codigo": "9375",
+   "descripcion": "IRLANDA (EIRE)"
+  },
+  {
+   "codigo": "9377",
+   "descripcion": "ISLA AZORES"
+  },
+  {
+   "codigo": "9378",
+   "descripcion": "ISLA DEL MAN"
+  },
+  {
+   "codigo": "9379",
+   "descripcion": "ISLANDIA"
+  },
+  {
+   "codigo": "9380",
+   "descripcion": "ISLAS CANARIAS"
+  },
+  {
+   "codigo": "9381",
+   "descripcion": "ISLAS DE CHRISTMAS"
+  },
+  {
+   "codigo": "9382",
+   "descripcion": "ISLAS QESHM"
+  },
+  {
+   "codigo": "9383",
+   "descripcion": "ISRAEL"
+  },
+  {
+   "codigo": "9386",
+   "descripcion": "ITALIA"
+  },
+  {
+   "codigo": "9391",
+   "descripcion": "JAMAICA"
+  },
+  {
+   "codigo": "9395",
+   "descripcion": "JONSTON, ISLAS"
+  },
+  {
+   "codigo": "9399",
+   "descripcion": "JAPON"
+  },
+  {
+   "codigo": "9401",
+   "descripcion": "JERSEY"
+  },
+  {
+   "codigo": "9403",
+   "descripcion": "JORDANIA"
+  },
+  {
+   "codigo": "9406",
+   "descripcion": "KAZAJSTAN"
+  },
+  {
+   "codigo": "9410",
+   "descripcion": "KENIA"
+  },
+  {
+   "codigo": "9411",
+   "descripcion": "KIRIBATI"
+  },
+  {
+   "codigo": "9412",
+   "descripcion": "KIRGUIZISTAN"
+  },
+  {
+   "codigo": "9413",
+   "descripcion": "KUWAIT"
+  },
+  {
+   "codigo": "9418",
+   "descripcion": "LABUN"
+  },
+  {
+   "codigo": "9420",
+   "descripcion": "LAOS, REPUBLICA POPULAR DEMOCRATICA DE"
+  },
+  {
+   "codigo": "9426",
+   "descripcion": "LESOTHO"
+  },
+  {
+   "codigo": "9429",
+   "descripcion": "LETONIA"
+  },
+  {
+   "codigo": "9431",
+   "descripcion": "LIBANO"
+  },
+  {
+   "codigo": "9434",
+   "descripcion": "LIBERIA"
+  },
+  {
+   "codigo": "9438",
+   "descripcion": "LIBIA"
+  },
+  {
+   "codigo": "9440",
+   "descripcion": "LIECHTENSTEIN"
+  },
+  {
+   "codigo": "9443",
+   "descripcion": "LITUANIA"
+  },
+  {
+   "codigo": "9445",
+   "descripcion": "LUXEMBURGO"
+  },
+  {
+   "codigo": "9447",
+   "descripcion": "MACAO"
+  },
+  {
+   "codigo": "9448",
+   "descripcion": "MACEDONIA"
+  },
+  {
+   "codigo": "9450",
+   "descripcion": "MADAGASCAR"
+  },
+  {
+   "codigo": "9453",
+   "descripcion": "MADEIRA"
+  },
+  {
+   "codigo": "9455",
+   "descripcion": "MALAYSIA"
+  },
+  {
+   "codigo": "9458",
+   "descripcion": "MALAWI"
+  },
+  {
+   "codigo": "9461",
+   "descripcion": "MALDIVAS"
+  },
+  {
+   "codigo": "9464",
+   "descripcion": "MALI"
+  },
+  {
+   "codigo": "9467",
+   "descripcion": "MALTA"
+  },
+  {
+   "codigo": "9469",
+   "descripcion": "MARIANAS DEL NORTE, ISLAS"
+  },
+  {
+   "codigo": "9472",
+   "descripcion": "MARSHALL, ISLAS"
+  },
+  {
+   "codigo": "9474",
+   "descripcion": "MARRUECOS"
+  },
+  {
+   "codigo": "9477",
+   "descripcion": "MARTINICA"
+  },
+  {
+   "codigo": "9485",
+   "descripcion": "MAURICIO"
+  },
+  {
+   "codigo": "9488",
+   "descripcion": "MAURITANIA"
+  },
+  {
+   "codigo": "9493",
+   "descripcion": "MEXICO"
+  },
+  {
+   "codigo": "9494",
+   "descripcion": "MICRONESIA, ESTADOS FEDERADOS DE"
+  },
+  {
+   "codigo": "9495",
+   "descripcion": "MIDWAY ISLAS"
+  },
+  {
+   "codigo": "9496",
+   "descripcion": "MOLDAVIA"
+  },
+  {
+   "codigo": "9497",
+   "descripcion": "MONGOLIA"
+  },
+  {
+   "codigo": "9498",
+   "descripcion": "MONACO"
+  },
+  {
+   "codigo": "9501",
+   "descripcion": "MONTSERRAT, ISLA"
+  },
+  {
+   "codigo": "9505",
+   "descripcion": "MOZAMBIQUE"
+  },
+  {
+   "codigo": "9507",
+   "descripcion": "NAMIBIA"
+  },
+  {
+   "codigo": "9508",
+   "descripcion": "NAURU"
+  },
+  {
+   "codigo": "9511",
+   "descripcion": "NAVIDAD (CHRISTMAS), ISLA"
+  },
+  {
+   "codigo": "9517",
+   "descripcion": "NEPAL"
+  },
+  {
+   "codigo": "9521",
+   "descripcion": "NICARAGUA"
+  },
+  {
+   "codigo": "9525",
+   "descripcion": "NIGER"
+  },
+  {
+   "codigo": "9528",
+   "descripcion": "NIGERIA"
+  },
+  {
+   "codigo": "9531",
+   "descripcion": "NIUE, ISLA"
+  },
+  {
+   "codigo": "9535",
+   "descripcion": "NORFOLK, ISLA"
+  },
+  {
+   "codigo": "9538",
+   "descripcion": "NORUEGA"
+  },
+  {
+   "codigo": "9542",
+   "descripcion": "NUEVA CALEDONIA"
+  },
+  {
+   "codigo": "9545",
+   "descripcion": "PAPUASIA NUEVA GUINEA"
+  },
+  {
+   "codigo": "9548",
+   "descripcion": "NUEVA ZELANDA"
+  },
+  {
+   "codigo": "9551",
+   "descripcion": "VANUATU"
+  },
+  {
+   "codigo": "9556",
+   "descripcion": "OMAN"
+  },
+  {
+   "codigo": "9566",
+   "descripcion": "PACIFICO, ISLAS DEL"
+  },
+  {
+   "codigo": "9573",
+   "descripcion": "PAISES BAJOS"
+  },
+  {
+   "codigo": "9576",
+   "descripcion": "PAKISTAN"
+  },
+  {
+   "codigo": "9578",
+   "descripcion": "PALAU, ISLAS"
+  },
+  {
+   "codigo": "9579",
+   "descripcion": "TERRITORIO AUTONOMO DE PALESTINA."
+  },
+  {
+   "codigo": "9580",
+   "descripcion": "PANAMA"
+  },
+  {
+   "codigo": "9586",
+   "descripcion": "PARAGUAY"
+  },
+  {
+   "codigo": "9589",
+   "descripcion": "PERÚ"
+  },
+  {
+   "codigo": "9593",
+   "descripcion": "PITCAIRN, ISLA"
+  },
+  {
+   "codigo": "9599",
+   "descripcion": "POLINESIA FRANCESA"
+  },
+  {
+   "codigo": "9603",
+   "descripcion": "POLONIA"
+  },
+  {
+   "codigo": "9607",
+   "descripcion": "PORTUGAL"
+  },
+  {
+   "codigo": "9611",
+   "descripcion": "PUERTO RICO"
+  },
+  {
+   "codigo": "9618",
+   "descripcion": "QATAR"
+  },
+  {
+   "codigo": "9628",
+   "descripcion": "REINO UNIDO"
+  },
+  {
+   "codigo": "9629",
+   "descripcion": "ESCOCIA"
+  },
+  {
+   "codigo": "9633",
+   "descripcion": "REPUBLICA ARABE UNIDA"
+  },
+  {
+   "codigo": "9640",
+   "descripcion": "REPUBLICA CENTROAFRICANA"
+  },
+  {
+   "codigo": "9644",
+   "descripcion": "REPUBLICA CHECA"
+  },
+  {
+   "codigo": "9645",
+   "descripcion": "REPUBLICA DE SWAZILANDIA"
+  },
+  {
+   "codigo": "9646",
+   "descripcion": "REPUBLICA DE TUNEZ"
+  },
+  {
+   "codigo": "9647",
+   "descripcion": "REPUBLICA DOMINICANA"
+  },
+  {
+   "codigo": "9660",
+   "descripcion": "REUNION"
+  },
+  {
+   "codigo": "9665",
+   "descripcion": "ZIMBABWE"
+  },
+  {
+   "codigo": "9670",
+   "descripcion": "RUMANIA"
+  },
+  {
+   "codigo": "9675",
+   "descripcion": "RUANDA"
+  },
+  {
+   "codigo": "9676",
+   "descripcion": "RUSIA"
+  },
+  {
+   "codigo": "9677",
+   "descripcion": "SALOMON, ISLAS"
+  },
+  {
+   "codigo": "9685",
+   "descripcion": "SAHARA OCCIDENTAL"
+  },
+  {
+   "codigo": "9687",
+   "descripcion": "SAMOA OCCIDENTAL"
+  },
+  {
+   "codigo": "9690",
+   "descripcion": "SAMOA NORTEAMERICANA"
+  },
+  {
+   "codigo": "9695",
+   "descripcion": "SAN CRISTOBAL Y NIEVES"
+  },
+  {
+   "codigo": "9697",
+   "descripcion": "SAN MARINO"
+  },
+  {
+   "codigo": "9700",
+   "descripcion": "SAN PEDRO Y MIQUELON"
+  },
+  {
+   "codigo": "9705",
+   "descripcion": "SAN VICENTE Y LAS GRANADINAS"
+  },
+  {
+   "codigo": "9710",
+   "descripcion": "SANTA ELENA"
+  },
+  {
+   "codigo": "9715",
+   "descripcion": "SANTA LUCIA"
+  },
+  {
+   "codigo": "9720",
+   "descripcion": "SANTO TOME Y PRINCIPE"
+  },
+  {
+   "codigo": "9728",
+   "descripcion": "SENEGAL"
+  },
+  {
+   "codigo": "9731",
+   "descripcion": "SEYCHELLES"
+  },
+  {
+   "codigo": "9735",
+   "descripcion": "SIERRA LEONA"
+  },
+  {
+   "codigo": "9741",
+   "descripcion": "SINGAPUR"
+  },
+  {
+   "codigo": "9744",
+   "descripcion": "SIRIA, REPUBLICA ARABE DE"
+  },
+  {
+   "codigo": "9748",
+   "descripcion": "SOMALIA"
+  },
+  {
+   "codigo": "9750",
+   "descripcion": "SRI LANKA"
+  },
+  {
+   "codigo": "9756",
+   "descripcion": "SUDAFRICA, REPUBLICA DE"
+  },
+  {
+   "codigo": "9759",
+   "descripcion": "SUDAN"
+  },
+  {
+   "codigo": "9764",
+   "descripcion": "SUECIA"
+  },
+  {
+   "codigo": "9767",
+   "descripcion": "SUIZA"
+  },
+  {
+   "codigo": "9770",
+   "descripcion": "SURINAM"
+  },
+  {
+   "codigo": "9773",
+   "descripcion": "SAWSILANDIA"
+  },
+  {
+   "codigo": "9774",
+   "descripcion": "TADJIKISTAN"
+  },
+  {
+   "codigo": "9776",
+   "descripcion": "TAILANDIA"
+  },
+  {
+   "codigo": "9780",
+   "descripcion": "TANZANIA, REPUBLICA UNIDA DE"
+  },
+  {
+   "codigo": "9783",
+   "descripcion": "DJIBOUTI"
+  },
+  {
+   "codigo": "9786",
+   "descripcion": "TERRITORIO ANTARTICO BRITANICO"
+  },
+  {
+   "codigo": "9787",
+   "descripcion": "TERRITORIO BRITANICO DEL OCEANO INDICO"
+  },
+  {
+   "codigo": "9788",
+   "descripcion": "TIMOR DEL ESTE"
+  },
+  {
+   "codigo": "9800",
+   "descripcion": "TOGO"
+  },
+  {
+   "codigo": "9805",
+   "descripcion": "TOKELAU"
+  },
+  {
+   "codigo": "9810",
+   "descripcion": "TONGA"
+  },
+  {
+   "codigo": "9815",
+   "descripcion": "TRINIDAD Y TOBAGO"
+  },
+  {
+   "codigo": "9816",
+   "descripcion": "TRISTAN DA CUNHA"
+  },
+  {
+   "codigo": "9820",
+   "descripcion": "TUNICIA"
+  },
+  {
+   "codigo": "9823",
+   "descripcion": "TURCAS Y CAICOS, ISLAS"
+  },
+  {
+   "codigo": "9825",
+   "descripcion": "TURKMENISTAN"
+  },
+  {
+   "codigo": "9827",
+   "descripcion": "TURQUIA"
+  },
+  {
+   "codigo": "9828",
+   "descripcion": "TUVALU"
+  },
+  {
+   "codigo": "9830",
+   "descripcion": "UCRANIA"
+  },
+  {
+   "codigo": "9833",
+   "descripcion": "UGANDA"
+  },
+  {
+   "codigo": "9840",
+   "descripcion": "URSS"
+  },
+  {
+   "codigo": "9845",
+   "descripcion": "URUGUAY"
+  },
+  {
+   "codigo": "9847",
+   "descripcion": "UZBEKISTAN"
+  },
+  {
+   "codigo": "9850",
+   "descripcion": "VENEZUELA"
+  },
+  {
+   "codigo": "9855",
+   "descripcion": "VIET NAM"
+  },
+  {
+   "codigo": "9858",
+   "descripcion": "VIETNAM (DEL NORTE)"
+  },
+  {
+   "codigo": "9863",
+   "descripcion": "VIRGENES, ISLAS (BRITANICAS)"
+  },
+  {
+   "codigo": "9866",
+   "descripcion": "VIRGENES, ISLAS (NORTEAMERICANAS)"
+  },
+  {
+   "codigo": "9870",
+   "descripcion": "FIJI"
+  },
+  {
+   "codigo": "9873",
+   "descripcion": "WAKE, ISLA"
+  },
+  {
+   "codigo": "9875",
+   "descripcion": "WALLIS Y FORTUNA, ISLAS"
+  },
+  {
+   "codigo": "9880",
+   "descripcion": "YEMEN"
+  },
+  {
+   "codigo": "9885",
+   "descripcion": "YUGOSLAVIA"
+  },
+  {
+   "codigo": "9888",
+   "descripcion": "ZAIRE"
+  },
+  {
+   "codigo": "9890",
+   "descripcion": "ZAMBIA"
+  },
+  {
+   "codigo": "9895",
+   "descripcion": "ZONA DEL CANAL DE PANAMA"
+  },
+  {
+   "codigo": "9896",
+   "descripcion": "ZONA LIBRE OSTRAVA"
+  },
+  {
+   "codigo": "9897",
+   "descripcion": "ZONA NEUTRAL (PALESTINA)"
+  }
+ ],
+ "via": [
+  {
+   "codigo": "1",
+   "descripcion": "AVENIDA"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "JIRÓN"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "CALLE"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "PASAJE"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "ALAMEDA"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "MALECÓN"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "OVALO"
+  },
+  {
+   "codigo": "8",
+   "descripcion": "PARQUE"
+  },
+  {
+   "codigo": "9",
+   "descripcion": "PLAZA"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "CARRETERA"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "TROCHA"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "CAMINO RURAL"
+  },
+  {
+   "codigo": "15",
+   "descripcion": "BAJADA"
+  },
+  {
+   "codigo": "16",
+   "descripcion": "GALERIA"
+  },
+  {
+   "codigo": "17",
+   "descripcion": "PROLONGACIÓN"
+  },
+  {
+   "codigo": "18",
+   "descripcion": "PASEO"
+  },
+  {
+   "codigo": "19",
+   "descripcion": "PLAZUELA"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "PORTAL"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "CAMINO AFIRMADO"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "TROCHA CARROZABLE"
+  },
+  {
+   "codigo": "99",
+   "descripcion": "OTROS"
+  }
+ ],
+ "zona": [
+  {
+   "codigo": "1",
+   "descripcion": "URB. URBANIZACIÓN"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "P.J. PUEBLO JOVEN"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "U.V. UNIDAD VECINAL"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "C.H. CONJUNTO HABITACIONAL"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "A.H. ASENTAMIENTO HUMANO"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "COO. COOPERATIVA"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "RES. RESIDENCIAL"
+  },
+  {
+   "codigo": "8",
+   "descripcion": "Z.I. ZONA INDUSTRIAL"
+  },
+  {
+   "codigo": "9",
+   "descripcion": "GRU. GRUPO"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "CAS. CASERÍO"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "FND. FUNDO"
+  },
+  {
+   "codigo": "99",
+   "descripcion": "OTROS"
+  }
+ ],
+ "tipo_trabajador": [
+  {
+   "codigo": "19",
+   "descripcion": "EJECUTIVO"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "OBRERO"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "EMPLEADO"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "TRABAJADOR PORTUARIO - LEY 27866"
+  },
+  {
+   "codigo": "23",
+   "descripcion": "PRACTICANTE SENATI - DEC. LEY 20151"
+  },
+  {
+   "codigo": "24",
+   "descripcion": "PENSIONISTA O CESANTE"
+  },
+  {
+   "codigo": "25",
+   "descripcion": "BENEFICIARIO DE TRANSF DIRECTA EX PESCADPRES"
+  },
+  {
+   "codigo": "26",
+   "descripcion": "PENSIONISTA - LEY 28320"
+  },
+  {
+   "codigo": "27",
+   "descripcion": "CONSTRUCCIÓN CIVIL"
+  },
+  {
+   "codigo": "28",
+   "descripcion": "PILOTO Y COPILOTO DE AVIACIÓN COMERCIAL"
+  },
+  {
+   "codigo": "29",
+   "descripcion": "MARÍTIMO, FLUVIAL O LACUSTRE"
+  },
+  {
+   "codigo": "30",
+   "descripcion": "PERIODISTA"
+  },
+  {
+   "codigo": "31",
+   "descripcion": "TRABAJADOR DE LA INDUSTRIA DE CUERO"
+  },
+  {
+   "codigo": "32",
+   "descripcion": "MINERO DE MINA DE SOCAVÓN"
+  },
+  {
+   "codigo": "36",
+   "descripcion": "TRABAJADOR PESQUERO"
+  },
+  {
+   "codigo": "37",
+   "descripcion": "MINERO DE TAJO ABIERTO"
+  },
+  {
+   "codigo": "38",
+   "descripcion": "MINERO DE INDUSTRIA MINERA METALÚRGICA Y/O SIDERÚRGICA"
+  },
+  {
+   "codigo": "39",
+   "descripcion": "TRABAJADOR PESQUERO – LEY 30003"
+  },
+  {
+   "codigo": "48",
+   "descripcion": "AGROINDUSTRIAL"
+  },
+  {
+   "codigo": "56",
+   "descripcion": "ARTISTA -  LEY 28131"
+  },
+  {
+   "codigo": "64",
+   "descripcion": "AGRARIO DEPENDIENTE - LEY 27360"
+  },
+  {
+   "codigo": "65",
+   "descripcion": "TRABAJADOR ACTIVIDAD ACUÍCOLA - LEY 27460"
+  },
+  {
+   "codigo": "66",
+   "descripcion": "PESCADOR Y PROCESADOR ARTESANAL INDEPENDIENTE  - LEY 27177"
+  },
+  {
+   "codigo": "67",
+   "descripcion": "REGIMEN  ESPECIAL D. LEG.1057 - CAS"
+  },
+  {
+   "codigo": "71",
+   "descripcion": "CONDUCTOR DE MICROEMPRESA REMYPE - D.LEG.1086"
+  },
+  {
+   "codigo": "73",
+   "descripcion": "SOCIO DE COOPERATIVA AGRARIA – LEY N.° 29972"
+  },
+  {
+   "codigo": "76",
+   "descripcion": "AGRARIO LEY N° 31110"
+  },
+  {
+   "codigo": "77",
+   "descripcion": "INTERNO EN CIENCIAS DE LA SALUD D.U. 090-2020"
+  },
+  {
+   "codigo": "82",
+   "descripcion": "FUNCIONARIO PÚBLICO"
+  },
+  {
+   "codigo": "83",
+   "descripcion": "EMPLEADO DE CONFIANZA"
+  },
+  {
+   "codigo": "84",
+   "descripcion": "SERVIDOR PÚBLICO - DIRECTIVO  SUPERIOR"
+  },
+  {
+   "codigo": "85",
+   "descripcion": "SERVIDOR PÚBLICO - EJECUTIVO"
+  },
+  {
+   "codigo": "86",
+   "descripcion": "SERVIDOR PÚBLICO - ESPECIALISTA"
+  },
+  {
+   "codigo": "87",
+   "descripcion": "SERVIDOR PÚBLICO - DE APOYO"
+  },
+  {
+   "codigo": "88",
+   "descripcion": "PERSONAL DE LA ADMIN. PÚBLICA - ASIGNACIÓN ESPECIAL - D.U. 126-2001"
+  },
+  {
+   "codigo": "89",
+   "descripcion": "PERSONAL DE LAS FUERZAS ARMADAS Y POLICIALES (1)"
+  },
+  {
+   "codigo": "90",
+   "descripcion": "GERENTES PÚBLICOS  - D. LEG. 1024"
+  },
+  {
+   "codigo": "91",
+   "descripcion": "MIIEMBROS DE OTROS REG. ESPECIALES DEL SECTOR PÚBLICO"
+  },
+  {
+   "codigo": "92",
+   "descripcion": "FUNCIONARIO PUBLICO - LEY 30057"
+  },
+  {
+   "codigo": "93",
+   "descripcion": "DIRECTIVO PÚBLICO - LEY 30057"
+  },
+  {
+   "codigo": "94",
+   "descripcion": "SERVIDOR CIVIL DE CARRERA - LEY 30057"
+  },
+  {
+   "codigo": "95",
+   "descripcion": "SERVIDOR DE ACTIVIDADES COMPLEMENTARIAS - LEY 30057"
+  },
+  {
+   "codigo": "96",
+   "descripcion": "MAGISTERIO - LEY 29944"
+  },
+  {
+   "codigo": "98",
+   "descripcion": "PERSONA QUE GENERA INGRESOS DE CUARTA - QUINTA CATEGORÍA"
+  }
+ ],
+ "situacion_educativa": [
+  {
+   "codigo": "01",
+   "descripcion": "SIN EDUCACIÓN FORMAL"
+  },
+  {
+   "codigo": "02",
+   "descripcion": "EDUCACIÓN ESPECIAL INCOMPLETA"
+  },
+  {
+   "codigo": "03",
+   "descripcion": "EDUCACIÓN ESPECIAL COMPLETA"
+  },
+  {
+   "codigo": "04",
+   "descripcion": "EDUCACIÓN PRIMARIA INCOMPLETA"
+  },
+  {
+   "codigo": "05",
+   "descripcion": "EDUCACIÓN PRIMARIA COMPLETA"
+  },
+  {
+   "codigo": "06",
+   "descripcion": "EDUCACIÓN SECUNDARIA INCOMPLETA"
+  },
+  {
+   "codigo": "07",
+   "descripcion": "EDUCACIÓN SECUNDARIA COMPLETA"
+  },
+  {
+   "codigo": "08",
+   "descripcion": "EDUCACIÓN TÉCNICA INCOMPLETA (2)"
+  },
+  {
+   "codigo": "09",
+   "descripcion": "EDUCACIÓN TÉCNICA COMPLETA (2)"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "EDUCACIÓN SUPERIOR (INSTITUTO SUPERIOR, ETC) INCOMPLETA (3)"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "EDUCACIÓN SUPERIOR (INSTITUTO SUPERIOR, ETC) COMPLETA  (3)"
+  },
+  {
+   "codigo": "12",
+   "descripcion": "EDUCACIÓN UNIVERSITARIA INCOMPLETA  (4)"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "EDUCACIÓN UNIVERSITARIA COMPLETA (4)"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "GRADO DE BACHILLER"
+  },
+  {
+   "codigo": "15",
+   "descripcion": "TITULADO"
+  },
+  {
+   "codigo": "16",
+   "descripcion": "ESTUDIOS DE MAESTRÍA INCOMPLETA"
+  },
+  {
+   "codigo": "17",
+   "descripcion": "ESTUDIOS DE MAESTRÍA COMPLETA"
+  },
+  {
+   "codigo": "18",
+   "descripcion": "GRADO DE MAESTRÍA"
+  },
+  {
+   "codigo": "19",
+   "descripcion": "ESTUDIOS DE DOCTORADO INCOMPLETO"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "ESTUDIOS DE DOCTORADO COMPLETO"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "GRADO DE DOCTOR"
+  }
+ ],
+ "modalidad_formativa": [
+  {
+   "codigo": "1",
+   "descripcion": "APRENDIZAJE CON PREDOMINIO EN LA EMPRESA"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "APRENDIZAJE CON PREDOMINIO EN EL CFP - PRÁCTICAS PRE PROFESIONALES"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "PRÁCTICAS PROFESIONALES"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "CAPACITACIÓN LABORAL JUVENIL"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "PASANTÍA EN LA EMPRESA"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "PASANTÍA DE DOCENTES Y CATEDRÁTICOS"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "ACTUALIZACIÓN PARA LA REINSERCIÓN LABORAL"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "SECIGRISTA (1)"
+  }
+ ],
+ "regimen_pensionario": [
+  {
+   "codigo": "02",
+   "descripcion": "DECRETO LEY 19990 - SISTEMA NACIONAL DE PENSIONES - ONP"
+  },
+  {
+   "codigo": "03",
+   "descripcion": "DECRETO LEY 20530"
+  },
+  {
+   "codigo": "09",
+   "descripcion": "CAJA DE BENEFICIOS DE SEGURIDAD SOCIAL DEL PESCADOR"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "CAJA DE PENSIONES MILITAR"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "CAJA DE PENSIONES POLICIAL"
+  },
+  {
+   "codigo": "12",
+   "descripcion": "OTROS REGIMENES PENSIONARIOS (1)"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "RÉGIMEN DEL SERVICIO DIPLOMÁTICO DE LA REPÚBLICA"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "LEY 29903 - SISTEMA NACIONAL DE PENSIONES -INDEPENDIENTES"
+  },
+  {
+   "codigo": "15",
+   "descripcion": "LEY 30003 - RÉGIMEN ESPECIAL DE PENSIONES -PESQUEROS"
+  },
+  {
+   "codigo": "16",
+   "descripcion": "LEY 30003 TRANSFERENCIA DIRECTA EX PESC"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "SPP INTEGRA"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "SPP HORIZONTE"
+  },
+  {
+   "codigo": "23",
+   "descripcion": "SPP PROFUTURO"
+  },
+  {
+   "codigo": "24",
+   "descripcion": "SPP PRIMA"
+  },
+  {
+   "codigo": "25",
+   "descripcion": "SPP HABITAT"
+  },
+  {
+   "codigo": "98",
+   "descripcion": "PENDIENTE DE ELECCIÓN DE REGIMEN PENSIONARIO"
+  },
+  {
+   "codigo": "99",
+   "descripcion": "SIN REGIMEN PENSIONARIO/NO APLICA"
+  }
+ ],
+ "tipo_contrato": [
+  {
+   "codigo": "1",
+   "descripcion": "A PLAZO INDETERMINADO - D.LEG. 728"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "A TIEMPO PARCIAL"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "POR INICIO O INCREMENTO DE ACTIVIDAD"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "POR NECESIDADES DEL MERCADO"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "POR RECONVERSIÓN EMPRESARIAL"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "OCASIONAL"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "DE SUPLENCIA"
+  },
+  {
+   "codigo": "8",
+   "descripcion": "DE EMERGENCIA"
+  },
+  {
+   "codigo": "9",
+   "descripcion": "PARA OBRA DETERMINADA O SERVICIO ESPECÍFICO"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "INTERMITENTE"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "DE TEMPORADA"
+  },
+  {
+   "codigo": "12",
+   "descripcion": "DE EXPORTACIÓN NO TRADICIONAL D.LEY 22342"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "DE EXTRANJERO - D.LEG.689"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "ADMINISTRATIVO DE SERVICIOS - D.LEG 1057 (1)"
+  },
+  {
+   "codigo": "15",
+   "descripcion": "NOMBRADO - D.LEG. N.° 276 (1)"
+  },
+  {
+   "codigo": "16",
+   "descripcion": "SERVICIOS PERSONALES  - APLICABLES A LOS REGÍM. DE CARRERA (1)"
+  },
+  {
+   "codigo": "17",
+   "descripcion": "GERENTE PÚBLICO - D.LEG. 1024 (1)"
+  },
+  {
+   "codigo": "18",
+   "descripcion": "A DOMICILIO"
+  },
+  {
+   "codigo": "19",
+   "descripcion": "FUTBOLISTAS PROFESIONALES"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "AGRARIO - LEY 27360"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "MIGRANTE ANDINO DECISIÓN 545"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "A PLAZO INDETERMINADO - LEY 30057"
+  },
+  {
+   "codigo": "23",
+   "descripcion": "A PLAZO FIJO - LEY 30057"
+  },
+  {
+   "codigo": "24",
+   "descripcion": "NOMBRADO - CARRERAS ESPECIALES DEL SECTOR PÚBLICO"
+  },
+  {
+   "codigo": "25",
+   "descripcion": "CONTRATADO - CARRERAS ESPECIALES DEL SECTOR PÚBLICO"
+  },
+  {
+   "codigo": "99",
+   "descripcion": "OTROS NO PREVISTOS"
+  }
+ ],
+ "periodicidad": [
+  {
+   "codigo": "1",
+   "descripcion": "MENSUAL"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "QUINCENAL"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "SEMANAL"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "DIARIA"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "OTROS"
+  }
+ ],
+ "eps": [
+  {
+   "codigo": "1",
+   "descripcion": "PERSALUD S.A. EPS (1)"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "PACÍFICO S.A. EPS"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "RÍMAC INTERNACIONAL S.A. EPS"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "SERVICIOS PROPIOS"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "MAPFRE PERU S.A. EPS"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "SANITAS PERU S.A. - EPS"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "EPS, LA POSITIVA S.A. ENTIDAD PRESTADORA DE SALUD"
+  }
+ ],
+ "situacion": [
+  {
+   "codigo": "0",
+   "descripcion": "BAJA (1)"
+  },
+  {
+   "codigo": "1",
+   "descripcion": "ACTIVO O SUBSIDIADO (1)"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "SIN VÍNCULO LABORAL CON CONCEPTOS PENDIENTE DE LIQUIDAR  (2)"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "SUSPENSIÓN PERFECTA DE LABORES (3)"
+  }
+ ],
+ "tipo_pago": [
+  {
+   "codigo": "1",
+   "descripcion": "EFECTIVO"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "DEPÓSITO EN CUENTA"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "OTROS"
+  }
+ ],
+ "motivo_baja": [
+  {
+   "codigo": "01",
+   "descripcion": "RENUNCIA"
+  },
+  {
+   "codigo": "02",
+   "descripcion": "RENUNCIA CON INCENTIVOS"
+  },
+  {
+   "codigo": "03",
+   "descripcion": "DESPIDO O DESTITUCIÓN"
+  },
+  {
+   "codigo": "04",
+   "descripcion": "CESE COLECTIVO"
+  },
+  {
+   "codigo": "05",
+   "descripcion": "JUBILACIÓN"
+  },
+  {
+   "codigo": "06",
+   "descripcion": "INVALIDEZ ABSOLUTA PERMANENTE"
+  },
+  {
+   "codigo": "07",
+   "descripcion": "TERMINACIÓN DE LA OBRA O SERVICIO, CUMPLIMIENTO CONDICIÓN RESOLUTORIA O VENCIMIENTO DEL PLAZO"
+  },
+  {
+   "codigo": "08",
+   "descripcion": "MUTUO DISENSO"
+  },
+  {
+   "codigo": "09",
+   "descripcion": "FALLECIMIENTO"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "SUSPENSIÓN DE LA PENSIÓN (1)"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "REASIGNACIÓN SERVIDOR DE LA ADMINISTRACIÓN PÚBLICA(2)"
+  },
+  {
+   "codigo": "12",
+   "descripcion": "PERMUTA SERVIDOR DE LA ADMINISTRACIÓN PÚBLICA (2)"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "TRANSFERENCIA SERVIDOR DE LA ADMINISTRACIÓN PÚBLICA (2)"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "BAJA POR SUCESIÓN EN POSICIÓN DEL EMPLEADOR"
+  },
+  {
+   "codigo": "15",
+   "descripcion": "EXTINCIÓN O LIQUIDACIÓN DEL EMPLEADOR"
+  },
+  {
+   "codigo": "16",
+   "descripcion": "OTROS MOTIVOS DE CADUCIDAD DE LA PENSIÓN (1)"
+  },
+  {
+   "codigo": "17",
+   "descripcion": "NO SE INICIÓ LA RELACIÓN LABORAL O PRESTACIÓN EFECTIVA DE SERVICIOS"
+  },
+  {
+   "codigo": "18",
+   "descripcion": "LÍMITE DE EDAD 70 AÑOS"
+  },
+  {
+   "codigo": "19",
+   "descripcion": "OTRAS CAUSALES RÉGIMEN PÚBLICO GENERAL SERVICIO CIVIL - LEY 30057"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "INHABILITACIÓN PARA EL EJERCICIO PROFESIONAL O DE LA FUNCIÓN PÚBLICA POR MÁS DE TRES MESES - LEY 30057"
+  },
+  {
+   "codigo": "99",
+   "descripcion": "SIN VÍNCULO LABORAL - HABILITADO PARA PDT PLAME"
+  }
+ ],
+ "categoria_ocupacional": [
+  {
+   "codigo": "01",
+   "descripcion": "EJECUTIVO"
+  },
+  {
+   "codigo": "02",
+   "descripcion": "OBRERO"
+  },
+  {
+   "codigo": "03",
+   "descripcion": "EMPLEADO"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "FUNCIONARIO"
+  },
+  {
+   "codigo": "12",
+   "descripcion": "PROFESIONAL"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "TÉCNICO"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "AUXILIAR"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "FUNCIONARIO PÚBLICO - LEY 30057"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "DIRECTIVO PÚBLICO - LEY 30057"
+  },
+  {
+   "codigo": "23",
+   "descripcion": "SERVIDOR CIVIL DE CARRERA - LEY 30057"
+  },
+  {
+   "codigo": "24",
+   "descripcion": "SERVIDOR DE ACTIVIDADES COMPLEMENTARIAS - LEY 30057"
+  }
+ ],
+ "convenio_doble_trib": [
+  {
+   "codigo": "0",
+   "descripcion": "NINGUNO"
+  },
+  {
+   "codigo": "1",
+   "descripcion": "CANADA"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "CHILE"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "CAN"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "BRASIL"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "MEXICO"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "COREA"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "SUIZA"
+  },
+  {
+   "codigo": "8",
+   "descripcion": "PORTUGAL"
+  }
+ ],
+ "pais": [
+  {
+   "codigo": "004",
+   "descripcion": "AFGANISTÁN"
+  },
+  {
+   "codigo": "008",
+   "descripcion": "ALBANIA"
+  },
+  {
+   "codigo": "010",
+   "descripcion": "ANTÁRTIDA"
+  },
+  {
+   "codigo": "012",
+   "descripcion": "ARGELIA"
+  },
+  {
+   "codigo": "016",
+   "descripcion": "SAMOA AMERICANA"
+  },
+  {
+   "codigo": "020",
+   "descripcion": "ANDORRA"
+  },
+  {
+   "codigo": "024",
+   "descripcion": "ANGOLA"
+  },
+  {
+   "codigo": "028",
+   "descripcion": "ANTIGUA Y BARBUDA"
+  },
+  {
+   "codigo": "031",
+   "descripcion": "AZERBAIJAN"
+  },
+  {
+   "codigo": "032",
+   "descripcion": "LA ARGENTINA"
+  },
+  {
+   "codigo": "036",
+   "descripcion": "AUSTRALIA"
+  },
+  {
+   "codigo": "040",
+   "descripcion": "AUSTRIA"
+  },
+  {
+   "codigo": "044",
+   "descripcion": "BAHAMAS"
+  },
+  {
+   "codigo": "048",
+   "descripcion": "BAHREIN"
+  },
+  {
+   "codigo": "050",
+   "descripcion": "BANGLADESH"
+  },
+  {
+   "codigo": "051",
+   "descripcion": "ARMENIA"
+  },
+  {
+   "codigo": "052",
+   "descripcion": "BARBADOS"
+  },
+  {
+   "codigo": "056",
+   "descripcion": "BÉLGICA"
+  },
+  {
+   "codigo": "060",
+   "descripcion": "BERMUDAS"
+  },
+  {
+   "codigo": "064",
+   "descripcion": "BHUTÁN"
+  },
+  {
+   "codigo": "068",
+   "descripcion": "BOLIVIA"
+  },
+  {
+   "codigo": "070",
+   "descripcion": "BOSNIA Y HERZEGOVINA"
+  },
+  {
+   "codigo": "072",
+   "descripcion": "BOTSWANA"
+  },
+  {
+   "codigo": "074",
+   "descripcion": "ISLA DE BOUVET"
+  },
+  {
+   "codigo": "076",
+   "descripcion": "EL BRASIL"
+  },
+  {
+   "codigo": "084",
+   "descripcion": "BELICE"
+  },
+  {
+   "codigo": "086",
+   "descripcion": "TERRITORIO BRITÁNICO DEL OCÉANO ÍNDICO"
+  },
+  {
+   "codigo": "090",
+   "descripcion": "ISLAS DE SOLOMON"
+  },
+  {
+   "codigo": "092",
+   "descripcion": "ISLAS VÍRGENES, BRITÁNICAS"
+  },
+  {
+   "codigo": "096",
+   "descripcion": "BRUNEI DARUSSALAM"
+  },
+  {
+   "codigo": "100",
+   "descripcion": "BULGARIA"
+  },
+  {
+   "codigo": "104",
+   "descripcion": "MYANMAR"
+  },
+  {
+   "codigo": "108",
+   "descripcion": "BURUNDI"
+  },
+  {
+   "codigo": "112",
+   "descripcion": "BELARUS"
+  },
+  {
+   "codigo": "116",
+   "descripcion": "CAMBOYA"
+  },
+  {
+   "codigo": "120",
+   "descripcion": "CAMERÚN"
+  },
+  {
+   "codigo": "124",
+   "descripcion": "CANADÁ"
+  },
+  {
+   "codigo": "132",
+   "descripcion": "CABO VERDE"
+  },
+  {
+   "codigo": "136",
+   "descripcion": "ISLAS CAIMÁN"
+  },
+  {
+   "codigo": "140",
+   "descripcion": "REPÚBLICA CENTROAFRICANA"
+  },
+  {
+   "codigo": "144",
+   "descripcion": "SRI LANKA"
+  },
+  {
+   "codigo": "148",
+   "descripcion": "SÁBALO"
+  },
+  {
+   "codigo": "152",
+   "descripcion": "CHILE"
+  },
+  {
+   "codigo": "156",
+   "descripcion": "CHINA"
+  },
+  {
+   "codigo": "158",
+   "descripcion": "TAIWÁN, PROVINCIA DE CHINA"
+  },
+  {
+   "codigo": "162",
+   "descripcion": "ISLA DE NAVIDAD"
+  },
+  {
+   "codigo": "166",
+   "descripcion": "ISLAS DE LOS COCOS (KEELING)"
+  },
+  {
+   "codigo": "170",
+   "descripcion": "COLOMBIA"
+  },
+  {
+   "codigo": "174",
+   "descripcion": "EL COMORO"
+  },
+  {
+   "codigo": "175",
+   "descripcion": "MAYOTTE"
+  },
+  {
+   "codigo": "178",
+   "descripcion": "CONGO"
+  },
+  {
+   "codigo": "180",
+   "descripcion": "CONGO, LA REPÚBLICA DEMOCRÁTICA DEL"
+  },
+  {
+   "codigo": "184",
+   "descripcion": "ISLAS DE COCINERO"
+  },
+  {
+   "codigo": "188",
+   "descripcion": "COSTA RICA"
+  },
+  {
+   "codigo": "191",
+   "descripcion": "CROATIA"
+  },
+  {
+   "codigo": "192",
+   "descripcion": "CUBA"
+  },
+  {
+   "codigo": "196",
+   "descripcion": "CHIPRE"
+  },
+  {
+   "codigo": "203",
+   "descripcion": "REPÚBLICA CHECA"
+  },
+  {
+   "codigo": "204",
+   "descripcion": "BENIN"
+  },
+  {
+   "codigo": "208",
+   "descripcion": "DINAMARCA"
+  },
+  {
+   "codigo": "212",
+   "descripcion": "DOMINICA"
+  },
+  {
+   "codigo": "214",
+   "descripcion": "REPÚBLICA DOMINICANA"
+  },
+  {
+   "codigo": "218",
+   "descripcion": "ECUADOR"
+  },
+  {
+   "codigo": "222",
+   "descripcion": "EL SALVADOR"
+  },
+  {
+   "codigo": "226",
+   "descripcion": "GUINEA ECUATORIAL"
+  },
+  {
+   "codigo": "231",
+   "descripcion": "ETIOPÍA"
+  },
+  {
+   "codigo": "232",
+   "descripcion": "ERITREA"
+  },
+  {
+   "codigo": "233",
+   "descripcion": "ESTONIA"
+  },
+  {
+   "codigo": "234",
+   "descripcion": "ISLAS DE FAROE"
+  },
+  {
+   "codigo": "238",
+   "descripcion": "ISLAS MALVINAS (MALVINAS)"
+  },
+  {
+   "codigo": "239",
+   "descripcion": "GEORGIA DEL SUR Y LAS ISLAS DEL SUR DEL EMPAREDADO"
+  },
+  {
+   "codigo": "242",
+   "descripcion": "FIJI"
+  },
+  {
+   "codigo": "246",
+   "descripcion": "FINLANDIA"
+  },
+  {
+   "codigo": "248",
+   "descripcion": "ISLAS DE ÅLAND"
+  },
+  {
+   "codigo": "250",
+   "descripcion": "FRANCIA"
+  },
+  {
+   "codigo": "254",
+   "descripcion": "LA GUAYANA FRANCESA"
+  },
+  {
+   "codigo": "258",
+   "descripcion": "POLINESIA FRANCESA"
+  },
+  {
+   "codigo": "260",
+   "descripcion": "TERRITORIOS MERIDIONALES FRANCESES"
+  },
+  {
+   "codigo": "262",
+   "descripcion": "DJIBOUTI"
+  },
+  {
+   "codigo": "266",
+   "descripcion": "GABÓN"
+  },
+  {
+   "codigo": "268",
+   "descripcion": "GEORGIA"
+  },
+  {
+   "codigo": "270",
+   "descripcion": "GAMBIA"
+  },
+  {
+   "codigo": "275",
+   "descripcion": "TERRITORIO PALESTINO, OCUPADO"
+  },
+  {
+   "codigo": "276",
+   "descripcion": "ALEMANIA"
+  },
+  {
+   "codigo": "288",
+   "descripcion": "GHANA"
+  },
+  {
+   "codigo": "292",
+   "descripcion": "GIBRALTAR"
+  },
+  {
+   "codigo": "296",
+   "descripcion": "KIRIBATI"
+  },
+  {
+   "codigo": "300",
+   "descripcion": "GRECIA"
+  },
+  {
+   "codigo": "304",
+   "descripcion": "GROENLANDIA"
+  },
+  {
+   "codigo": "308",
+   "descripcion": "GRENADA"
+  },
+  {
+   "codigo": "312",
+   "descripcion": "GUADALUPE"
+  },
+  {
+   "codigo": "316",
+   "descripcion": "GUAM"
+  },
+  {
+   "codigo": "320",
+   "descripcion": "GUATEMALA"
+  },
+  {
+   "codigo": "324",
+   "descripcion": "GUINEA"
+  },
+  {
+   "codigo": "328",
+   "descripcion": "GUYANA"
+  },
+  {
+   "codigo": "332",
+   "descripcion": "HAITÍ"
+  },
+  {
+   "codigo": "334",
+   "descripcion": "ISLA E ISLAS OÍDAS DE MCDONALD"
+  },
+  {
+   "codigo": "336",
+   "descripcion": "SANTA SEDE (ESTADO DE CIUDAD DE VATICAN)"
+  },
+  {
+   "codigo": "340",
+   "descripcion": "HONDURAS"
+  },
+  {
+   "codigo": "344",
+   "descripcion": "HONG KONG"
+  },
+  {
+   "codigo": "348",
+   "descripcion": "HUNGRÍA"
+  },
+  {
+   "codigo": "352",
+   "descripcion": "ISLANDIA"
+  },
+  {
+   "codigo": "356",
+   "descripcion": "LA INDIA"
+  },
+  {
+   "codigo": "360",
+   "descripcion": "INDONESIA"
+  },
+  {
+   "codigo": "364",
+   "descripcion": "IRÁN, REPÚBLICA ISLÁMICA DE"
+  },
+  {
+   "codigo": "368",
+   "descripcion": "IRAQ"
+  },
+  {
+   "codigo": "372",
+   "descripcion": "IRLANDA"
+  },
+  {
+   "codigo": "376",
+   "descripcion": "ISRAEL"
+  },
+  {
+   "codigo": "380",
+   "descripcion": "ITALIA"
+  },
+  {
+   "codigo": "384",
+   "descripcion": "D'IVOIRE DE CÔTE"
+  },
+  {
+   "codigo": "388",
+   "descripcion": "JAMAICA"
+  },
+  {
+   "codigo": "392",
+   "descripcion": "JAPÓN"
+  },
+  {
+   "codigo": "398",
+   "descripcion": "KAZAKHSTAN"
+  },
+  {
+   "codigo": "400",
+   "descripcion": "JORDANIA"
+  },
+  {
+   "codigo": "404",
+   "descripcion": "KENIA"
+  },
+  {
+   "codigo": "408",
+   "descripcion": "COREA, REPÚBLICA POPULAR DEMOCRÁTICA DE"
+  },
+  {
+   "codigo": "410",
+   "descripcion": "COREA, REPÚBLICA DE"
+  },
+  {
+   "codigo": "414",
+   "descripcion": "KUWAIT"
+  },
+  {
+   "codigo": "417",
+   "descripcion": "KYRGYZSTAN"
+  },
+  {
+   "codigo": "418",
+   "descripcion": "REPÚBLICA DEMOCRÁTICA DE LA GENTE DEL LAO"
+  },
+  {
+   "codigo": "422",
+   "descripcion": "LÍBANO"
+  },
+  {
+   "codigo": "426",
+   "descripcion": "LESOTHO"
+  },
+  {
+   "codigo": "428",
+   "descripcion": "LATVIA"
+  },
+  {
+   "codigo": "430",
+   "descripcion": "LIBERIA"
+  },
+  {
+   "codigo": "434",
+   "descripcion": "JAMAHIRIYA ÁRABE LIBIO"
+  },
+  {
+   "codigo": "438",
+   "descripcion": "LIECHTENSTEIN"
+  },
+  {
+   "codigo": "440",
+   "descripcion": "LITUANIA"
+  },
+  {
+   "codigo": "442",
+   "descripcion": "LUXEMBURGO"
+  },
+  {
+   "codigo": "446",
+   "descripcion": "MACAO"
+  },
+  {
+   "codigo": "450",
+   "descripcion": "MADAGASCAR"
+  },
+  {
+   "codigo": "454",
+   "descripcion": "MALAWI"
+  },
+  {
+   "codigo": "458",
+   "descripcion": "MALASIA"
+  },
+  {
+   "codigo": "462",
+   "descripcion": "MALDIVES"
+  },
+  {
+   "codigo": "466",
+   "descripcion": "MALÍ"
+  },
+  {
+   "codigo": "470",
+   "descripcion": "MALTA"
+  },
+  {
+   "codigo": "474",
+   "descripcion": "MARTINICA"
+  },
+  {
+   "codigo": "478",
+   "descripcion": "MAURITANIA"
+  },
+  {
+   "codigo": "480",
+   "descripcion": "ISLA MAURICIO"
+  },
+  {
+   "codigo": "484",
+   "descripcion": "MÉXICO"
+  },
+  {
+   "codigo": "492",
+   "descripcion": "MÓNACO"
+  },
+  {
+   "codigo": "496",
+   "descripcion": "MONGOLIA"
+  },
+  {
+   "codigo": "498",
+   "descripcion": "MOLDOVA"
+  },
+  {
+   "codigo": "499",
+   "descripcion": "MONTENEGRO"
+  },
+  {
+   "codigo": "500",
+   "descripcion": "MONTSERRAT"
+  },
+  {
+   "codigo": "504",
+   "descripcion": "MARRUECOS"
+  },
+  {
+   "codigo": "508",
+   "descripcion": "MOZAMBIQUE"
+  },
+  {
+   "codigo": "512",
+   "descripcion": "OMÁN"
+  },
+  {
+   "codigo": "516",
+   "descripcion": "NAMIBIA"
+  },
+  {
+   "codigo": "520",
+   "descripcion": "NAURU"
+  },
+  {
+   "codigo": "524",
+   "descripcion": "NEPAL"
+  },
+  {
+   "codigo": "528",
+   "descripcion": "PAÍSES BAJOS"
+  },
+  {
+   "codigo": "530",
+   "descripcion": "PAÍSES BAJOS ANTILLAS"
+  },
+  {
+   "codigo": "533",
+   "descripcion": "ARUBA"
+  },
+  {
+   "codigo": "540",
+   "descripcion": "NUEVA CALEDONIA"
+  },
+  {
+   "codigo": "548",
+   "descripcion": "VANUATU"
+  },
+  {
+   "codigo": "554",
+   "descripcion": "NUEVA ZELANDIA"
+  },
+  {
+   "codigo": "558",
+   "descripcion": "NICARAGUA"
+  },
+  {
+   "codigo": "562",
+   "descripcion": "NIGER"
+  },
+  {
+   "codigo": "566",
+   "descripcion": "NIGERIA"
+  },
+  {
+   "codigo": "570",
+   "descripcion": "NIUE"
+  },
+  {
+   "codigo": "574",
+   "descripcion": "ISLA DE NORFOLK"
+  },
+  {
+   "codigo": "578",
+   "descripcion": "NORUEGA"
+  },
+  {
+   "codigo": "580",
+   "descripcion": "ISLAS DE MARIANA NORTEÑAS"
+  },
+  {
+   "codigo": "581",
+   "descripcion": "ISLAS PERIFÉRICAS DE MENOR IMPORTANCIA DE ESTADOS UNIDOS"
+  },
+  {
+   "codigo": "583",
+   "descripcion": "MICRONESIA, ESTADOS FEDERADOS DE"
+  },
+  {
+   "codigo": "584",
+   "descripcion": "ISLAS DE ORDENAR"
+  },
+  {
+   "codigo": "585",
+   "descripcion": "PALAU"
+  },
+  {
+   "codigo": "586",
+   "descripcion": "PAQUISTÁN"
+  },
+  {
+   "codigo": "591",
+   "descripcion": "PANAMÁ"
+  },
+  {
+   "codigo": "598",
+   "descripcion": "PAPUA NUEVA GUINEA"
+  },
+  {
+   "codigo": "600",
+   "descripcion": "PARAGUAY"
+  },
+  {
+   "codigo": "604",
+   "descripcion": "PERÚ"
+  },
+  {
+   "codigo": "608",
+   "descripcion": "FILIPINAS"
+  },
+  {
+   "codigo": "612",
+   "descripcion": "PITCAIRN"
+  },
+  {
+   "codigo": "616",
+   "descripcion": "POLONIA"
+  },
+  {
+   "codigo": "620",
+   "descripcion": "PORTUGAL"
+  },
+  {
+   "codigo": "624",
+   "descripcion": "GUINEA-BISSAU"
+  },
+  {
+   "codigo": "626",
+   "descripcion": "TIMOR-LESTE"
+  },
+  {
+   "codigo": "630",
+   "descripcion": "PUERTO RICO"
+  },
+  {
+   "codigo": "634",
+   "descripcion": "QATAR"
+  },
+  {
+   "codigo": "638",
+   "descripcion": "RÉUNION"
+  },
+  {
+   "codigo": "642",
+   "descripcion": "RUMANIA"
+  },
+  {
+   "codigo": "643",
+   "descripcion": "FEDERACIÓN RUSA"
+  },
+  {
+   "codigo": "646",
+   "descripcion": "RWANDA"
+  },
+  {
+   "codigo": "652",
+   "descripcion": "SANTO BARTHÉLEMY"
+  },
+  {
+   "codigo": "654",
+   "descripcion": "SANTO HELENA"
+  },
+  {
+   "codigo": "659",
+   "descripcion": "SANTO KITTS Y NEVIS"
+  },
+  {
+   "codigo": "660",
+   "descripcion": "ANGUILA"
+  },
+  {
+   "codigo": "662",
+   "descripcion": "SANTO LUCIA"
+  },
+  {
+   "codigo": "663",
+   "descripcion": "SANTO MARTIN (PARTE FRANCESA)"
+  },
+  {
+   "codigo": "666",
+   "descripcion": "SANTO PIERRE Y MIQUELON"
+  },
+  {
+   "codigo": "670",
+   "descripcion": "SANTO VINCENT Y LOS GRENADINES"
+  },
+  {
+   "codigo": "674",
+   "descripcion": "SAN MARINO"
+  },
+  {
+   "codigo": "678",
+   "descripcion": "SAO TOME Y PRÍNCIPE"
+  },
+  {
+   "codigo": "682",
+   "descripcion": "LA ARABIA SAUDITA"
+  },
+  {
+   "codigo": "686",
+   "descripcion": "SENEGAL"
+  },
+  {
+   "codigo": "688",
+   "descripcion": "SERBIA"
+  },
+  {
+   "codigo": "690",
+   "descripcion": "SEYCHELLES"
+  },
+  {
+   "codigo": "694",
+   "descripcion": "SIERRA LEONA"
+  },
+  {
+   "codigo": "702",
+   "descripcion": "SINGAPUR"
+  },
+  {
+   "codigo": "703",
+   "descripcion": "ESLOVAQUIA"
+  },
+  {
+   "codigo": "704",
+   "descripcion": "VIETNAM"
+  },
+  {
+   "codigo": "705",
+   "descripcion": "ESLOVENIA"
+  },
+  {
+   "codigo": "706",
+   "descripcion": "SOMALIA"
+  },
+  {
+   "codigo": "710",
+   "descripcion": "SURÁFRICA"
+  },
+  {
+   "codigo": "716",
+   "descripcion": "ZIMBABWE"
+  },
+  {
+   "codigo": "724",
+   "descripcion": "ESPAÑA"
+  },
+  {
+   "codigo": "732",
+   "descripcion": "SÁHARA OCCIDENTAL"
+  },
+  {
+   "codigo": "736",
+   "descripcion": "SUDÁN"
+  },
+  {
+   "codigo": "740",
+   "descripcion": "SURINAME"
+  },
+  {
+   "codigo": "744",
+   "descripcion": "SVALBARD Y ENERO MAYEN"
+  },
+  {
+   "codigo": "748",
+   "descripcion": "SWAZILANDIA"
+  },
+  {
+   "codigo": "752",
+   "descripcion": "SUECIA"
+  },
+  {
+   "codigo": "756",
+   "descripcion": "SUIZA"
+  },
+  {
+   "codigo": "760",
+   "descripcion": "REPÚBLICA ÁRABE SIRIA"
+  },
+  {
+   "codigo": "762",
+   "descripcion": "TAJIKISTAN"
+  },
+  {
+   "codigo": "764",
+   "descripcion": "TAILANDIA"
+  },
+  {
+   "codigo": "768",
+   "descripcion": "TOGO"
+  },
+  {
+   "codigo": "772",
+   "descripcion": "TOKELAU"
+  },
+  {
+   "codigo": "776",
+   "descripcion": "TONGA"
+  },
+  {
+   "codigo": "780",
+   "descripcion": "TRINIDAD Y TRINIDAD Y TOBAGO"
+  },
+  {
+   "codigo": "784",
+   "descripcion": "EMIRATOS ÁRABES UNIDOS"
+  },
+  {
+   "codigo": "788",
+   "descripcion": "TÚNEZ"
+  },
+  {
+   "codigo": "792",
+   "descripcion": "TURQUÍA"
+  },
+  {
+   "codigo": "795",
+   "descripcion": "TURKMENISTAN"
+  },
+  {
+   "codigo": "796",
+   "descripcion": "TURCOS E ISLAS DE CAICOS"
+  },
+  {
+   "codigo": "798",
+   "descripcion": "TUVALU"
+  },
+  {
+   "codigo": "800",
+   "descripcion": "UGANDA"
+  },
+  {
+   "codigo": "804",
+   "descripcion": "UCRANIA"
+  },
+  {
+   "codigo": "807",
+   "descripcion": "MACEDONIA, LA REPÚBLICA YUGOSLAVA ANTERIOR DE"
+  },
+  {
+   "codigo": "818",
+   "descripcion": "EGIPTO"
+  },
+  {
+   "codigo": "826",
+   "descripcion": "REINO UNIDO"
+  },
+  {
+   "codigo": "831",
+   "descripcion": "GUERNESEY"
+  },
+  {
+   "codigo": "832",
+   "descripcion": "JERSEY"
+  },
+  {
+   "codigo": "833",
+   "descripcion": "ISLA DEL HOMBRE"
+  },
+  {
+   "codigo": "834",
+   "descripcion": "TANZANIA, REPÚBLICA UNIDA DE"
+  },
+  {
+   "codigo": "840",
+   "descripcion": "ESTADOS UNIDOS"
+  },
+  {
+   "codigo": "850",
+   "descripcion": "ISLAS VÍRGENES, LOS E.E.U.U."
+  },
+  {
+   "codigo": "854",
+   "descripcion": "BURKINA FASO"
+  },
+  {
+   "codigo": "858",
+   "descripcion": "URUGUAY"
+  },
+  {
+   "codigo": "860",
+   "descripcion": "UZBEKISTAN"
+  },
+  {
+   "codigo": "862",
+   "descripcion": "VENEZUELA"
+  },
+  {
+   "codigo": "876",
+   "descripcion": "WALLIS Y FUTUNA"
+  },
+  {
+   "codigo": "882",
+   "descripcion": "SAMOA"
+  },
+  {
+   "codigo": "887",
+   "descripcion": "YEMEN"
+  },
+  {
+   "codigo": "894",
+   "descripcion": "ZAMBIA"
+  }
+ ],
+ "regimen_salud": [
+  {
+   "codigo": "00",
+   "descripcion": "ESSALUD REGULAR (Exclusivamente)"
+  },
+  {
+   "codigo": "01",
+   "descripcion": "ESSALUD REGULAR Y EPS/SERV. PROPIOS"
+  },
+  {
+   "codigo": "02",
+   "descripcion": "ESSALUD TRABAJADORES PESQUEROS"
+  },
+  {
+   "codigo": "03",
+   "descripcion": "ESSALUD TRABAJADORES PESQUEROS Y EPS(SERV.PROPIOS)"
+  },
+  {
+   "codigo": "04",
+   "descripcion": "ESSALUD AGRARIO/ACUÍCOLA"
+  },
+  {
+   "codigo": "05",
+   "descripcion": "ESSALUD PENSIONISTAS"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "SANIDAD DE FFAA Y POLICIALES (1)"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "SIS – MICROEMPRESA(2)"
+  }
+ ],
+ "regimen_laboral": [
+  {
+   "codigo": "01",
+   "descripcion": "PRIVADO GENERAL -DECRETO LEGISLATIVO N.° 728"
+  },
+  {
+   "codigo": "02",
+   "descripcion": "PÚBLICO GENERAL - DECRETO LEGISLATIVO N.° 276"
+  },
+  {
+   "codigo": "03",
+   "descripcion": "PROFESORADO - LEY N.° 24029"
+  },
+  {
+   "codigo": "04",
+   "descripcion": "MAGISTERIO - LEY N.° 29062"
+  },
+  {
+   "codigo": "05",
+   "descripcion": "DOCENTES UNIVERSITARIOS - LEY N.° 23733"
+  },
+  {
+   "codigo": "06",
+   "descripcion": "PROFESIONALES DE LA SALUD LEY N.° 23536"
+  },
+  {
+   "codigo": "07",
+   "descripcion": "TECNICOS Y AUXILIARES ASIST. DE LA SALUD - LEY N.° 28561"
+  },
+  {
+   "codigo": "08",
+   "descripcion": "SERUM - LEY N.° 23330"
+  },
+  {
+   "codigo": "09",
+   "descripcion": "JUECES - CARRERA JUDICIAL - LEY N.° 29277"
+  },
+  {
+   "codigo": "10",
+   "descripcion": "FISCALES - D. LEG.  N.° 052"
+  },
+  {
+   "codigo": "11",
+   "descripcion": "SERVICIO DIPLOMÁTICO DE LA REPÚBLICA - LEY N.° 28091"
+  },
+  {
+   "codigo": "12",
+   "descripcion": "MILITARES"
+  },
+  {
+   "codigo": "13",
+   "descripcion": "POLICIA NACIONAL DEL PERÚ - LEY N.° 27238"
+  },
+  {
+   "codigo": "14",
+   "descripcion": "ESPECIAL GER. PÚBLICOS DECRETO LEGISLATIVO N.° 1024 (2)"
+  },
+  {
+   "codigo": "15",
+   "descripcion": "CONTRATO ADMINISTRATIVO DE SERVICIOS - D.LEG. N.° 1057"
+  },
+  {
+   "codigo": "16",
+   "descripcion": "MICROEMPRESA D. LEG. 1086 (1)"
+  },
+  {
+   "codigo": "17",
+   "descripcion": "PEQUEÑA EMPRESA D. LEG. 1086 (1)"
+  },
+  {
+   "codigo": "18",
+   "descripcion": "AGRARIO LEY 27360"
+  },
+  {
+   "codigo": "19",
+   "descripcion": "EXPORTACION NO TRADICIONAL D. LEY 22342"
+  },
+  {
+   "codigo": "20",
+   "descripcion": "MINEROS"
+  },
+  {
+   "codigo": "21",
+   "descripcion": "CONSTRUCCION CIVIL"
+  },
+  {
+   "codigo": "22",
+   "descripcion": "PÚBLICO GENERAL SERVICIO CIVIL - LEY 30057"
+  },
+  {
+   "codigo": "23",
+   "descripcion": "MAGISTERIO - LEY 29944"
+  },
+  {
+   "codigo": "24",
+   "descripcion": "POLICÍA NACIONAL DEL PERÚ - D.LEG.1149"
+  },
+  {
+   "codigo": "25",
+   "descripcion": "SERVIDORES PENITENCIARIOS - LEY 29709"
+  },
+  {
+   "codigo": "26",
+   "descripcion": "RÉGIMEN LABORAL AGRARIO LEY N° 31110"
+  },
+  {
+   "codigo": "99",
+   "descripcion": "OTROS NO PREVISTOS"
+  }
+ ],
+ "situacion_especial": [
+  {
+   "codigo": "0",
+   "descripcion": "NINGUNA"
+  },
+  {
+   "codigo": "1",
+   "descripcion": "TRABAJADOR DE DIRECCIÓN – PRESENCIAL"
+  },
+  {
+   "codigo": "2",
+   "descripcion": "TRABAJADOR DE CONFIANZA - PRESENCIAL"
+  },
+  {
+   "codigo": "3",
+   "descripcion": "TRABAJADOR DE DIRECCIÓN - TELETRABAJO MIXTO"
+  },
+  {
+   "codigo": "4",
+   "descripcion": "TRABAJADOR DE CONFIANZA - TELETRABAJO MIXTO"
+  },
+  {
+   "codigo": "5",
+   "descripcion": "TRABAJADOR DE DIRECCIÓN - TELETRABAJO COMPLETO"
+  },
+  {
+   "codigo": "6",
+   "descripcion": "TRABAJADOR DE CONFIANZA - TELETRABAJO COMPLETO"
+  },
+  {
+   "codigo": "7",
+   "descripcion": "TELETRABAJO MIXTO"
+  },
+  {
+   "codigo": "8",
+   "descripcion": "TELETRABAJO COMPLETO"
+  }
+ ],
+ "entidad_bancaria": [
+  {
+   "codigo": "002",
+   "descripcion": "BANCO DE CRÉDITO DEL PERÚ"
+  },
+  {
+   "codigo": "003",
+   "descripcion": "INTERBANK"
+  },
+  {
+   "codigo": "007",
+   "descripcion": "CITIBANK DEL PERÚ"
+  },
+  {
+   "codigo": "009",
+   "descripcion": "SCOTIABANK PERÚ"
+  },
+  {
+   "codigo": "011",
+   "descripcion": "BBVA BANCO CONTINENTAL"
+  },
+  {
+   "codigo": "018",
+   "descripcion": "BANCO DE LA NACIÓN"
+  },
+  {
+   "codigo": "020",
+   "descripcion": "BANCO FALABELLA"
+  },
+  {
+   "codigo": "023",
+   "descripcion": "BANCO DE COMERCIO"
+  },
+  {
+   "codigo": "035",
+   "descripcion": "BANCO PICHINCHA"
+  },
+  {
+   "codigo": "038",
+   "descripcion": "BANCO INTERAMERICANO DE FINANZAS"
+  },
+  {
+   "codigo": "043",
+   "descripcion": "CREDISCOTIA FINANCIERA"
+  },
+  {
+   "codigo": "053",
+   "descripcion": "BANCO GNB"
+  },
+  {
+   "codigo": "056",
+   "descripcion": "SANTANDER"
+  },
+  {
+   "codigo": "057",
+   "descripcion": "BANCO AZTECA"
+  },
+  {
+   "codigo": "058",
+   "descripcion": "BANCO CENCOSUD"
+  },
+  {
+   "codigo": "059",
+   "descripcion": "BANCO RIPLEY"
+  },
+  {
+   "codigo": "060",
+   "descripcion": "ICBC PERÚ BANK"
+  },
+  {
+   "codigo": "070",
+   "descripcion": "MIBANCO"
+  },
+  {
+   "codigo": "200",
+   "descripcion": "FINANC. CREDINKA"
+  },
+  {
+   "codigo": "202",
+   "descripcion": "FINANC. PROEMPRESA"
+  },
+  {
+   "codigo": "204",
+   "descripcion": "FINANC. CONFIANZA"
+  },
+  {
+   "codigo": "206",
+   "descripcion": "CREDIRAIZ"
+  },
+  {
+   "codigo": "208",
+   "descripcion": "COMPARTAMOS FINANCIERA"
+  },
+  {
+   "codigo": "210",
+   "descripcion": "FINANCIERA QAPAQ"
+  },
+  {
+   "codigo": "212",
+   "descripcion": "FINANCIERA TFC S A"
+  },
+  {
+   "codigo": "214",
+   "descripcion": "FINANCIERA EFECTIVA"
+  },
+  {
+   "codigo": "216",
+   "descripcion": "AMERIKA FINANCIERA"
+  },
+  {
+   "codigo": "218",
+   "descripcion": "FINANCIERA OH!"
+  },
+  {
+   "codigo": "800",
+   "descripcion": "CAJA METROPOLITANA DE LIMA"
+  },
+  {
+   "codigo": "802",
+   "descripcion": "CMAC TRUJILLO"
+  },
+  {
+   "codigo": "803",
+   "descripcion": "CMAC AREQUIPA"
+  },
+  {
+   "codigo": "805",
+   "descripcion": "CMAC SULLANA"
+  },
+  {
+   "codigo": "806",
+   "descripcion": "CMAC CUSCO"
+  },
+  {
+   "codigo": "808",
+   "descripcion": "CMAC HUANCAYO"
+  },
+  {
+   "codigo": "813",
+   "descripcion": "CMAC TACNA"
+  },
+  {
+   "codigo": "820",
+   "descripcion": "CMAC DEL SANTA"
+  },
+  {
+   "codigo": "822",
+   "descripcion": "CMAC ICA"
+  },
+  {
+   "codigo": "824",
+   "descripcion": "CMAC PIURA"
+  },
+  {
+   "codigo": "826",
+   "descripcion": "CMAC MAYNAS"
+  },
+  {
+   "codigo": "828",
+   "descripcion": "CMAC PAITA"
+  },
+  {
+   "codigo": "900",
+   "descripcion": "CRAC SIPAN"
+  },
+  {
+   "codigo": "902",
+   "descripcion": "CRAC DEL CENTRO"
+  },
+  {
+   "codigo": "904",
+   "descripcion": "CRAC INCASUR"
+  },
+  {
+   "codigo": "906",
+   "descripcion": "CRAC PRYMERA"
+  },
+  {
+   "codigo": "908",
+   "descripcion": "CRAC LOS ANDES"
+  }
+ ]
+}

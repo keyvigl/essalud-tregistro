@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block subtitle %}Completar en lote{% endblock %}
+{% block content %}
+<style>.container{max-width:100%;padding:0 14px}</style>
+
+{# ---------- macros de celdas ---------- #}
+{% macro selcell(t,row,field,tabla) %}
+<td class="gc" data-field="{{field}}" data-row="{{row}}">
+  <select><option value="">—</option>
+  {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}" {% if (t|attr(field))==o.codigo %}selected{% endif %}>{{o.descripcion[:22]}}</option>{% endfor %}
+  </select><span class="fh"></span>
+</td>
+{% endmacro %}
+{% macro combocell(t,row,field) %}
+<td class="gc" data-field="{{field}}" data-row="{{row}}">
+  <div class="combo"><input type="text" class="combo-input" placeholder="🔎" autocomplete="off">
+  <input type="hidden" class="combo-value" value="{{ t|attr(field) }}"><div class="combo-list" hidden></div></div><span class="fh"></span>
+</td>
+{% endmacro %}
+{% macro incell(t,row,field,type='text',default='') %}
+<td class="gc" data-field="{{field}}" data-row="{{row}}"><input type="{{type}}" value="{{ t|attr(field) or default }}"><span class="fh"></span></td>
+{% endmacro %}
+{% macro centrocell(t,row) %}
+<td class="gc" data-field="tipo_centro_formacion" data-row="{{row}}">
+  <select>
+    <option value="1" {% if t.tipo_centro_formacion=='1' %}selected{% endif %}>Centro educ.</option>
+    <option value="2" {% if t.tipo_centro_formacion in ('2','',None) %}selected{% endif %}>Universidad</option>
+    <option value="3" {% if t.tipo_centro_formacion=='3' %}selected{% endif %}>Instituto</option>
+    <option value="4" {% if t.tipo_centro_formacion=='4' %}selected{% endif %}>Otros</option>
+  </select><span class="fh"></span>
+</td>
+{% endmacro %}
+
+{# ---------- macros de "aplicar a todos" (barra masiva) ---------- #}
+{% macro msel(label,field,tabla) %}
+<div class="mblock"><span>{{label}}</span>
+  <select class="master" data-field="{{field}}"><option value="">—</option>
+  {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}">{{o.descripcion[:26]}}</option>{% endfor %}</select>
+  <button type="button" class="aplicar" data-field="{{field}}">↓ todos</button>
+</div>
+{% endmacro %}
+{% macro mcombo(label,field) %}
+<div class="mblock"><span>{{label}}</span>
+  <div class="combo master-combo" data-field="{{field}}"><input type="text" class="combo-input" placeholder="🔎" autocomplete="off"><input type="hidden" class="combo-value"><div class="combo-list" hidden></div></div>
+  <button type="button" class="aplicar" data-field="{{field}}">↓ todos</button>
+</div>
+{% endmacro %}
+{% macro minp(label,field,type='text') %}
+<div class="mblock"><span>{{label}}</span><input class="master" type="{{type}}" data-field="{{field}}"><button type="button" class="aplicar" data-field="{{field}}">↓ todos</button></div>
+{% endmacro %}
+
+<div class="card">
+  <a class="link" href="/panel?clave={{ clave }}">← Volver al listado</a>
+
+  <div class="tabs">
+    <a class="tab {% if modo==CAT_PRACTICANTE %}on{% endif %}" href="/panel/lote?clave={{clave}}&categoria=practicante">🎓 Practicantes ({{ n_prac }})</a>
+    <a class="tab {% if modo==CAT_TRABAJADOR %}on{% endif %}" href="/panel/lote?clave={{clave}}&categoria=trabajador">👷 Trabajadores ({{ n_trab }})</a>
+  </div>
+
+  <div class="panel-head">
+    <div>
+      <h1>Completar {{ 'practicantes' if modo==CAT_PRACTICANTE else 'trabajadores' }} en lote</h1>
+      <p class="muted">{{ regs|length }} registro(s). Llena una celda y <b>arrastra el cuadrito azul ▾</b> hacia abajo para copiar a los demás (como Excel).</p>
+    </div>
+    <button class="btn" id="guardar">💾 Guardar todo</button>
+  </div>
+  <div id="aviso"></div>
+  <label class="hint" style="display:inline-block;margin:4px 0"><input type="checkbox" id="vertodas" style="width:auto;margin-right:4px"> ver TODAS las ocupaciones (no solo EsSalud) en los buscadores</label>
+
+  <div class="masivo">
+    <div class="mtitle">⚡ Aplicar a todos <small>(si toda la carga comparte el mismo valor, ponlo aquí y dale "↓ todos"; luego cambia solo las excepciones)</small></div>
+    <div class="mblocks">
+      {% if modo==CAT_PRACTICANTE %}
+        {{ msel('Modalidad','modalidad_formativa','modalidad_formativa') }}
+        {{ mcombo('Ocupación','ocupacion') }}
+        {{ msel('Situación educativa','situacion_educativa','situacion_educativa') }}
+        <div class="mblock"><span>Centro</span>
+          <select class="master" data-field="tipo_centro_formacion"><option value="1">Centro educ.</option><option value="2" selected>Universidad</option><option value="3">Instituto</option><option value="4">Otros</option></select>
+          <button type="button" class="aplicar" data-field="tipo_centro_formacion">↓ todos</button></div>
+        {{ minp('Fecha inicio','fecha_inicio_vinculo','date') }}
+        {{ minp('Establecimiento','cod_establecimiento') }}
+      {% else %}
+        {{ msel('Tipo trab.','tipo_trabajador','tipo_trabajador') }}
+        {{ msel('Rég. laboral','regimen_laboral','regimen_laboral') }}
+        {{ msel('Cat. ocup.','categoria_ocupacional','categoria_ocupacional') }}
+        {{ mcombo('Ocupación','ocupacion') }}
+        {{ msel('Contrato','tipo_contrato','tipo_contrato') }}
+        {{ msel('Periodicidad','periodicidad','periodicidad') }}
+        {{ msel('Tipo pago','tipo_pago','tipo_pago') }}
+        {{ minp('Fecha inicio','fecha_inicio_vinculo','date') }}
+        {{ minp('Establecimiento','cod_establecimiento') }}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="grid-wrap">
+  <table class="lote">
+    <thead><tr>
+      <th>#</th><th>DNI</th><th>Nombre</th>
+      {% if modo==CAT_PRACTICANTE %}
+        <th>Modalidad</th><th>Ocupación</th><th>Sit. educativa</th><th>Centro</th><th>Fecha inicio</th><th>Estab.</th>
+      {% else %}
+        <th>Tipo trab.</th><th>Rég. laboral</th><th>Cat. ocup.</th><th>Ocupación</th><th>Contrato</th><th>Periodic.</th><th>Sueldo</th><th>T. pago</th><th>Fecha inicio</th><th>Estab.</th>
+      {% endif %}
+      <th>Estado</th>
+    </tr></thead>
+    <tbody>
+    {% for t in regs %}
+      <tr data-id="{{ t.id }}">
+        <td>{{ loop.index }}</td>
+        <td>{{ t.numero_documento }}</td>
+        <td class="nom">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
+        {% if modo==CAT_PRACTICANTE %}
+          {{ selcell(t,loop.index0,'modalidad_formativa','modalidad_formativa') }}
+          {{ combocell(t,loop.index0,'ocupacion') }}
+          {{ selcell(t,loop.index0,'situacion_educativa','situacion_educativa') }}
+          {{ centrocell(t,loop.index0) }}
+          {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
+          {{ incell(t,loop.index0,'cod_establecimiento','text',estab) }}
+        {% else %}
+          {{ selcell(t,loop.index0,'tipo_trabajador','tipo_trabajador') }}
+          {{ selcell(t,loop.index0,'regimen_laboral','regimen_laboral') }}
+          {{ selcell(t,loop.index0,'categoria_ocupacional','categoria_ocupacional') }}
+          {{ combocell(t,loop.index0,'ocupacion') }}
+          {{ selcell(t,loop.index0,'tipo_contrato','tipo_contrato') }}
+          {{ selcell(t,loop.index0,'periodicidad','periodicidad') }}
+          {{ incell(t,loop.index0,'sueldo') }}
+          {{ selcell(t,loop.index0,'tipo_pago','tipo_pago') }}
+          {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
+          {{ incell(t,loop.index0,'cod_establecimiento','text',estab) }}
+        {% endif %}
+        <td class="est-cel">{% if t.estado=='completado' %}<span class="badge green">OK</span>{% elif t.estado=='exportado' %}<span class="badge blue">Exp.</span>{% else %}<span class="badge amber">Pend.</span>{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="20" class="muted" style="padding:16px">No hay {{ 'practicantes' if modo==CAT_PRACTICANTE else 'trabajadores' }} registrados todavía.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/combobox.js"></script>
+<script>
+const CLAVE = "{{ clave }}";
+const combos = [];
+document.querySelectorAll('.gc[data-field="ocupacion"] .combo').forEach(div => {
+  const cb = new Combobox(div); div.closest('.gc')._combo = cb; combos.push(cb);
+});
+document.querySelectorAll('.master-combo').forEach(div => {
+  const cb = new Combobox(div); div._combo = cb; combos.push(cb);
+});
+function cargarOcup(todas){ if(!combos.length) return;
+  fetch('/api/ocupaciones'+(todas?'?todas=1':'')).then(r=>r.json()).then(d => combos.forEach(c=>c.setData(d))); }
+cargarOcup(false);
+const vt=document.getElementById('vertodas');
+if(vt) vt.addEventListener('change', ()=>cargarOcup(vt.checked));
+
+function getVal(cell){ if(cell._combo) return cell._combo.getCode(); const c=cell.querySelector('select,input'); return c?c.value:''; }
+function setVal(cell,v){ if(cell._combo){cell._combo.setByCode(v);return;} const c=cell.querySelector('select,input'); if(c)c.value=v; }
+
+// --- Aplicar a todos (barra masiva) ---
+function masterVal(f){
+  const w=document.querySelector(`.master-combo[data-field="${f}"]`);
+  if(w) return w._combo.getCode();
+  const el=document.querySelector(`.master[data-field="${f}"]`); return el?el.value:'';
+}
+document.querySelectorAll('.aplicar').forEach(b=>b.addEventListener('click',()=>{
+  const f=b.dataset.field, v=masterVal(f);
+  document.querySelectorAll(`.gc[data-field="${f}"]`).forEach(c=>setVal(c,v));
+  b.textContent='✓ aplicado'; setTimeout(()=>b.textContent='↓ todos', 1200);
+}));
+
+let drag=null;
+function clearHL(){ document.querySelectorAll('.gc.hl').forEach(c=>c.classList.remove('hl')); }
+function highlight(field,a,b){ clearHL(); const lo=Math.min(a,b),hi=Math.max(a,b);
+  document.querySelectorAll(`.gc[data-field="${field}"]`).forEach(c=>{const r=+c.dataset.row; if(r>=lo&&r<=hi)c.classList.add('hl');}); }
+document.querySelectorAll('.fh').forEach(h=>h.addEventListener('mousedown',e=>{
+  e.preventDefault(); const cell=h.closest('.gc');
+  drag={field:cell.dataset.field,row:+cell.dataset.row,val:getVal(cell),target:+cell.dataset.row};
+  document.body.classList.add('dragging'); highlight(drag.field,drag.row,drag.row);
+}));
+document.addEventListener('mouseover',e=>{ if(!drag)return; const cell=e.target.closest('.gc');
+  if(cell&&cell.dataset.field===drag.field){drag.target=+cell.dataset.row; highlight(drag.field,drag.row,drag.target);} });
+document.addEventListener('mouseup',()=>{ if(!drag)return;
+  const lo=Math.min(drag.row,drag.target),hi=Math.max(drag.row,drag.target);
+  document.querySelectorAll(`.gc[data-field="${drag.field}"]`).forEach(c=>{const r=+c.dataset.row; if(r>=lo&&r<=hi&&r!==drag.row)setVal(c,drag.val);});
+  clearHL(); document.body.classList.remove('dragging'); drag=null; });
+
+document.getElementById('guardar').addEventListener('click', async ()=>{
+  const payload={};
+  document.querySelectorAll('tr[data-id]').forEach(tr=>{ const id=tr.dataset.id; payload[id]={};
+    tr.querySelectorAll('.gc').forEach(c=>{ payload[id][c.dataset.field]=getVal(c); }); });
+  const av=document.getElementById('aviso'); av.innerHTML='Guardando…';
+  const r=await fetch('/panel/lote/guardar?clave='+encodeURIComponent(CLAVE),
+    {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const res=await r.json();
+  if(!res.ok){ av.innerHTML='<div class="errores">No se pudo guardar.</div>'; return; }
+  const nerr=Object.keys(res.errores||{}).length;
+  document.querySelectorAll('tr[data-id]').forEach(tr=>{ const cel=tr.querySelector('.est-cel'); const e=res.errores[tr.dataset.id];
+    if(e){cel.innerHTML='<span class="badge amber" title="'+e.join(' · ')+'">Falta</span>'; tr.classList.add('row-err');}
+    else{cel.innerHTML='<span class="badge green">OK</span>'; tr.classList.remove('row-err');} });
+  av.innerHTML='<div class="aviso-ok">Guardado: '+res.completados+' completado(s)'+(nerr?(' · '+nerr+' con datos faltantes (marcados)'):'')+'.</div>';
+});
+</script>
+{% endblock %}

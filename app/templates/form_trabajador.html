@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+{% block subtitle %}Ficha del trabajador{% endblock %}
+{% block content %}
+
+<div class="card guia">
+  <h1>📋 Registro de tus datos</h1>
+  <p>Hola 👋. Completa <b>solo tus datos personales</b>. EsSalud llenará lo demás.
+     Te tomará unos 3 minutos.</p>
+  <ul class="pasos">
+    <li>Los campos con <span class="req">*</span> son obligatorios.</li>
+    <li>Ten a la mano tu <b>DNI</b>, tu <b>CUSPP</b> (si estás en AFP) y tu <b>número de cuenta bancaria</b>.</li>
+    <li>Antes de enviar, el sistema revisa que todo esté correcto.</li>
+  </ul>
+</div>
+
+{% if errores %}
+<div class="card errores">
+  <b>⚠️ Corrige lo siguiente antes de enviar:</b>
+  <ul>{% for er in errores %}<li>{{ er }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+<form method="post" action="/registrar" class="card" id="ficha" autocomplete="off" novalidate>
+
+  <!-- ============ CATEGORÍA ============ -->
+  <fieldset class="cat-box">
+    <legend>¿Qué vas a registrar?</legend>
+    <div class="cat-opciones">
+      <label class="cat-op"><input type="radio" name="categoria" value="trabajador"
+        {% if v.get('categoria','trabajador')=='trabajador' %}checked{% endif %}> 👷 Trabajador</label>
+      <label class="cat-op"><input type="radio" name="categoria" value="practicante"
+        {% if v.get('categoria')=='practicante' %}checked{% endif %}> 🎓 Practicante (formación laboral)</label>
+    </div>
+    <small class="hint" id="hint_cat"></small>
+  </fieldset>
+
+  <!-- ============ IDENTIFICACIÓN ============ -->
+  <fieldset>
+    <legend>1. Identificación</legend>
+    <div class="grid">
+      <label>Tipo de documento <span class="req">*</span>
+        <select name="tipo_documento" id="tipo_documento" required>
+          <option value="">— elige —</option>
+          {% for o in cat.tabla('tipo_documento') %}<option value="{{o.codigo}}" {% if v.get('tipo_documento')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label>N° de documento <span class="req">*</span>
+        <input name="numero_documento" id="numero_documento" required maxlength="15" inputmode="numeric" value="{{ v.get('numero_documento','') }}">
+        <small class="hint" id="hint_doc">Si es DNI, son 8 dígitos.</small>
+      </label>
+      <label id="campo_pais" hidden>País emisor del documento <span class="req">*</span>
+        <select name="pais_emisor" id="pais_emisor">
+          <option value="">— elige —</option>
+          {% for o in cat.tabla('pais') %}<option value="{{o.codigo}}" {% if v.get('pais_emisor')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+        <small class="hint">Solo para pasaporte o documento extranjero.</small>
+      </label>
+      <label>Fecha de nacimiento <span class="req">*</span>
+        <input type="date" name="fecha_nacimiento" required value="{{ v.get('fecha_nacimiento','') }}">
+      </label>
+      <label>Apellido paterno<input name="ap_paterno" maxlength="40" value="{{ v.get('ap_paterno','') }}"><small class="hint">Si es DNI, lo completa RENIEC.</small></label>
+      <label>Apellido materno<input name="ap_materno" maxlength="40" value="{{ v.get('ap_materno','') }}"></label>
+      <label>Nombres<input name="nombres" maxlength="40" value="{{ v.get('nombres','') }}"></label>
+      <label>Sexo <span class="req">*</span>
+        <select name="sexo" required>
+          <option value="">—</option>
+          <option value="1" {% if v.get('sexo')=='1' %}selected{% endif %}>Masculino</option>
+          <option value="2" {% if v.get('sexo')=='2' %}selected{% endif %}>Femenino</option>
+        </select>
+      </label>
+      <label>Nacionalidad
+        <div class="combo" data-name="nacionalidad" data-source="inline" data-json="data-nacionalidad">
+          <input type="text" class="combo-input" placeholder="🔎 escribe para buscar…" autocomplete="off">
+          <input type="hidden" name="nacionalidad" class="combo-value" value="{{ v.get('nacionalidad','') }}">
+          <div class="combo-list" hidden></div>
+        </div>
+      </label>
+      <label>Celular <span class="req">*</span>
+        <input name="telefono" id="telefono" required maxlength="9" inputmode="numeric" value="{{ v.get('telefono','') }}">
+        <small class="hint">9 dígitos, empieza con 9. Ej: 987654321</small>
+      </label>
+      <label>Correo electrónico <span class="req">*</span>
+        <input type="email" name="email" required maxlength="50" value="{{ v.get('email','') }}">
+        <small class="hint">Lo usará SUNAT/EsSalud para notificarte.</small>
+      </label>
+    </div>
+  </fieldset>
+
+  <!-- ============ DIRECCIÓN ============ -->
+  <fieldset>
+    <legend>2. Domicilio <small style="font-weight:400">(opcional si tu documento es DNI)</small></legend>
+    <p class="ayuda">Si tu documento es DNI, tu dirección la toma SUNAT de RENIEC. Llénalo solo si quieres precisarlo.</p>
+    <div class="grid">
+      <label>Departamento
+        <select name="departamento" id="departamento">
+          <option value="">— elige —</option>
+          {% for d in departamentos %}<option value="{{d.codigo}}" {% if v.get('departamento')==d.codigo %}selected{% endif %}>{{d.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Provincia
+        <select name="provincia" id="provincia"><option value="">— elige departamento —</option></select>
+      </label>
+      <label>Distrito
+        <select name="ubigeo" id="ubigeo"><option value="">— elige provincia —</option></select>
+      </label>
+      <label>Tipo de vía
+        <select name="tipo_via"><option value="">—</option>
+          {% for o in cat.tabla('via') %}<option value="{{o.codigo}}" {% if v.get('tipo_via')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Nombre de vía<input name="nombre_via" maxlength="20" value="{{ v.get('nombre_via','') }}"><small class="hint">Ej: Los Pinos</small></label>
+      <label>Número<input name="numero_via" maxlength="4" value="{{ v.get('numero_via','') }}"></label>
+      <label>Interior<input name="interior" maxlength="4" value="{{ v.get('interior','') }}"></label>
+      <label>Manzana<input name="manzana" maxlength="4" value="{{ v.get('manzana','') }}"></label>
+      <label>Lote<input name="lote" maxlength="4" value="{{ v.get('lote','') }}"></label>
+      <label>Tipo de zona
+        <select name="tipo_zona"><option value="">—</option>
+          {% for o in cat.tabla('zona') %}<option value="{{o.codigo}}" {% if v.get('tipo_zona')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Nombre de zona<input name="nombre_zona" maxlength="20" value="{{ v.get('nombre_zona','') }}"></label>
+      <label class="wide">Referencia<input name="referencia" maxlength="40" value="{{ v.get('referencia','') }}"><small class="hint">Ej: frente al parque, a una cuadra del mercado.</small></label>
+    </div>
+  </fieldset>
+
+  <!-- ============ PENSIÓN ============ -->
+  <fieldset class="solo-trab">
+    <legend>3. Tu pensión</legend>
+    <p class="ayuda">Si estás en una AFP elige "SPP ..." y escribe tu CUSPP. Si estás en la ONP, elige el Decreto Ley 19990.</p>
+    <div class="grid">
+      <label>Régimen pensionario <span class="req">*</span>
+        <select name="regimen_pensionario" id="regimen_pensionario" required>
+          <option value="">— elige —</option>
+          {% for o in cat.tabla('regimen_pensionario') %}<option value="{{o.codigo}}" {% if v.get('regimen_pensionario')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label id="campo_cuspp">CUSPP
+        <input name="cuspp" id="cuspp" maxlength="12" value="{{ v.get('cuspp','') }}">
+        <small class="hint" id="hint_cuspp">12 caracteres. Solo si estás en una AFP.</small>
+      </label>
+    </div>
+  </fieldset>
+
+  <!-- ============ CUENTA BANCARIA ============ -->
+  <fieldset class="solo-trab">
+    <legend>4. Cuenta para tu pago</legend>
+    <p class="ayuda">Donde te depositarán tu sueldo. Si aún no tienes, déjalo en blanco.</p>
+    <div class="grid">
+      <label>Entidad bancaria
+        <select name="entidad_bancaria">
+          <option value="">— elige —</option>
+          {% for o in cat.tabla('entidad_bancaria') %}<option value="{{o.codigo}}" {% if v.get('entidad_bancaria')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Número de cuenta<input name="numero_cuenta" maxlength="20" inputmode="numeric" value="{{ v.get('numero_cuenta','') }}"><small class="hint">Solo números, sin guiones.</small></label>
+    </div>
+  </fieldset>
+
+  <!-- ============ EDUCACIÓN ============ -->
+  <fieldset>
+    <legend>5. Educación</legend>
+    <div class="grid">
+      <label>Situación educativa <span class="req">*</span>
+        <select name="situacion_educativa" id="situacion_educativa" required>
+          <option value="">— elige —</option>
+          {% for o in cat.tabla('situacion_educativa') %}<option value="{{o.codigo}}" {% if v.get('situacion_educativa')==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+        </select>
+      </label>
+      <label>¿Tienes alguna discapacidad?
+        <select name="discapacidad">
+          <option value="0" {% if v.get('discapacidad','0')=='0' %}selected{% endif %}>No</option>
+          <option value="1" {% if v.get('discapacidad')=='1' %}selected{% endif %}>Sí</option>
+        </select>
+      </label>
+      <label class="centro-prac" hidden>Centro de formación
+        <select name="tipo_centro_formacion">
+          <option value="1" {% if v.get('tipo_centro_formacion')=='1' %}selected{% endif %}>Centro educativo</option>
+          <option value="2" {% if v.get('tipo_centro_formacion','2')=='2' %}selected{% endif %}>Universidad</option>
+          <option value="3" {% if v.get('tipo_centro_formacion')=='3' %}selected{% endif %}>Instituto</option>
+          <option value="4" {% if v.get('tipo_centro_formacion')=='4' %}selected{% endif %}>Otros</option>
+        </select>
+      </label>
+      <label class="wide sup" hidden>¿Concluiste estudios superiores en una institución del Perú?
+        <select name="educ_completa_peru" id="educ_completa_peru">
+          <option value="0" {% if v.get('educ_completa_peru','0')=='0' %}selected{% endif %}>No</option>
+          <option value="1" {% if v.get('educ_completa_peru')=='1' %}selected{% endif %}>Sí</option>
+        </select>
+      </label>
+      <label class="wide edu" hidden>Institución educativa
+        <div class="combo" data-name="cod_institucion" data-source="inline" data-json="data-instituciones">
+          <input type="text" class="combo-input" placeholder="🔎 busca tu universidad/instituto…" autocomplete="off">
+          <input type="hidden" name="cod_institucion" class="combo-value" value="{{ v.get('cod_institucion','') }}">
+          <div class="combo-list" hidden></div>
+        </div>
+      </label>
+      <label class="edu" hidden>Carrera
+        <div class="combo" data-name="cod_carrera">
+          <input type="text" class="combo-input" placeholder="elige primero la institución" autocomplete="off">
+          <input type="hidden" name="cod_carrera" class="combo-value" value="{{ v.get('cod_carrera','') }}">
+          <div class="combo-list" hidden></div>
+        </div>
+      </label>
+      <label class="edu" hidden>Año de egreso<input name="anio_egreso" maxlength="4" inputmode="numeric" value="{{ v.get('anio_egreso','') }}"></label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn">Revisar y enviar mis datos</button>
+</form>
+
+<script id="data-nacionalidad" type="application/json">{{ cat.tabla('nacionalidad') | tojson }}</script>
+<script id="data-instituciones" type="application/json">{{ instituciones | tojson }}</script>
+<script id="initdata" type="application/json">{{ {
+  "departamento": v.get('departamento',''), "provincia": v.get('provincia',''),
+  "ubigeo": v.get('ubigeo',''), "cod_institucion": v.get('cod_institucion',''),
+  "cod_carrera": v.get('cod_carrera',''), "tipo_documento": v.get('tipo_documento',''),
+  "regimen_pensionario": v.get('regimen_pensionario',''),
+  "situacion_educativa": v.get('situacion_educativa','')
+} | tojson }}</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/combobox.js"></script>
+<script>
+const AFP = ['21','22','23','24','25'];
+const SUP = ['11','13','14','15','16','17','18','19','20','21'];
+const PAIS_DOC = ['7','24'];
+const INI = JSON.parse(document.getElementById('initdata').textContent);
+
+async function opciones(sel, url, place, selected) {
+  const r = await fetch(url); const data = await r.json();
+  sel.innerHTML = '<option value="">'+place+'</option>' +
+    data.map(o => `<option value="${o.codigo}" ${o.codigo===selected?'selected':''}>${o.descripcion}</option>`).join('');
+}
+
+// ---- Ubigeo en cascada (con restauración si hubo error) ----
+const dep=document.getElementById('departamento'), prov=document.getElementById('provincia'), ubi=document.getElementById('ubigeo');
+dep.addEventListener('change', async () => { ubi.innerHTML='<option value="">— elige provincia —</option>';
+  await opciones(prov, `/api/provincias/${dep.value}`, '— elige —', ''); });
+prov.addEventListener('change', () => opciones(ubi, `/api/distritos/${prov.value}`, '— elige —', ''));
+
+// ---- Buscadores (nacionalidad, institución, carrera) ----
+const comboNac = new Combobox(document.querySelector('[data-name="nacionalidad"]'));
+const comboInst = new Combobox(document.querySelector('[data-name="cod_institucion"]'));
+const comboCarr = new Combobox(document.querySelector('[data-name="cod_carrera"]'));
+comboInst.onselect = async (c) => {
+  const r = await fetch(`/api/carreras/${c}`); comboCarr.setData(await r.json());
+  comboCarr.input.value=''; comboCarr.hidden.value=''; comboCarr.input.placeholder='🔎 busca tu carrera…';
+};
+
+// ---- País emisor según tipo de documento ----
+const td=document.getElementById('tipo_documento'), pais=document.getElementById('campo_pais');
+function togglePais(){ const need=PAIS_DOC.includes(td.value); pais.hidden=!need;
+  document.getElementById('pais_emisor').required=need;
+  document.getElementById('hint_doc').textContent = td.value==='1'?'El DNI tiene 8 dígitos.':'Tal cual figura en tu documento.'; }
+td.addEventListener('change', togglePais);
+
+// ---- CUSPP según régimen pensionario (AFP) ----
+const rp=document.getElementById('regimen_pensionario'), cuspp=document.getElementById('cuspp');
+function toggleCuspp(){ const afp=AFP.includes(rp.value); cuspp.required=afp;
+  cuspp.disabled=!afp && rp.value!=='';
+  document.getElementById('campo_cuspp').style.opacity = afp?1:.5;
+  document.getElementById('hint_cuspp').textContent = afp?'Obligatorio: 12 caracteres de tu AFP.':'No aplica (no estás en AFP).';
+  if(!afp) cuspp.value=''; }
+rp.addEventListener('change', toggleCuspp);
+
+// ---- Bloque de estudios según situación educativa ----
+const se=document.getElementById('situacion_educativa'), peru=document.getElementById('educ_completa_peru');
+function toggleEdu(){
+  const prac = categoria()==='practicante';
+  // Practicante: muestra "Centro de formación". Trabajador: "estudios concluidos".
+  document.querySelectorAll('.centro-prac').forEach(e=>{ e.hidden=!prac;
+    e.querySelectorAll('select,input').forEach(c=>c.disabled=!prac); });
+  const sup = SUP.includes(se.value);
+  document.querySelectorAll('.sup').forEach(e=>e.hidden = prac || !sup);
+  const verCarreras = !prac && sup && peru.value==='1';
+  document.querySelectorAll('.edu').forEach(e=>e.hidden = !verCarreras);
+}
+se.addEventListener('change', toggleEdu);
+peru.addEventListener('change', toggleEdu);
+
+// ---- Ficha según categoría (Trabajador vs Practicante) ----
+function categoria(){ const el=document.querySelector('input[name=categoria]:checked'); return el?el.value:'trabajador'; }
+function toggleCategoria(){
+  const prac = categoria()==='practicante';
+  document.querySelectorAll('.solo-trab').forEach(e=>{ e.hidden=prac;
+    e.querySelectorAll('input,select').forEach(c=>c.disabled=prac); });
+  rp.required = !prac;
+  document.getElementById('hint_cat').textContent = prac
+    ? 'Como practicante, solo llenas tus datos personales, domicilio y educación. Tu pensión y cuenta los registra EsSalud.'
+    : 'Como trabajador, llenas también tu pensión y tu cuenta bancaria.';
+  toggleEdu();
+}
+document.querySelectorAll('input[name=categoria]').forEach(r=>r.addEventListener('change', ()=>{toggleCategoria();toggleCuspp();}));
+
+// ---- Validación rápida antes de enviar (mensajes claros) ----
+document.getElementById('ficha').addEventListener('submit', (ev)=>{
+  const errs=[];
+  const num=document.getElementById('numero_documento').value.trim();
+  if(td.value==='1' && !/^\d{8}$/.test(num)) errs.push('El DNI debe tener 8 dígitos.');
+  if(!/^9\d{8}$/.test(document.getElementById('telefono').value.trim())) errs.push('El celular debe tener 9 dígitos y empezar con 9.');
+  if(categoria()==='trabajador' && AFP.includes(rp.value) && cuspp.value.trim().length!==12) errs.push('El CUSPP debe tener 12 caracteres.');
+  if(errs.length){ ev.preventDefault(); alert('Revisa:\n\n• '+errs.join('\n• ')); }
+});
+
+// ---- Restaurar selección dependiente si el formulario volvió con error ----
+(async function restore(){
+  toggleCategoria(); togglePais(); toggleCuspp(); toggleEdu();
+  if(INI.departamento){ await opciones(prov, `/api/provincias/${INI.departamento}`, '— elige —', INI.provincia);
+    if(INI.provincia) await opciones(ubi, `/api/distritos/${INI.provincia}`, '— elige —', INI.ubigeo); }
+  if(INI.cod_institucion){ const r=await fetch(`/api/carreras/${INI.cod_institucion}`); comboCarr.setData(await r.json()); }
+})();
+</script>
+{% endblock %}

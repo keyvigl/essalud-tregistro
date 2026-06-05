@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block subtitle %}Completar registro · EsSalud{% endblock %}
+{% block content %}
+
+<div class="card resumen">
+  <a class="link" href="/panel?clave={{ clave }}">← Volver al listado</a>
+  <h1>{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</h1>
+  <div class="datos-trab">
+    <span><b>Documento:</b> {{ cat.descripcion('tipo_documento', t.tipo_documento) }} {{ t.numero_documento }}</span>
+    <span><b>Nacimiento:</b> {{ t.fecha_nacimiento }}</span>
+    <span><b>Sexo:</b> {{ 'M' if t.sexo=='1' else 'F' }}</span>
+    <span><b>Celular:</b> {{ t.telefono }}</span>
+    <span><b>Pensión:</b> {{ cat.descripcion('regimen_pensionario', t.regimen_pensionario) }}{% if t.cuspp %} · CUSPP {{ t.cuspp }}{% endif %}</span>
+    <span><b>Cuenta:</b> {% if t.entidad_bancaria %}{{ cat.descripcion('entidad_bancaria', t.entidad_bancaria) }} · {{ t.numero_cuenta }}{% else %}—{% endif %}</span>
+  </div>
+</div>
+
+{% if errores %}
+<div class="card errores"><b>⚠️ Corrige antes de guardar:</b>
+  <ul>{% for er in errores %}<li>{{ er }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+{% macro sel(name, tabla, label, req=False) %}
+  <label>{{ label }}{% if req %} <span class="req">*</span>{% endif %}
+    <select name="{{ name }}" {% if req %}required{% endif %}>
+      <option value="">— elige —</option>
+      {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}" {% if (t|attr(name))==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+    </select>
+  </label>
+{% endmacro %}
+
+{% macro sino(name, label) %}
+  <label>{{ label }}
+    <select name="{{ name }}">
+      <option value="0" {% if (t|attr(name)) in ('0','',None) %}selected{% endif %}>No</option>
+      <option value="1" {% if (t|attr(name))=='1' %}selected{% endif %}>Sí</option>
+    </select>
+  </label>
+{% endmacro %}
+
+<form method="post" action="/panel/{{ t.id }}?clave={{ clave }}" class="card">
+
+  <fieldset>
+    <legend>Datos laborales</legend>
+    <p class="ayuda">Solo lo que varía por trabajador. Lo fijo de EsSalud (situación Activo, régimen
+       de salud EsSalud, SCTR salud, jornada, etc.) ya va por defecto — no hace falta tocarlo.</p>
+    <div class="grid">
+      {{ sel('tipo_trabajador', 'tipo_trabajador', 'Tipo de trabajador', True) }}
+      {{ sel('regimen_laboral', 'regimen_laboral', 'Régimen laboral', True) }}
+      {{ sel('categoria_ocupacional', 'categoria_ocupacional', 'Categoría ocupacional') }}
+      <label>Ocupación <span class="req">*</span> <small class="muted">(solo EsSalud)</small>
+        <div class="combo" data-name="ocupacion" data-source="url" data-url="/api/ocupaciones">
+          <input type="text" class="combo-input" placeholder="🔎 busca la ocupación…" autocomplete="off">
+          <input type="hidden" name="ocupacion" class="combo-value" value="{{ t.ocupacion }}">
+          <div class="combo-list" hidden></div>
+        </div>
+        <small class="hint"><label style="font-weight:400"><input type="checkbox" id="vertodas" style="width:auto;margin-right:4px"> ver TODAS las ocupaciones (no solo EsSalud)</label></small>
+      </label>
+      {{ sel('tipo_contrato', 'tipo_contrato', 'Tipo de contrato', True) }}
+      {{ sel('periodicidad', 'periodicidad', 'Periodicidad de la remuneración', True) }}
+      <label>Monto de remuneración <span class="req">*</span>
+        <input name="sueldo" inputmode="decimal" value="{{ t.sueldo }}" placeholder="Ej: 1500.00">
+      </label>
+      {{ sel('tipo_pago', 'tipo_pago', 'Tipo de pago') }}
+      <label>Fecha de ingreso (vínculo) <span class="req">*</span>
+        <input type="date" name="fecha_inicio_vinculo" required value="{{ t.fecha_inicio_vinculo }}">
+      </label>
+      <label>Fecha de cese <small>(solo si ya cesó)</small>
+        <input type="date" name="fecha_fin_vinculo" value="{{ t.fecha_fin_vinculo }}">
+      </label>
+      {{ sel('motivo_baja', 'motivo_baja', 'Motivo de baja (solo si cesó)') }}
+      <label>N° RUC <small>(solo CAS)</small><input name="num_ruc_cas" maxlength="11" value="{{ t.num_ruc_cas }}"></label>
+      <label>Código de establecimiento
+        <input name="cod_establecimiento" maxlength="4" value="{{ t.cod_establecimiento or '0537' }}">
+      </label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn">Guardar y marcar como completado</button>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/combobox.js"></script>
+<script>
+  const c = new Combobox(document.querySelector('[data-name="ocupacion"]'));
+  const vt = document.getElementById('vertodas');
+  if (vt) vt.addEventListener('change', () =>
+    fetch('/api/ocupaciones' + (vt.checked ? '?todas=1' : '')).then(r=>r.json()).then(d=>c.setData(d)));
+</script>
+{% endblock %}

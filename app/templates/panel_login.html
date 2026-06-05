@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block subtitle %}Acceso EsSalud{% endblock %}
+{% block content %}
+<form class="card center" method="get" action="/panel">
+  <h1>Panel de EsSalud</h1>
+  <p>Ingresa la clave para ver y completar los registros.</p>
+  <input type="password" name="clave" placeholder="Clave" required>
+  <button class="btn" type="submit">Ingresar</button>
+</form>
+{% endblock %}
