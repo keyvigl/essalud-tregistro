@@ -176,6 +176,15 @@
   <fieldset>
     <legend>5. Educación</legend>
     <div class="grid">
+      <label class="solo-prac" hidden>Área de formación (ocupación) <span class="req">*</span>
+        <select name="ocupacion" id="ocupacion_prac">
+          <option value="">— elige —</option>
+          <option value="258010" {% if v.get('ocupacion')=='258010' %}selected{% endif %}>Trabajadores y Practicantes de Derecho, Otros</option>
+          <option value="343004" {% if v.get('ocupacion')=='343004' %}selected{% endif %}>Practicante en Medicina</option>
+          <option value="347005" {% if v.get('ocupacion')=='347005' %}selected{% endif %}>Practicante de Odontología</option>
+          <option value="351003" {% if v.get('ocupacion')=='351003' %}selected{% endif %}>Practicante de Farmacia</option>
+        </select>
+      </label>
       <label>Situación educativa <span class="req">*</span>
         <select name="situacion_educativa" id="situacion_educativa" required>
           <option value="">— elige —</option>
@@ -300,6 +309,8 @@ function toggleCategoria(){
   const prac = categoria()==='practicante';
   document.querySelectorAll('.solo-trab').forEach(e=>{ e.hidden=prac;
     e.querySelectorAll('input,select').forEach(c=>c.disabled=prac); });
+  document.querySelectorAll('.solo-prac').forEach(e=>{ e.hidden=!prac;
+    e.querySelectorAll('input,select').forEach(c=>{ c.disabled=!prac; c.required=prac; }); });
   rp.required = !prac;
   document.getElementById('hint_cat').textContent = prac
     ? 'Como practicante, solo llenas tus datos personales, domicilio y educación. Tu pensión y cuenta los registra EsSalud.'

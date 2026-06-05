@@ -59,7 +59,7 @@ CAMPOS_ETAPA1 = [
     "tipo_zona", "nombre_zona", "referencia", "discapacidad", "situacion_educativa",
     "formacion_superior", "educ_completa_peru", "cod_institucion", "cod_carrera",
     "anio_egreso", "regimen_pensionario", "cuspp", "entidad_bancaria", "numero_cuenta",
-    "tipo_centro_formacion", "cod_establecimiento",
+    "tipo_centro_formacion", "cod_establecimiento", "ocupacion",
 ]
 
 
