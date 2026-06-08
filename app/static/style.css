@@ -422,11 +422,81 @@ input[type="checkbox"] { width: auto; height: auto; }
 .ok-txt { color: var(--verde); font-size: 13px; font-weight: 600; }
 .faltan { color: var(--amber); font-size: 12px; }
 
+/* ── Lote: contenedor ancho completo ── */
+.lote-page .container { max-width: 100%; padding: 0 14px; }
+
+/* ── Lote: cabecera de página (tabs + título + botón) ── */
+.lote-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.lote-topbar-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.lote-topbar-right { display: flex; align-items: center; gap: 10px; }
+.lote-hint { font-size: 12px; color: var(--txt-muted); }
+.lote-tabs { margin: 0; border-bottom: none; gap: 2px; }
+.tab-count {
+  display: inline-block; background: rgba(0,63,138,.12); color: var(--azul);
+  border-radius: 10px; padding: 0 7px; font-size: 11px; font-weight: 700; margin-left: 4px;
+}
+.tab.on .tab-count { background: var(--azul); color: #fff; }
+
+/* ── Barra masiva (colapsable, compacta) ── */
+.masivo {
+  background: #F4F8FD; border: 1px solid #C6D8EF;
+  border-radius: var(--radius); padding: 10px 14px; margin-bottom: 10px;
+}
+.masivo-head {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;
+}
+.masivo-label { font-weight: 800; font-size: 12px; color: var(--azul-dark); white-space: nowrap; }
+.masivo-hint { font-size: 11px; color: var(--txt-muted); flex: 1; }
+.vertodas-lbl {
+  font-size: 11px; color: var(--txt-mid); display: flex; align-items: center;
+  gap: 4px; cursor: pointer; white-space: nowrap;
+}
+.vertodas-lbl input { width: auto; }
+.masivo-toggle-btn {
+  background: transparent; border: 1px solid var(--bord); border-radius: 6px;
+  padding: 3px 10px; font-size: 11px; font-weight: 700; color: var(--txt-muted);
+  cursor: pointer; white-space: nowrap; transition: all .15s;
+}
+.masivo-toggle-btn:hover { background: var(--azul-tint); color: var(--azul); border-color: var(--azul); }
+.mblocks { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ── Bloque de campo masivo (compacto) ── */
+.mc {
+  display: flex; flex-direction: column; gap: 4px;
+  background: #fff; border: 1px solid var(--bord); border-radius: 8px;
+  padding: 8px 10px; min-width: 120px; flex: 1; max-width: 200px;
+}
+.mc > span {
+  font-size: 10px; font-weight: 800; color: var(--txt-mid);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.mc select, .mc input {
+  font-size: 12px; padding: 5px 7px; height: 32px;
+  border: 1px solid var(--bord); border-radius: 6px; width: 100%;
+  background: #fff; color: var(--txt);
+  text-overflow: ellipsis; overflow: hidden;
+}
+.mc select:focus, .mc input:focus {
+  border-color: var(--azul-mid); outline: none;
+  box-shadow: 0 0 0 2px rgba(0,96,199,.12);
+}
+.aplicar {
+  background: var(--azul); color: #fff; border: none;
+  border-radius: 5px; padding: 4px 8px; font-size: 11px; font-weight: 700;
+  cursor: pointer; width: 100%; transition: background .15s; margin-top: 1px;
+}
+.aplicar:hover { background: var(--azul-dark); }
+
 /* ── Vista en lote ── */
 .grid-wrap {
-  overflow: auto; max-height: 62vh;
-  border: 1px solid var(--bord); border-radius: var(--radius); margin-top: 12px;
-  box-shadow: inset -6px 0 12px -6px rgba(0,0,0,.07); /* sombra derecha: hay más columnas */
+  overflow: auto;
+  max-height: calc(100vh - 290px);
+  min-height: 200px;
+  border: 1px solid var(--bord); border-radius: var(--radius); margin-top: 0;
+  box-shadow: inset -8px 0 14px -8px rgba(0,20,80,.08);
 }
 
 /* ── Tabla lote: estructura base ── */
@@ -480,6 +550,7 @@ table.lote input:not([type="hidden"]) {
   padding: 5px 8px; font-size: 12px;
   border: none; background: transparent;
   color: var(--txt);
+  text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
 }
 table.lote select:focus,
 table.lote input:not([type="hidden"]):focus {
