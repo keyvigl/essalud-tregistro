@@ -410,8 +410,10 @@ def eliminar_todo(request: Request, session: Session = Depends(get_session)):
 # ── Exportar: paquete automático (detecta categorías) ────────────────────────
 @app.get("/panel/generar/paquete")
 def generar_paquete(request: Request, session: Session = Depends(get_session)):
-    """Genera un ZIP maestro que contiene un sub-ZIP por cada categoría detectada.
-    No requiere que el usuario indique qué hay dentro — lo detecta automáticamente."""
+    """Detecta las categorías presentes y genera el archivo más simple posible:
+    - Solo trabajadores  → ZIP directo (sin envolver)
+    - Solo practicantes  → ZIP directo (sin envolver)
+    - Ambas categorías   → ZIP maestro con un sub-ZIP por categoría"""
     if not _authed(request):
         return _login_redirect()
 
@@ -424,18 +426,33 @@ def generar_paquete(request: Request, session: Session = Depends(get_session)):
     if not listos:
         return RedirectResponse("/panel/verificar", status_code=303)
 
-    data, nombres_generados = generate.generar_paquete(listos)
+    trab = [t for t in listos if t.categoria != CAT_PRACTICANTE]
+    prac = [t for t in listos if t.categoria == CAT_PRACTICANTE]
     ahora = datetime.utcnow()
-    nombre_paquete = f"T-REGISTRO_PAQUETE_RP_{config.RUC_EMPLEADOR}.zip"
-    for t in listos:
+
+    # ── Una sola categoría → ZIP directo ──────────────────────────────────────
+    if trab and not prac:
+        nombre = f"T-REGISTRO_TRABAJADORES_RP_{config.RUC_EMPLEADOR}.zip"
+        data = generate.generar_zip(trab)
+        registros_exportados = trab
+    elif prac and not trab:
+        nombre = f"T-REGISTRO_PRACTICANTES_RP_{config.RUC_EMPLEADOR}.zip"
+        data = generate.generar_zip(prac)
+        registros_exportados = prac
+    # ── Ambas categorías → ZIP maestro con dos sub-ZIPs ───────────────────────
+    else:
+        nombre = f"T-REGISTRO_PAQUETE_RP_{config.RUC_EMPLEADOR}.zip"
+        data, sub_zips = generate.generar_paquete(listos)
+        registros_exportados = listos
+
+    for t in registros_exportados:
         t.estado = EXPORTADO
         t.actualizado_en = ahora
         session.add(t)
-        auditar(session, t.id, t.numero_documento, "exportar",
-                f"Paquete: {nombre_paquete} → {', '.join(nombres_generados)}")
+        auditar(session, t.id, t.numero_documento, "exportar", f"ZIP: {nombre}")
     session.commit()
     return Response(content=data, media_type="application/zip",
-                    headers={"Content-Disposition": f'attachment; filename="{nombre_paquete}"'})
+                    headers={"Content-Disposition": f'attachment; filename="{nombre}"'})
 
 
 # ── Exportar: ZIP individual por categoría (cuando solo hay una) ──────────────
