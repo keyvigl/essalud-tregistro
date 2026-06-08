@@ -1,34 +1,92 @@
 {% extends "base.html" %}
-{% block subtitle %}Verificación · listo para alta{% endblock %}
+{% block title %}Verificación · T-Registro EsSalud{% endblock %}
+
+{% block panel_nav %}
+<nav class="panel-nav">
+  <div class="panel-nav-inner">
+    <div class="panel-nav-links">
+      <a class="nav-link" href="/panel">🏠 Inicio</a>
+      <a class="nav-link" href="/panel/lote?categoria=trabajador">📋 Completar en lote</a>
+      <a class="nav-link active" href="/panel/verificar">🔎 Verificar</a>
+    </div>
+    <div class="nav-user">
+      <span class="nav-user-name">Recursos Humanos · EsSalud</span>
+      <a class="nav-logout" href="/panel/logout">Cerrar sesión</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
 {% block content %}
+
+<a class="back-link" href="/panel">← Volver al listado</a>
+
 <div class="card">
-  <a class="link" href="/panel?clave={{ clave }}">← Volver al listado</a>
-  <h1>Verificación para el alta en SUNAT</h1>
-  <p class="muted">Revisa que cada registro tenga el <b>mínimo obligatorio</b>. Solo los marcados
-     <span class="badge green">Listo</span> se incluirán correctamente en la carga.</p>
+  <div class="card-header">
+    <div>
+      <h1>Verificación para el alta en SUNAT</h1>
+      <div class="sub">Revisa que cada registro tenga el <b>mínimo obligatorio</b>. Solo los marcados <span class="badge badge-done">Listo</span> se incluirán correctamente en la carga.</div>
+    </div>
+  </div>
 
   <div class="resumen-verif">
-    <span class="big">{{ listos }}</span> de {{ total }} listos para registrar
-    {% if listos < total %}<span class="muted"> · faltan {{ total - listos }} por completar</span>{% endif %}
+    <div class="rv-num {% if listos == total %}rv-ok{% else %}rv-warn{% endif %}">{{ listos }}</div>
+    <div class="rv-label">de <b>{{ total }}</b> listos para registrar
+      {% if listos < total %}<div class="muted" style="font-size:14px">Faltan {{ total - listos }} por completar</div>{% endif %}
+    </div>
+    {% if listos > 0 %}
+    <a class="btn" href="/panel/generar/zip" style="margin-left:auto">⬇️ Exportar ZIP ({{ listos }})</a>
+    {% endif %}
   </div>
 
   <table class="tabla">
-    <thead><tr><th>#</th><th>Categoría</th><th>Documento</th><th>Nombre</th><th>¿Listo?</th><th>Qué falta</th></tr></thead>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Categoría</th>
+        <th>Documento</th>
+        <th>Nombre</th>
+        <th>¿Listo?</th>
+        <th>Qué falta</th>
+      </tr>
+    </thead>
     <tbody>
     {% for t, faltan in filas %}
       <tr class="{% if faltan %}row-err{% endif %}">
         <td data-l="#">{{ t.id }}</td>
-        <td data-l="Categoría">{% if t.categoria==CAT_PRACTICANTE %}🎓 Practicante{% else %}👷 Trabajador{% endif %}</td>
-        <td data-l="Documento">{{ cat.descripcion('tipo_documento', t.tipo_documento) }} <b>{{ t.numero_documento }}</b></td>
+        <td data-l="Categoría">
+          {% if t.categoria==CAT_PRACTICANTE %}
+            <span class="badge badge-prac">🎓 Practicante</span>
+          {% else %}
+            <span class="badge badge-trab">👷 Trabajador</span>
+          {% endif %}
+        </td>
+        <td data-l="Documento">
+          <span class="muted" style="font-size:12px">{{ cat.descripcion('tipo_documento', t.tipo_documento) }}</span><br>
+          <b>{{ t.numero_documento }}</b>
+        </td>
         <td data-l="Nombre">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
-        <td data-l="¿Listo?">{% if faltan %}<span class="badge amber">Faltan {{ faltan|length }}</span>{% else %}<span class="badge green">Listo</span>{% endif %}</td>
+        <td data-l="¿Listo?">
+          {% if faltan %}
+            <span class="badge badge-pending">Faltan {{ faltan|length }}</span>
+          {% else %}
+            <span class="badge badge-done">Listo</span>
+          {% endif %}
+        </td>
         <td data-l="Qué falta">
-          {% if faltan %}<span class="faltan">{{ faltan|join(' · ') }}</span>
-          {% else %}<span class="ok-txt">✓ Cumple el mínimo</span>{% endif %}
+          {% if faltan %}
+            <span class="faltan">{{ faltan|join(' · ') }}</span>
+          {% else %}
+            <span class="ok-txt">✓ Cumple el mínimo</span>
+          {% endif %}
         </td>
       </tr>
     {% else %}
-      <tr><td colspan="6" class="muted" style="padding:16px">Aún no hay registros.</td></tr>
+      <tr>
+        <td colspan="6" class="muted" style="padding:32px;text-align:center">
+          📭 Aún no hay registros cargados en el sistema.
+        </td>
+      </tr>
     {% endfor %}
     </tbody>
   </table>

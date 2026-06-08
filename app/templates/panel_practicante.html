@@ -1,20 +1,54 @@
 {% extends "base.html" %}
-{% block subtitle %}Completar practicante · EsSalud{% endblock %}
+{% block title %}Ficha Practicante · T-Registro EsSalud{% endblock %}
+
+{% block panel_nav %}
+<nav class="panel-nav">
+  <div class="panel-nav-inner">
+    <div class="panel-nav-links">
+      <a class="nav-link" href="/panel">🏠 Inicio</a>
+      <a class="nav-link" href="/panel/lote?categoria=practicante">📋 Completar en lote</a>
+      <a class="nav-link" href="/panel/verificar">🔎 Verificar</a>
+    </div>
+    <div class="nav-user">
+      <span class="nav-user-name">Recursos Humanos · EsSalud</span>
+      <a class="nav-logout" href="/panel/logout">Cerrar sesión</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
 {% block content %}
 
-<div class="card resumen">
-  <a class="link" href="/panel?clave={{ clave }}">← Volver al listado</a>
-  <h1>🎓 {{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</h1>
-  <div class="datos-trab">
-    <span><b>Documento:</b> {{ cat.descripcion('tipo_documento', t.tipo_documento) }} {{ t.numero_documento }}</span>
-    <span><b>Nacimiento:</b> {{ t.fecha_nacimiento }}</span>
-    <span><b>Domicilio:</b> {% if t.ubigeo %}registrado por el practicante{% else %}<span style="color:#c0392b">pendiente que lo registre el practicante</span>{% endif %}</span>
+<a class="back-link" href="/panel">← Volver al listado</a>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="worker-header">
+    <div class="worker-avatar">🎓</div>
+    <div class="worker-info">
+      <h1>{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</h1>
+      <span class="badge badge-prac">Personal en Formación Laboral</span>
+      <div class="worker-meta">
+        <div class="worker-meta-item"><b>Documento:</b> {{ cat.descripcion('tipo_documento', t.tipo_documento) }} {{ t.numero_documento }}</div>
+        <div class="worker-meta-item"><b>Nacimiento:</b> {{ t.fecha_nacimiento }}</div>
+        <div class="worker-meta-item"><b>Sexo:</b> {{ 'Masculino' if t.sexo=='1' else 'Femenino' }}</div>
+        <div class="worker-meta-item"><b>Celular:</b> {{ t.telefono or '—' }}</div>
+        <div class="worker-meta-item"><b>Correo:</b> {{ t.email or '—' }}</div>
+        <div class="worker-meta-item">
+          <b>Domicilio:</b>
+          {% if t.ubigeo %}registrado por el practicante
+          {% else %}<span style="color:var(--amber)">pendiente que lo registre</span>{% endif %}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 {% if errores %}
-<div class="card errores"><b>⚠️ Corrige antes de guardar:</b>
-  <ul>{% for er in errores %}<li>{{ er }}</li>{% endfor %}</ul>
+<div class="alert alert-error">
+  <span class="alert-icon">⚠️</span>
+  <div><b>Corrige antes de guardar:</b>
+    <ul>{% for er in errores %}<li>{{ er }}</li>{% endfor %}</ul>
+  </div>
 </div>
 {% endif %}
 
@@ -22,7 +56,9 @@
   <label>{{ label }}{% if req %} <span class="req">*</span>{% endif %}
     <select name="{{ name }}" {% if req %}required{% endif %}>
       <option value="">— elige —</option>
-      {% for o in cat.tabla(tabla) %}<option value="{{o.codigo}}" {% if (t|attr(name))==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>{% endfor %}
+      {% for o in cat.tabla(tabla) %}
+        <option value="{{o.codigo}}" {% if (t|attr(name))==o.codigo %}selected{% endif %}>{{o.descripcion}}</option>
+      {% endfor %}
     </select>
   </label>
 {% endmacro %}
@@ -36,12 +72,13 @@
   </label>
 {% endmacro %}
 
-<form method="post" action="/panel/{{ t.id }}?clave={{ clave }}" class="card">
-
+<form method="post" action="/panel/{{ t.id }}" class="card">
   <fieldset>
-    <legend>Datos de formación</legend>
+    <legend>Datos de formación laboral</legend>
     <div class="grid">
       {{ sel('modalidad_formativa', 'modalidad_formativa', 'Modalidad formativa', True) }}
+      {{ sel('situacion_educativa', 'situacion_educativa', 'Situación educativa', True) }}
+
       <label>Ocupación (según su área) <span class="req">*</span>
         <select name="ocupacion" required>
           <option value="">— elige —</option>
@@ -51,7 +88,7 @@
           <option value="351003" {% if t.ocupacion=='351003' %}selected{% endif %}>Practicante de Farmacia</option>
         </select>
       </label>
-      {# situacion_educativa la llena el practicante al registrarse (Etapa 1) #}
+
       <label>Tipo de centro de formación
         <select name="tipo_centro_formacion">
           <option value="1" {% if t.tipo_centro_formacion=='1' %}selected{% endif %}>Centro educativo</option>
@@ -60,12 +97,14 @@
           <option value="4" {% if t.tipo_centro_formacion=='4' %}selected{% endif %}>Otros</option>
         </select>
       </label>
-      {{ sino('discapacidad', '¿Discapacidad?') }}
+
+      {{ sino('discapacidad', '¿Tiene discapacidad?') }}
       {% if t.sexo == '2' %}{{ sino('madre_resp_familiar', 'Madre con responsabilidad familiar') }}{% endif %}
-      <label>Fecha de inicio (formación) <span class="req">*</span>
+
+      <label>Fecha de inicio del período formativo <span class="req">*</span>
         <input type="date" name="fecha_inicio_vinculo" required value="{{ t.fecha_inicio_vinculo }}">
       </label>
-      <label>Fecha de cese <small>(si ya cesó)</small>
+      <label>Fecha de cese <small>(si ya finalizó)</small>
         <input type="date" name="fecha_fin_vinculo" value="{{ t.fecha_fin_vinculo }}">
       </label>
       {{ sel('motivo_baja', 'motivo_baja', 'Motivo de baja (si cesó)') }}
@@ -75,9 +114,9 @@
     </div>
   </fieldset>
 
-
-  <button type="submit" class="btn">Guardar y marcar como completado</button>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button type="submit" class="btn">💾 Guardar y marcar como completado</button>
+    <a class="btn-sec" href="/panel">Cancelar</a>
+  </div>
 </form>
-{% endblock %}
-
 {% endblock %}

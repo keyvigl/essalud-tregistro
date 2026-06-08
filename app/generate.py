@@ -131,14 +131,20 @@ def linea_pfl(t) -> str:
 
 
 def linea_est(t) -> str:
+    """E-17: Establecimientos donde labora el TRABAJADOR. Solo para trabajadores."""
     estab = (t.cod_establecimiento or "").strip() or config.COD_ESTABLECIMIENTO
-    es_practicante = getattr(t, "categoria", "trabajador") == "practicante"
-    # Estructura 17 (trabajador): col4 = RUC empleador
-    # Estructura 23 (PFL): col4 = categoria "5" (no el RUC)
-    col4 = "5" if es_practicante else config.RUC_EMPLEADOR
     return _linea([
         z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
-        col4, z(estab, 4),
+        config.RUC_EMPLEADOR, z(estab, 4),
+    ])
+
+
+def linea_lug(t) -> str:
+    """E-23: Lugar de formación del Personal en Formación (practicante). Solo para PFL."""
+    estab = (t.cod_establecimiento or "").strip() or config.COD_ESTABLECIMIENTO
+    return _linea([
+        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        "5", z(estab, 4),
     ])
 
 
@@ -173,15 +179,17 @@ def linea_cta(t):
 def generar_archivos(trabajadores) -> dict[str, str]:
     """Devuelve {extension: contenido} solo de los archivos que tienen datos.
     .tra solo para Trabajadores; .pfl solo para Personal en Formación (practicantes)."""
-    buckets = {"ide": [], "tra": [], "pfl": [], "per": [], "est": [], "edu": [], "cta": []}
+    buckets = {"ide": [], "tra": [], "pfl": [], "per": [], "est": [], "lug": [], "edu": [], "cta": []}
     for t in trabajadores:
         buckets["ide"].append(linea_ide(t))
-        if getattr(t, "categoria", "trabajador") == "practicante":
-            buckets["pfl"].append(linea_pfl(t))
+        es_prac = getattr(t, "categoria", "trabajador") == "practicante"
+        if es_prac:
+            buckets["pfl"].append(linea_pfl(t))   # E09: datos PFL  → .pfl
+            buckets["lug"].append(linea_lug(t))   # E23: lugar form → .lug
         else:
-            buckets["tra"].append(linea_tra(t))
+            buckets["tra"].append(linea_tra(t))   # E05: datos trab → .tra
+            buckets["est"].append(linea_est(t))   # E17: establec.  → .est
         buckets["per"].extend(lineas_per(t))
-        buckets["est"].append(linea_est(t))
         if (e := linea_edu(t)):
             buckets["edu"].append(e)
         if (c := linea_cta(t)):

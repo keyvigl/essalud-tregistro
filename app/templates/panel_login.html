@@ -1,10 +1,33 @@
 {% extends "base.html" %}
-{% block subtitle %}Acceso EsSalud{% endblock %}
+{% block title %}Acceso al Panel · T-Registro EsSalud{% endblock %}
 {% block content %}
-<form class="card center" method="get" action="/panel">
-  <h1>Panel de EsSalud</h1>
-  <p>Ingresa la clave para ver y completar los registros.</p>
-  <input type="password" name="clave" placeholder="Clave" required>
-  <button class="btn" type="submit">Ingresar</button>
-</form>
+<div class="login-wrap">
+  <div class="login-brand">
+    <div class="login-brand-logo">ES</div>
+    <h2>Panel de Administración</h2>
+    <p>T-Registro · Gestión de Prestadores EsSalud</p>
+  </div>
+
+  <div class="login-card">
+    <h3>Ingresa tu clave de acceso</h3>
+
+    {% if error %}
+    <div class="alert alert-error">
+      <span class="alert-icon">⚠️</span>
+      <span>{{ error }}</span>
+    </div>
+    {% endif %}
+
+    <form method="post" action="/panel/login">
+      <label>Clave de acceso
+        <input type="password" name="clave" placeholder="••••••••" required autofocus>
+      </label>
+      <button class="btn" type="submit">Ingresar al panel</button>
+    </form>
+  </div>
+
+  <div class="login-footer">
+    Solo personal autorizado de Recursos Humanos · EsSalud
+  </div>
+</div>
 {% endblock %}

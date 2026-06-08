@@ -1,0 +1,26 @@
+# Base de datos local
+tregistro.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Archivos de salida / prueba
+*.zip
+server.log
+
+# Archivos grandes de referencia (no necesarios en el repo)
+*.xlsm
+*.xls
+*.xlsx
+*.pdf
+
+# Variables de entorno
+.env
+
+# Datos de prueba
+PVS_prueba/

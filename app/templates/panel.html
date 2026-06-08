@@ -1,54 +1,116 @@
 {% extends "base.html" %}
-{% block subtitle %}Panel EsSalud — registros{% endblock %}
-{% block content %}
-<div class="card">
-  <div class="panel-head">
-    <div>
-      <h1>Trabajadores registrados</h1>
-      <p class="muted" id="resumen-cnt">{{ registros|length }} registro(s) · {{ n_listos }} listo(s) para exportar.</p>
+{% block title %}Panel de Gestión · T-Registro EsSalud{% endblock %}
+
+{% block panel_nav %}
+<nav class="panel-nav">
+  <div class="panel-nav-inner">
+    <div class="panel-nav-links">
+      <a class="nav-link active" href="/panel">🏠 Inicio</a>
+      <a class="nav-link" href="/panel/lote?categoria=practicante">📋 Completar en lote</a>
+      <a class="nav-link" href="/panel/verificar">🔎 Verificar</a>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="btn-sec" href="/panel/lote?clave={{ clave }}">📋 Completar en lote</a>
-      <a class="btn-sec" href="/panel/verificar?clave={{ clave }}">🔎 Verificar</a>
-      {% if n_listos %}
-      <a class="btn" href="/panel/generar/zip?clave={{ clave }}">⬇️ Generar ZIP ({{ n_listos }})</a>
-      {% endif %}
+    <div class="nav-user">
+      <span class="nav-user-name">Recursos Humanos · EsSalud</span>
+      <a class="nav-logout" href="/panel/logout">Cerrar sesión</a>
     </div>
   </div>
-  <p class="ayuda">Descarga el ZIP con los archivos y valídalos en el <b>PVS – T-Registro</b> antes de subirlos a SUNAT.</p>
+</nav>
+{% endblock %}
 
-  {% if msg %}<div class="aviso-ok">{{ msg }}</div>{% endif %}
+{% block content %}
 
-  <form class="importar" method="post" action="/panel/importar?clave={{ clave }}" enctype="multipart/form-data">
-    <b>📥 Importar altas (Excel de RRHH):</b> <small class="muted">detecta la categoría de cada fila</small>
+{# ── Stats ── #}
+<div class="stats-row">
+  <div class="stat-card accent-blue">
+    <div class="stat-num">{{ registros|length }}</div>
+    <div class="stat-label">Total registros</div>
+  </div>
+  <div class="stat-card accent-amber">
+    <div class="stat-num">{{ registros|selectattr('estado','eq','pendiente')|list|length }}</div>
+    <div class="stat-label">Pendientes</div>
+  </div>
+  <div class="stat-card accent-green">
+    <div class="stat-num">{{ n_listos }}</div>
+    <div class="stat-label">Listos para exportar</div>
+  </div>
+  <div class="stat-card accent-purple">
+    <div class="stat-num">{{ n_prac }}</div>
+    <div class="stat-label">Practicantes</div>
+  </div>
+</div>
+
+{# ── Mensaje de resultado ── #}
+{% if msg %}
+<div class="alert alert-ok">
+  <span class="alert-icon">✅</span>
+  <span>{{ msg }}</span>
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1>Registro de Prestadores</h1>
+      <div class="sub">Trabajadores y Personal en Formación Laboral registrados en el sistema</div>
+    </div>
+    <div class="card-actions">
+      {% if n_listos %}
+      <a class="btn" href="/panel/generar/zip">⬇️ Exportar ZIP ({{ n_listos }})</a>
+      {% endif %}
+      <a class="btn-sec" href="/panel/lote?categoria=practicante">📋 Completar en lote</a>
+      <a class="btn-sec" href="/panel/verificar">🔎 Verificar</a>
+    </div>
+  </div>
+
+  <div class="ayuda" style="margin-bottom:16px">
+    Descarga el ZIP, valídalo en el <b>PVS T-Registro</b> de SUNAT y súbelo al portal de carga masiva.
+  </div>
+
+  {# ── Importar Excel ── #}
+  <form class="import-zone" method="post" action="/panel/importar" enctype="multipart/form-data">
+    <div>
+      <b>📥 Importar practicantes desde Excel</b>
+      <div class="muted">El sistema detecta automáticamente la categoría de cada fila</div>
+    </div>
     <input type="file" name="archivo" accept=".xlsx,.xls" required>
-    <button class="btn-sec" type="submit">Importar</button>
+    <button class="btn-sec btn-sm" type="submit">Importar</button>
   </form>
 
-  {# ── Barra de búsqueda y filtros ── #}
-  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 6px">
-    <input id="buscar" type="search" placeholder="🔎 Buscar por nombre o DNI…"
-           style="flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--bord);border-radius:8px;font-size:14px">
-    <select id="filtro-estado" style="padding:9px 10px;border:1px solid var(--bord);border-radius:8px;font-size:14px">
+  {# ── Barra de búsqueda ── #}
+  <div class="toolbar">
+    <div class="search-box">
+      <span class="search-icon">🔎</span>
+      <input id="buscar" type="search" placeholder="Buscar por nombre o DNI…">
+    </div>
+    <select id="filtro-estado">
       <option value="">Todos los estados</option>
       <option value="pendiente">Pendiente</option>
       <option value="completado">Completado</option>
       <option value="exportado">Exportado</option>
     </select>
-    <select id="filtro-cat" style="padding:9px 10px;border:1px solid var(--bord);border-radius:8px;font-size:14px">
+    <select id="filtro-cat">
       <option value="">Todas las categorías</option>
       <option value="practicante">Practicante</option>
       <option value="trabajador">Trabajador</option>
     </select>
-    <button id="btn-eliminar-todo" class="btn-sec" style="border-color:#c0392b;color:#c0392b"
-            title="Eliminar todos los registros">🗑️ Eliminar todo</button>
+    <button id="btn-eliminar-todo" class="btn-danger btn-sm" title="Eliminar todos los registros">
+      🗑️ Eliminar todo
+    </button>
   </div>
-  <p id="cnt-visible" class="muted" style="font-size:13px;margin:0 0 6px"></p>
+  <p id="cnt-visible" class="muted" style="margin:0 0 10px"></p>
 
   <table class="tabla" id="tabla-registros">
-    <thead><tr>
-      <th>#</th><th>Categoría</th><th>Documento</th><th>Apellidos y nombres</th><th>Estado</th><th></th><th></th>
-    </tr></thead>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Categoría</th>
+        <th>Documento</th>
+        <th>Apellidos y nombres</th>
+        <th>Estado</th>
+        <th data-l="">Acción</th>
+        <th data-l=""></th>
+      </tr>
+    </thead>
     <tbody>
     {% for r in registros %}
       <tr data-nombre="{{ (r.ap_paterno~' '~r.ap_materno~' '~r.nombres)|lower }}"
@@ -57,74 +119,89 @@
           data-cat="{{ r.categoria }}">
         <td data-l="#">{{ loop.index }}</td>
         <td data-l="Categoría">
-          {% if r.categoria == CAT_PRACTICANTE %}<span class="badge blue">Practicante</span>
-          {% else %}<span class="badge">Trabajador</span>{% endif %}
+          {% if r.categoria == CAT_PRACTICANTE %}
+            <span class="badge badge-prac">🎓 Practicante</span>
+          {% else %}
+            <span class="badge badge-trab">👷 Trabajador</span>
+          {% endif %}
         </td>
-        <td data-l="Documento">{{ cat.descripcion('tipo_documento', r.tipo_documento) }} <b>{{ r.numero_documento }}</b></td>
-        <td data-l="Apellidos y nombres">{{ r.ap_paterno }} {{ r.ap_materno }}, {{ r.nombres }}</td>
+        <td data-l="Documento">
+          <span class="muted" style="font-size:12px">{{ cat.descripcion('tipo_documento', r.tipo_documento) }}</span><br>
+          <b>{{ r.numero_documento }}</b>
+        </td>
+        <td data-l="Nombre">{{ r.ap_paterno }} {{ r.ap_materno }}, {{ r.nombres }}</td>
         <td data-l="Estado">
-          {% if r.estado == PENDIENTE %}<span class="badge amber">Pendiente</span>
-          {% elif r.estado == COMPLETADO %}<span class="badge green">Completado</span>
-          {% else %}<span class="badge blue">Exportado</span>{% endif %}
+          {% if r.estado == PENDIENTE %}
+            <span class="badge badge-pending">Pendiente</span>
+          {% elif r.estado == COMPLETADO %}
+            <span class="badge badge-done">Completado</span>
+          {% else %}
+            <span class="badge badge-exported">Exportado</span>
+          {% endif %}
         </td>
-        <td data-l=""><a class="link" href="/panel/{{ r.id }}?clave={{ clave }}">Completar →</a></td>
-        <td data-l="">
-          <button class="btn-eliminar" data-id="{{ r.id }}" title="Eliminar registro"
-                  style="background:none;border:none;cursor:pointer;color:#c0392b;font-size:16px;padding:4px 8px">🗑️</button>
+        <td data-l="Acción">
+          <a class="link" href="/panel/{{ r.id }}">
+            {% if r.estado == PENDIENTE %}Completar →{% else %}Ver / Editar →{% endif %}
+          </a>
+        </td>
+        <td>
+          <button class="btn-icon btn-eliminar" data-id="{{ r.id }}" title="Eliminar registro">🗑️</button>
         </td>
       </tr>
     {% else %}
-      <tr id="fila-vacia"><td colspan="7" class="muted">Aún no hay registros.</td></tr>
+      <tr id="fila-vacia">
+        <td colspan="7" style="text-align:center;padding:32px;color:var(--txt-muted)">
+          📭 Aún no hay registros. Importa el Excel o espera que los trabajadores se registren.
+        </td>
+      </tr>
     {% endfor %}
     </tbody>
   </table>
 </div>
 
 <script>
-const CLAVE = "{{ clave }}";
-
-// ── Búsqueda y filtros en tiempo real ──
+// ── Búsqueda y filtros ──
 function filtrar(){
-  const q = document.getElementById('buscar').value.toLowerCase().trim();
+  const q   = document.getElementById('buscar').value.toLowerCase().trim();
   const est = document.getElementById('filtro-estado').value;
   const cat = document.getElementById('filtro-cat').value;
   let vis = 0;
   document.querySelectorAll('#tabla-registros tbody tr[data-dni]').forEach(tr=>{
-    const ok = (!q || tr.dataset.nombre.includes(q) || tr.dataset.dni.includes(q))
+    const ok = (!q   || tr.dataset.nombre.includes(q) || tr.dataset.dni.includes(q))
              && (!est || tr.dataset.estado === est)
              && (!cat || tr.dataset.cat === cat);
     tr.style.display = ok ? '' : 'none';
     if(ok) vis++;
   });
-  document.getElementById('cnt-visible').textContent = vis + ' registro(s) mostrado(s)';
+  document.getElementById('cnt-visible').textContent = vis > 0 ? vis + ' registro(s) mostrado(s)' : '';
 }
 document.getElementById('buscar').addEventListener('input', filtrar);
 document.getElementById('filtro-estado').addEventListener('change', filtrar);
 document.getElementById('filtro-cat').addEventListener('change', filtrar);
 filtrar();
 
-// ── Eliminar registro individual ──
+// ── Eliminar individual ──
 document.querySelectorAll('.btn-eliminar').forEach(btn=>{
   btn.addEventListener('click', async ()=>{
     if(!confirm('¿Eliminar este registro? Esta acción no se puede deshacer.')) return;
     const id = btn.dataset.id;
-    const r = await fetch(`/panel/eliminar/${id}?clave=${encodeURIComponent(CLAVE)}`, {method:'DELETE'});
+    const r  = await fetch(`/panel/eliminar/${id}`, {method:'DELETE'});
     const res = await r.json();
     if(res.ok){ btn.closest('tr').remove(); filtrar(); }
     else alert('Error al eliminar.');
   });
 });
 
-// ── Eliminar todos ──
+// ── Eliminar todo ──
 document.getElementById('btn-eliminar-todo').addEventListener('click', async ()=>{
   const total = document.querySelectorAll('#tabla-registros tbody tr[data-dni]').length;
+  if(!total){ alert('No hay registros.'); return; }
   if(!confirm(`¿Eliminar los ${total} registros? Esta acción no se puede deshacer.`)) return;
-  const r = await fetch(`/panel/eliminar/todo?clave=${encodeURIComponent(CLAVE)}`, {method:'DELETE'});
+  const r   = await fetch('/panel/eliminar/todo', {method:'DELETE'});
   const res = await r.json();
   if(res.ok){
     document.querySelectorAll('#tabla-registros tbody tr[data-dni]').forEach(tr=>tr.remove());
     filtrar();
-    document.getElementById('resumen-cnt').textContent = '0 registro(s)';
   } else alert('Error al eliminar.');
 });
 </script>

@@ -17,5 +17,8 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tregistro.db")
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# Clave simple para el panel de la trabajadora de EsSalud
+# Clave del panel de EsSalud
 PANEL_PASSWORD = os.getenv("PANEL_PASSWORD", "essalud2026")
+
+# Clave secreta para firmar cookies de sesión (cambiar en producción)
+SECRET_KEY = os.getenv("SECRET_KEY", "essalud-tregistro-2026-clave-sesion-segura")

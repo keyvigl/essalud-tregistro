@@ -3,17 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}T-Registro EsSalud{% endblock %}</title>
+  <title>{% block title %}T-Registro · EsSalud{% endblock %}</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
+
   <header class="topbar">
-    <div class="brand">T-Registro · EsSalud</div>
-    <div class="sub">{% block subtitle %}{% endblock %}</div>
+    <div class="topbar-inner">
+      <div class="brand-wrap">
+        <div class="brand-logo">ES</div>
+        <div>
+          <div class="brand-name">EsSalud</div>
+          <div class="brand-sub">Seguro Social de Salud del Perú</div>
+        </div>
+      </div>
+      <div class="brand-system">
+        <span class="system-tag">T-REGISTRO</span>
+        <span class="system-desc">Carga Masiva de Prestadores</span>
+      </div>
+    </div>
   </header>
+
+  {% block panel_nav %}{% endblock %}
+
   <main class="container">
     {% block content %}{% endblock %}
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Seguro Social de Salud del Perú – EsSalud</span>
+      <span class="footer-ver">Sistema T-Registro v2.0</span>
+    </div>
+  </footer>
+
   {% block scripts %}{% endblock %}
 </body>
 </html>

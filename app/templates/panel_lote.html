@@ -1,7 +1,23 @@
 {% extends "base.html" %}
-{% block subtitle %}Completar en lote{% endblock %}
+{% block title %}Completar en lote · T-Registro EsSalud{% endblock %}
+
+{% block panel_nav %}
+<nav class="panel-nav">
+  <div class="panel-nav-inner">
+    <div class="panel-nav-links">
+      <a class="nav-link" href="/panel">🏠 Inicio</a>
+      <a class="nav-link active" href="/panel/lote?categoria={{ modo }}">📋 Completar en lote</a>
+      <a class="nav-link" href="/panel/verificar">🔎 Verificar</a>
+    </div>
+    <div class="nav-user">
+      <span class="nav-user-name">Recursos Humanos · EsSalud</span>
+      <a class="nav-logout" href="/panel/logout">Cerrar sesión</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
 {% block content %}
-<style>.container{max-width:100%;padding:0 14px}</style>
 
 {# ---------- macros de celdas ---------- #}
 {% macro selcell(t,row,field,tabla) %}
@@ -60,12 +76,12 @@
 <div class="mblock"><span>{{label}}</span><input class="master" type="{{type}}" data-field="{{field}}"><button type="button" class="aplicar" data-field="{{field}}">↓ todos</button></div>
 {% endmacro %}
 
-<div class="card">
-  <a class="link" href="/panel?clave={{ clave }}">← Volver al listado</a>
+<a class="back-link" href="/panel">← Volver al listado</a>
 
+<div class="card">
   <div class="tabs">
-    <a class="tab {% if modo==CAT_PRACTICANTE %}on{% endif %}" href="/panel/lote?clave={{clave}}&categoria=practicante">🎓 Practicantes ({{ n_prac }})</a>
-    <a class="tab {% if modo==CAT_TRABAJADOR %}on{% endif %}" href="/panel/lote?clave={{clave}}&categoria=trabajador">👷 Trabajadores ({{ n_trab }})</a>
+    <a class="tab {% if modo==CAT_PRACTICANTE %}on{% endif %}" href="/panel/lote?categoria=practicante">🎓 Practicantes ({{ n_prac }})</a>
+    <a class="tab {% if modo==CAT_TRABAJADOR %}on{% endif %}" href="/panel/lote?categoria=trabajador">👷 Trabajadores ({{ n_trab }})</a>
   </div>
 
   <div class="panel-head">
@@ -80,13 +96,16 @@
   <div class="masivo">
     <div class="mtitle" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
       <span>⚡ Aplicar a todos <small>— pon un valor común y presiona "↓ todos"; luego ajusta excepciones fila por fila</small></span>
+      {% if modo==CAT_TRABAJADOR %}
       <label style="font-size:12px;font-weight:400;color:#3a4258;display:flex;align-items:center;gap:5px;cursor:pointer">
         <input type="checkbox" id="vertodas" style="width:auto"> Ver todas las ocupaciones
       </label>
+      {% endif %}
     </div>
     <div class="mblocks">
       {% if modo==CAT_PRACTICANTE %}
         {{ msel('Modalidad','modalidad_formativa','modalidad_formativa') }}
+        {{ msel('Sit. educativa','situacion_educativa','situacion_educativa') }}
         <div class="mblock"><span>Ocupación</span>
           <select class="master" data-field="ocupacion">
             <option value="">—</option>
@@ -121,7 +140,7 @@
     <thead><tr>
       <th>#</th><th>DNI</th><th>Nombre</th>
       {% if modo==CAT_PRACTICANTE %}
-        <th>Modalidad</th><th>Ocupación</th><th>Centro</th><th>Fecha inicio</th><th>Estab.</th>
+        <th>Modalidad</th><th>Sit. educ.</th><th>Ocupación</th><th>Centro</th><th>Fecha inicio</th><th>Estab.</th>
       {% else %}
         <th>Tipo trab.</th><th>Rég. laboral</th><th>Cat. ocup.</th><th>Ocupación</th><th>Contrato</th><th>Periodic.</th><th>Sueldo</th><th>T. pago</th><th>Fecha inicio</th><th>Estab.</th>
       {% endif %}
@@ -135,6 +154,7 @@
         <td class="nom">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
         {% if modo==CAT_PRACTICANTE %}
           {{ selcell(t,loop.index0,'modalidad_formativa','modalidad_formativa') }}
+          {{ selcell(t,loop.index0,'situacion_educativa','situacion_educativa') }}
           {{ ocuppracc(t,loop.index0) }}
           {{ centrocell(t,loop.index0) }}
           {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
@@ -151,7 +171,7 @@
           {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
           {{ incell(t,loop.index0,'cod_establecimiento','text',estab) }}
         {% endif %}
-        <td class="est-cel">{% if t.estado=='completado' %}<span class="badge green">OK</span>{% elif t.estado=='exportado' %}<span class="badge blue">Exp.</span>{% else %}<span class="badge amber">Pend.</span>{% endif %}</td>
+        <td class="est-cel">{% if t.estado=='completado' %}<span class="badge badge-done">OK</span>{% elif t.estado=='exportado' %}<span class="badge badge-exported">Exp.</span>{% else %}<span class="badge badge-pending">Pend.</span>{% endif %}</td>
       </tr>
     {% else %}
       <tr><td colspan="20" class="muted" style="padding:16px">No hay {{ 'practicantes' if modo==CAT_PRACTICANTE else 'trabajadores' }} registrados todavía.</td></tr>
@@ -165,7 +185,6 @@
 {% block scripts %}
 <script src="/static/combobox.js"></script>
 <script>
-const CLAVE = "{{ clave }}";
 const combos = [];
 document.querySelectorAll('.gc[data-field="ocupacion"] .combo').forEach(div => {
   const cb = new Combobox(div); div.closest('.gc')._combo = cb; combos.push(cb);
@@ -214,16 +233,16 @@ document.getElementById('guardar').addEventListener('click', async ()=>{
   const payload={};
   document.querySelectorAll('tr[data-id]').forEach(tr=>{ const id=tr.dataset.id; payload[id]={};
     tr.querySelectorAll('.gc').forEach(c=>{ payload[id][c.dataset.field]=getVal(c); }); });
-  const av=document.getElementById('aviso'); av.innerHTML='Guardando…';
-  const r=await fetch('/panel/lote/guardar?clave='+encodeURIComponent(CLAVE),
+  const av=document.getElementById('aviso'); av.innerHTML='<div class="alert alert-warn"><span class="alert-icon">⏳</span> Guardando…</div>';
+  const r=await fetch('/panel/lote/guardar',
     {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   const res=await r.json();
-  if(!res.ok){ av.innerHTML='<div class="errores">No se pudo guardar.</div>'; return; }
+  if(!res.ok){ av.innerHTML='<div class="alert alert-error"><span class="alert-icon">❌</span> No se pudo guardar.</div>'; return; }
   const nerr=Object.keys(res.errores||{}).length;
   document.querySelectorAll('tr[data-id]').forEach(tr=>{ const cel=tr.querySelector('.est-cel'); const e=res.errores[tr.dataset.id];
-    if(e){cel.innerHTML='<span class="badge amber" title="'+e.join(' · ')+'">Falta</span>'; tr.classList.add('row-err');}
-    else{cel.innerHTML='<span class="badge green">OK</span>'; tr.classList.remove('row-err');} });
-  av.innerHTML='<div class="aviso-ok">Guardado: '+res.completados+' completado(s)'+(nerr?(' · '+nerr+' con datos faltantes (marcados)'):'')+'.</div>';
+    if(e){cel.innerHTML='<span class="badge badge-pending" title="'+e.join(' · ')+'">Falta</span>'; tr.classList.add('row-err');}
+    else{cel.innerHTML='<span class="badge badge-done">OK</span>'; tr.classList.remove('row-err');} });
+  av.innerHTML='<div class="alert alert-ok"><span class="alert-icon">✅</span> Guardado: '+res.completados+' completado(s)'+(nerr?(' · '+nerr+' con datos faltantes'):'')+'.</div>';
 });
 </script>
 {% endblock %}

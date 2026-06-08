@@ -1,12 +1,18 @@
 {% extends "base.html" %}
-{% block subtitle %}Registro recibido{% endblock %}
+{% block title %}Registro recibido · EsSalud{% endblock %}
 {% block content %}
-<div class="card center">
-  <div class="check">✓</div>
-  <h1>¡Gracias, {{ t.nombres }}!</h1>
-  <p>Tus datos fueron enviados correctamente. EsSalud completará el resto de tu
-     registro y lo presentará ante SUNAT.</p>
-  <p class="muted">Documento: {{ t.numero_documento }} · Código interno #{{ t.id }}</p>
-  <a class="btn" href="/">Registrar a otra persona</a>
+<div style="display:flex;justify-content:center;align-items:center;min-height:60vh">
+  <div class="card" style="max-width:480px;width:100%;text-align:center;padding:40px 32px">
+    <div style="font-size:56px;margin-bottom:16px">✅</div>
+    <h1 style="font-size:22px;margin-bottom:8px">¡Gracias, {{ t.nombres }}!</h1>
+    <p style="color:var(--txt-muted);margin-bottom:20px">
+      Tus datos fueron enviados correctamente. EsSalud completará el resto de tu
+      registro y lo presentará ante SUNAT.
+    </p>
+    <div style="background:var(--bg);border-radius:8px;padding:12px 16px;margin-bottom:24px;font-size:13px;color:var(--txt-muted)">
+      Documento: <b>{{ t.numero_documento }}</b> &nbsp;·&nbsp; Código interno <b>#{{ t.id }}</b>
+    </div>
+    <a class="btn" href="/">Registrar a otra persona</a>
+  </div>
 </div>
 {% endblock %}
