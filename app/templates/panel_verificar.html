@@ -36,10 +36,10 @@
         El sistema detecta automáticamente las categorías y genera
         {% if listos_trab > 0 and listos_prac > 0 %}
           <b>2 ZIPs</b> independientes dentro de un paquete:
-          <span class="cat-chip cat-trab">👷 {{ listos_trab }} trabajador(es)</span>
+          <span class="cat-chip cat-trab">🧑‍⚕️ {{ listos_trab }} trabajador(es)</span>
           <span class="cat-chip cat-prac">🎓 {{ listos_prac }} practicante(s)</span>
         {% elif listos_trab > 0 %}
-          <b>1 ZIP</b> para <span class="cat-chip cat-trab">👷 {{ listos_trab }} trabajador(es)</span>
+          <b>1 ZIP</b> para <span class="cat-chip cat-trab">🧑‍⚕️ {{ listos_trab }} trabajador(es)</span>
         {% else %}
           <b>1 ZIP</b> para <span class="cat-chip cat-prac">🎓 {{ listos_prac }} practicante(s)</span>
         {% endif %}
@@ -65,7 +65,7 @@
   {# ── Bloque Trabajadores ── #}
   <div class="export-block export-trab">
     <div class="export-block-head">
-      <div class="export-icon">👷</div>
+      <div class="export-icon">🧑‍⚕️</div>
       <div>
         <div class="export-title">Trabajadores</div>
         <div class="export-sub">E05 · E17 · E04 · E11</div>
@@ -147,7 +147,7 @@
   </div>
 
   {% if filas_trab %}
-  <div class="verif-section-title">👷 Trabajadores — {{ total_trab }} registro(s)</div>
+  <div class="verif-section-title">🧑‍⚕️ Trabajadores — {{ total_trab }} registro(s)</div>
   <table class="tabla" style="margin-bottom:20px">
     <thead>
       <tr>
