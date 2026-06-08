@@ -21,8 +21,44 @@
 
 <a class="back-link" href="/panel">← Volver al listado</a>
 
+{% set listos_total = listos_trab + listos_prac %}
+
 {# ═══════════════════════════════════════════════════════════════════
-   RESUMEN DE EXPORTACIÓN — dos ZIPs independientes
+   BOTÓN PRINCIPAL — exportar paquete completo (auto-detección)
+   ═══════════════════════════════════════════════════════════════════ #}
+{% if listos_total > 0 %}
+<div class="paquete-banner">
+  <div class="paquete-info">
+    <div class="paquete-icon">📦</div>
+    <div>
+      <div class="paquete-title">Exportar paquete completo</div>
+      <div class="paquete-desc">
+        El sistema detecta automáticamente las categorías y genera
+        {% if listos_trab > 0 and listos_prac > 0 %}
+          <b>2 ZIPs</b> independientes dentro de un paquete:
+          <span class="cat-chip cat-trab">👷 {{ listos_trab }} trabajador(es)</span>
+          <span class="cat-chip cat-prac">🎓 {{ listos_prac }} practicante(s)</span>
+        {% elif listos_trab > 0 %}
+          <b>1 ZIP</b> para <span class="cat-chip cat-trab">👷 {{ listos_trab }} trabajador(es)</span>
+        {% else %}
+          <b>1 ZIP</b> para <span class="cat-chip cat-prac">🎓 {{ listos_prac }} practicante(s)</span>
+        {% endif %}
+      </div>
+      {% if listos_trab > 0 and listos_prac > 0 %}
+      <div class="paquete-hint">
+        Extrae el paquete → sube cada ZIP al PVS de SUNAT por separado
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <a class="btn btn-paquete" href="/panel/generar/paquete">
+    ⬇️ Descargar paquete ({{ listos_total }} registros)
+  </a>
+</div>
+{% endif %}
+
+{# ═══════════════════════════════════════════════════════════════════
+   BLOQUES DETALLE — exportación individual por categoría
    ═══════════════════════════════════════════════════════════════════ #}
 <div class="export-grid">
 
@@ -36,29 +72,27 @@
       </div>
     </div>
     <div class="export-counters">
-      <div>
-        <span class="exp-num {% if listos_trab == total_trab and total_trab > 0 %}exp-ok{% elif listos_trab > 0 %}exp-warn{% else %}exp-zero{% endif %}">{{ listos_trab }}</span>
-        <span class="exp-denom">/ {{ total_trab }}</span>
-        <div class="exp-label">listos para exportar</div>
-      </div>
+      <span class="exp-num {% if listos_trab == total_trab and total_trab > 0 %}exp-ok{% elif listos_trab > 0 %}exp-warn{% else %}exp-zero{% endif %}">{{ listos_trab }}</span>
+      <span class="exp-denom">/ {{ total_trab }}</span>
+      <div class="exp-label">listos para exportar</div>
     </div>
     <div class="export-files">
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.ide</span>
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.tra</span>
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.est</span>
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.per</span>
+      <span class="file-tag">.ide</span>
+      <span class="file-tag">.tra</span>
+      <span class="file-tag">.est</span>
+      <span class="file-tag">.per</span>
       <span class="file-tag file-opt">.edu*</span>
       <span class="file-tag file-opt">.cta*</span>
     </div>
     {% if listos_trab > 0 %}
-    <a class="btn export-btn" href="/panel/generar/zip/trabajador">
-      ⬇️ Exportar ZIP Trabajadores ({{ listos_trab }})
+    <a class="btn btn-sec export-btn" href="/panel/generar/zip/trabajador">
+      ⬇️ Solo trabajadores ({{ listos_trab }})
     </a>
     {% else %}
-    <button class="btn export-btn" disabled>⬇️ Sin registros listos</button>
+    <button class="btn btn-sec export-btn" disabled>Sin registros listos</button>
     {% endif %}
     {% if total_trab > listos_trab %}
-    <div class="export-warn">⚠️ {{ total_trab - listos_trab }} incompleto(s) — no se incluirán</div>
+    <div class="export-warn">⚠️ {{ total_trab - listos_trab }} incompleto(s) no se incluirán</div>
     {% endif %}
   </div>
 
@@ -72,33 +106,34 @@
       </div>
     </div>
     <div class="export-counters">
-      <div>
-        <span class="exp-num {% if listos_prac == total_prac and total_prac > 0 %}exp-ok{% elif listos_prac > 0 %}exp-warn{% else %}exp-zero{% endif %}">{{ listos_prac }}</span>
-        <span class="exp-denom">/ {{ total_prac }}</span>
-        <div class="exp-label">listos para exportar</div>
-      </div>
+      <span class="exp-num {% if listos_prac == total_prac and total_prac > 0 %}exp-ok{% elif listos_prac > 0 %}exp-warn{% else %}exp-zero{% endif %}">{{ listos_prac }}</span>
+      <span class="exp-denom">/ {{ total_prac }}</span>
+      <div class="exp-label">listos para exportar</div>
     </div>
     <div class="export-files">
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.ide</span>
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.pfl</span>
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.lug</span>
-      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.per</span>
+      <span class="file-tag">.ide</span>
+      <span class="file-tag">.pfl</span>
+      <span class="file-tag">.lug</span>
+      <span class="file-tag">.per</span>
       <span class="file-tag file-opt">.cta*</span>
     </div>
     {% if listos_prac > 0 %}
-    <a class="btn export-btn" href="/panel/generar/zip/practicante">
-      ⬇️ Exportar ZIP Practicantes ({{ listos_prac }})
+    <a class="btn btn-sec export-btn" href="/panel/generar/zip/practicante">
+      ⬇️ Solo practicantes ({{ listos_prac }})
     </a>
     {% else %}
-    <button class="btn export-btn" disabled>⬇️ Sin registros listos</button>
+    <button class="btn btn-sec export-btn" disabled>Sin registros listos</button>
     {% endif %}
     {% if total_prac > listos_prac %}
-    <div class="export-warn">⚠️ {{ total_prac - listos_prac }} incompleto(s) — no se incluirán</div>
+    <div class="export-warn">⚠️ {{ total_prac - listos_prac }} incompleto(s) no se incluirán</div>
     {% endif %}
   </div>
 
 </div>
-<p class="muted" style="margin:-4px 0 20px;font-size:12px">* Archivos opcionales: <b>.edu</b> solo si hay formación superior declarada · <b>.cta</b> solo si pago es por depósito bancario</p>
+<p class="muted" style="margin:-4px 0 20px;font-size:12px">
+  * <b>.edu</b> se genera solo si el trabajador declaró formación superior ·
+    <b>.cta</b> solo si el tipo de pago es depósito bancario
+</p>
 
 {# ═══════════════════════════════════════════════════════════════════
    TABLA DE DETALLE — trabajadores primero, luego practicantes

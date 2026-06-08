@@ -338,6 +338,33 @@ input[type="checkbox"] { width: auto; height: auto; }
 .login-card label { margin-bottom: 16px; }
 .login-footer { text-align: center; margin-top: 20px; font-size: 12px; color: var(--txt-muted); }
 
+/* ── Banner de paquete completo ── */
+.paquete-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 100%);
+  border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px;
+  box-shadow: var(--shadow-lg); flex-wrap: wrap;
+  border-bottom: 4px solid var(--verde-vivo);
+}
+.paquete-info { display: flex; align-items: flex-start; gap: 14px; flex: 1; min-width: 280px; }
+.paquete-icon { font-size: 36px; line-height: 1; flex-shrink: 0; }
+.paquete-title { font-weight: 800; font-size: 18px; color: #fff; margin-bottom: 5px; }
+.paquete-desc { font-size: 13px; color: rgba(255,255,255,.85); line-height: 1.6; }
+.paquete-hint { font-size: 12px; color: rgba(255,255,255,.6); margin-top: 6px; }
+.paquete-hint::before { content: "💡 "; }
+.cat-chip {
+  display: inline-block; border-radius: 20px; padding: 2px 10px;
+  font-size: 12px; font-weight: 700; margin: 0 3px;
+}
+.cat-chip.cat-trab { background: var(--azul-light); color: var(--azul-dark); }
+.cat-chip.cat-prac  { background: #EDE3FF; color: #5B3FA0; }
+.btn-paquete {
+  background: var(--verde-vivo); font-size: 15px; padding: 13px 24px;
+  flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  white-space: nowrap;
+}
+.btn-paquete:hover { background: var(--verde); }
+
 /* ── Exportación por categoría (panel_verificar) ── */
 .export-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px;

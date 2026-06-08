@@ -407,17 +407,45 @@ def eliminar_todo(request: Request, session: Session = Depends(get_session)):
     return JSONResponse({"ok": True, "eliminados": len(activos)})
 
 
-# ── Generar ZIP por categoría ─────────────────────────────────────────────────
-# Cada categoría genera su propio ZIP con los archivos que le corresponden:
-#   Trabajador  → .ide  .tra  .est  .per  [.edu]  [.cta]
-#   Practicante → .ide  .pfl  .lug  .per  [.cta]
-# Importarlos por separado en el PVS evita errores cruzados entre categorías.
+# ── Exportar: paquete automático (detecta categorías) ────────────────────────
+@app.get("/panel/generar/paquete")
+def generar_paquete(request: Request, session: Session = Depends(get_session)):
+    """Genera un ZIP maestro que contiene un sub-ZIP por cada categoría detectada.
+    No requiere que el usuario indique qué hay dentro — lo detecta automáticamente."""
+    if not _authed(request):
+        return _login_redirect()
+
+    listos = session.exec(
+        select(Trabajador).where(
+            Trabajador.estado.in_([COMPLETADO, EXPORTADO]),
+            Trabajador.eliminado == False,
+        )
+    ).all()
+    if not listos:
+        return RedirectResponse("/panel/verificar", status_code=303)
+
+    data, nombres_generados = generate.generar_paquete(listos)
+    ahora = datetime.utcnow()
+    nombre_paquete = f"T-REGISTRO_PAQUETE_RP_{config.RUC_EMPLEADOR}.zip"
+    for t in listos:
+        t.estado = EXPORTADO
+        t.actualizado_en = ahora
+        session.add(t)
+        auditar(session, t.id, t.numero_documento, "exportar",
+                f"Paquete: {nombre_paquete} → {', '.join(nombres_generados)}")
+    session.commit()
+    return Response(content=data, media_type="application/zip",
+                    headers={"Content-Disposition": f'attachment; filename="{nombre_paquete}"'})
+
+
+# ── Exportar: ZIP individual por categoría (cuando solo hay una) ──────────────
 @app.get("/panel/generar/zip/{categoria}")
-def generar(categoria: str, request: Request, session: Session = Depends(get_session)):
+def generar_zip_categoria(categoria: str, request: Request,
+                          session: Session = Depends(get_session)):
     if not _authed(request):
         return _login_redirect()
     if categoria not in (CAT_TRABAJADOR, CAT_PRACTICANTE):
-        return _panel_redirect()
+        return RedirectResponse("/panel/verificar", status_code=303)
 
     listos = session.exec(
         select(Trabajador).where(

@@ -197,12 +197,45 @@ def generar_archivos(trabajadores) -> dict[str, str]:
     return {ext: "\r\n".join(lineas) + "\r\n" for ext, lineas in buckets.items() if lineas}
 
 
-def generar_zip(trabajadores) -> bytes:
-    """Empaqueta los archivos RP_<RUC>.<ext> en un ZIP (codificación ANSI/cp1252)."""
-    archivos = generar_archivos(trabajadores)
+def generar_zip(registros) -> bytes:
+    """ZIP con los archivos RP_<RUC>.<ext> de la lista recibida (codificación ANSI/cp1252).
+    La lista debe ser de una sola categoría; si es mixta, ver generar_paquete()."""
+    archivos = generar_archivos(registros)
     ruc = config.RUC_EMPLEADOR
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
         for ext, contenido in archivos.items():
             zf.writestr(f"RP_{ruc}.{ext}", contenido.encode("cp1252", errors="replace"))
     return buf.getvalue()
+
+
+def generar_paquete(registros) -> tuple[bytes, list[str]]:
+    """Detecta automáticamente las categorías presentes y devuelve:
+      - bytes  : ZIP maestro que contiene un sub-ZIP por cada categoría encontrada
+      - list   : nombres de los sub-ZIPs generados (para auditoría / UI)
+
+    Estructura del paquete:
+      T-REGISTRO_PAQUETE_RP_<RUC>.zip
+        ├── T-REGISTRO_TRABAJADORES_RP_<RUC>.zip   (si hay trabajadores)
+        └── T-REGISTRO_PRACTICANTES_RP_<RUC>.zip   (si hay practicantes)
+
+    Cada sub-ZIP lleva sus archivos propios:
+      Trabajadores → .ide  .tra  .est  .per  [.edu]  [.cta]
+      Practicantes → .ide  .pfl  .lug  .per  [.cta]
+    """
+    ruc = config.RUC_EMPLEADOR
+    trab = [t for t in registros if getattr(t, "categoria", "trabajador") != "practicante"]
+    prac = [t for t in registros if getattr(t, "categoria", "trabajador") == "practicante"]
+
+    nombres: list[str] = []
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf_maestro:
+        if trab:
+            nombre = f"T-REGISTRO_TRABAJADORES_RP_{ruc}.zip"
+            zf_maestro.writestr(nombre, generar_zip(trab))
+            nombres.append(nombre)
+        if prac:
+            nombre = f"T-REGISTRO_PRACTICANTES_RP_{ruc}.zip"
+            zf_maestro.writestr(nombre, generar_zip(prac))
+            nombres.append(nombre)
+    return buf.getvalue(), nombres
