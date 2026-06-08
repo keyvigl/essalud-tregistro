@@ -181,7 +181,16 @@ engine = create_engine(
 
 
 def init_db() -> None:
-    SQLModel.metadata.create_all(engine)
+    import time
+    for intento in range(10):
+        try:
+            SQLModel.metadata.create_all(engine)
+            return
+        except Exception as e:
+            if intento < 9:
+                time.sleep(3)
+            else:
+                raise
 
 
 def get_session():
