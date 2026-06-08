@@ -338,6 +338,48 @@ input[type="checkbox"] { width: auto; height: auto; }
 .login-card label { margin-bottom: 16px; }
 .login-footer { text-align: center; margin-top: 20px; font-size: 12px; color: var(--txt-muted); }
 
+/* ── Exportación por categoría (panel_verificar) ── */
+.export-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px;
+}
+.export-block {
+  background: var(--card); border: 1px solid var(--bord); border-radius: var(--radius);
+  padding: 22px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px;
+}
+.export-block.export-trab { border-top: 4px solid var(--azul); }
+.export-block.export-prac { border-top: 4px solid #7B5EA7; }
+.export-block-head { display: flex; align-items: center; gap: 12px; }
+.export-icon { font-size: 28px; line-height: 1; }
+.export-title { font-weight: 800; font-size: 17px; color: var(--azul-dark); }
+.export-sub { font-size: 11px; color: var(--txt-muted); font-family: monospace; margin-top: 2px; }
+.export-counters { display: flex; align-items: baseline; gap: 4px; }
+.exp-num { font-size: 42px; font-weight: 800; line-height: 1; }
+.exp-num.exp-ok   { color: var(--verde-vivo); }
+.exp-num.exp-warn { color: var(--amber); }
+.exp-num.exp-zero { color: var(--bord-dark); }
+.exp-denom { font-size: 20px; color: var(--txt-muted); font-weight: 600; }
+.exp-label { font-size: 12px; color: var(--txt-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .04em; }
+.export-files { display: flex; flex-wrap: wrap; gap: 6px; }
+.file-tag {
+  display: inline-block; font-family: monospace; font-size: 11px; font-weight: 700;
+  background: var(--azul-tint); color: var(--azul); border: 1px solid var(--azul-light);
+  border-radius: 5px; padding: 3px 8px;
+}
+.file-tag.file-opt { background: var(--bg); color: var(--txt-muted); border-color: var(--bord); }
+.export-btn { width: 100%; justify-content: center; margin-top: auto; }
+.export-btn:disabled {
+  background: var(--bord); cursor: not-allowed; opacity: .65;
+}
+.export-warn { font-size: 12px; color: var(--amber); font-weight: 600; text-align: center; margin-top: -6px; }
+.verif-section-title {
+  font-weight: 800; font-size: 14px; color: var(--azul-dark);
+  margin: 0 0 10px; padding: 8px 12px;
+  background: var(--azul-tint); border-radius: 8px; border-left: 4px solid var(--azul);
+}
+@media (max-width: 640px) {
+  .export-grid { grid-template-columns: 1fr; }
+}
+
 /* ── Verificación ── */
 .verif-summary, .resumen-verif {
   display: flex; align-items: center; gap: 16px;

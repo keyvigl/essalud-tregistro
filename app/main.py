@@ -352,13 +352,22 @@ def panel_verificar(request: Request, session: Session = Depends(get_session)):
     regs = session.exec(
         select(Trabajador)
         .where(Trabajador.eliminado == False)
-        .order_by(Trabajador.id)
+        .order_by(Trabajador.categoria, Trabajador.id)
     ).all()
     filas = [(t, verificar_alta(t)) for t in regs]
-    listos = sum(1 for _, f in filas if not f)
+
+    filas_trab = [(t, f) for t, f in filas if t.categoria == CAT_TRABAJADOR]
+    filas_prac = [(t, f) for t, f in filas if t.categoria == CAT_PRACTICANTE]
+    listos_trab = sum(1 for _, f in filas_trab if not f)
+    listos_prac = sum(1 for _, f in filas_prac if not f)
+
     return templates.TemplateResponse(request, "panel_verificar.html", {
-        "filas": filas, "cat": cat, "listos": listos, "total": len(filas),
-        "CAT_PRACTICANTE": CAT_PRACTICANTE,
+        "filas": filas,
+        "filas_trab": filas_trab, "filas_prac": filas_prac,
+        "listos_trab": listos_trab, "listos_prac": listos_prac,
+        "total_trab": len(filas_trab), "total_prac": len(filas_prac),
+        "cat": cat, "config": config,
+        "CAT_PRACTICANTE": CAT_PRACTICANTE, "CAT_TRABAJADOR": CAT_TRABAJADOR,
     })
 
 
@@ -398,31 +407,40 @@ def eliminar_todo(request: Request, session: Session = Depends(get_session)):
     return JSONResponse({"ok": True, "eliminados": len(activos)})
 
 
-# ── Generar ZIP ──────────────────────────────────────────────────────────────
-@app.get("/panel/generar/zip")
-def generar(request: Request, session: Session = Depends(get_session)):
+# ── Generar ZIP por categoría ─────────────────────────────────────────────────
+# Cada categoría genera su propio ZIP con los archivos que le corresponden:
+#   Trabajador  → .ide  .tra  .est  .per  [.edu]  [.cta]
+#   Practicante → .ide  .pfl  .lug  .per  [.cta]
+# Importarlos por separado en el PVS evita errores cruzados entre categorías.
+@app.get("/panel/generar/zip/{categoria}")
+def generar(categoria: str, request: Request, session: Session = Depends(get_session)):
     if not _authed(request):
         return _login_redirect()
+    if categoria not in (CAT_TRABAJADOR, CAT_PRACTICANTE):
+        return _panel_redirect()
+
     listos = session.exec(
         select(Trabajador).where(
+            Trabajador.categoria == categoria,
             Trabajador.estado.in_([COMPLETADO, EXPORTADO]),
             Trabajador.eliminado == False,
         )
     ).all()
     if not listos:
-        return _panel_redirect()
+        return RedirectResponse("/panel/verificar", status_code=303)
+
     data = generate.generar_zip(listos)
     ahora = datetime.utcnow()
+    etiqueta = "TRABAJADORES" if categoria == CAT_TRABAJADOR else "PRACTICANTES"
+    nombre_zip = f"T-REGISTRO_{etiqueta}_RP_{config.RUC_EMPLEADOR}.zip"
     for t in listos:
         t.estado = EXPORTADO
         t.actualizado_en = ahora
         session.add(t)
-        auditar(session, t.id, t.numero_documento, "exportar",
-                f"ZIP: RP_{config.RUC_EMPLEADOR}.zip")
+        auditar(session, t.id, t.numero_documento, "exportar", f"ZIP: {nombre_zip}")
     session.commit()
-    nombre = f"T-REGISTRO_RP_{config.RUC_EMPLEADOR}.zip"
     return Response(content=data, media_type="application/zip",
-                    headers={"Content-Disposition": f'attachment; filename="{nombre}"'})
+                    headers={"Content-Disposition": f'attachment; filename="{nombre_zip}"'})
 
 
 # ── Compatibilidad: redirigir /panel?clave=... al nuevo login ────────────────

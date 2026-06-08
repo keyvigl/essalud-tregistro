@@ -21,74 +21,177 @@
 
 <a class="back-link" href="/panel">← Volver al listado</a>
 
-<div class="card">
-  <div class="card-header">
-    <div>
-      <h1>Verificación para el alta en SUNAT</h1>
-      <div class="sub">Revisa que cada registro tenga el <b>mínimo obligatorio</b>. Solo los marcados <span class="badge badge-done">Listo</span> se incluirán correctamente en la carga.</div>
-    </div>
-  </div>
+{# ═══════════════════════════════════════════════════════════════════
+   RESUMEN DE EXPORTACIÓN — dos ZIPs independientes
+   ═══════════════════════════════════════════════════════════════════ #}
+<div class="export-grid">
 
-  <div class="resumen-verif">
-    <div class="rv-num {% if listos == total %}rv-ok{% else %}rv-warn{% endif %}">{{ listos }}</div>
-    <div class="rv-label">de <b>{{ total }}</b> listos para registrar
-      {% if listos < total %}<div class="muted" style="font-size:14px">Faltan {{ total - listos }} por completar</div>{% endif %}
+  {# ── Bloque Trabajadores ── #}
+  <div class="export-block export-trab">
+    <div class="export-block-head">
+      <div class="export-icon">👷</div>
+      <div>
+        <div class="export-title">Trabajadores</div>
+        <div class="export-sub">E05 · E17 · E04 · E11</div>
+      </div>
     </div>
-    {% if listos > 0 %}
-    <a class="btn" href="/panel/generar/zip" style="margin-left:auto">⬇️ Exportar ZIP ({{ listos }})</a>
+    <div class="export-counters">
+      <div>
+        <span class="exp-num {% if listos_trab == total_trab and total_trab > 0 %}exp-ok{% elif listos_trab > 0 %}exp-warn{% else %}exp-zero{% endif %}">{{ listos_trab }}</span>
+        <span class="exp-denom">/ {{ total_trab }}</span>
+        <div class="exp-label">listos para exportar</div>
+      </div>
+    </div>
+    <div class="export-files">
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.ide</span>
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.tra</span>
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.est</span>
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.per</span>
+      <span class="file-tag file-opt">.edu*</span>
+      <span class="file-tag file-opt">.cta*</span>
+    </div>
+    {% if listos_trab > 0 %}
+    <a class="btn export-btn" href="/panel/generar/zip/trabajador">
+      ⬇️ Exportar ZIP Trabajadores ({{ listos_trab }})
+    </a>
+    {% else %}
+    <button class="btn export-btn" disabled>⬇️ Sin registros listos</button>
+    {% endif %}
+    {% if total_trab > listos_trab %}
+    <div class="export-warn">⚠️ {{ total_trab - listos_trab }} incompleto(s) — no se incluirán</div>
     {% endif %}
   </div>
 
-  <table class="tabla">
+  {# ── Bloque Practicantes ── #}
+  <div class="export-block export-prac">
+    <div class="export-block-head">
+      <div class="export-icon">🎓</div>
+      <div>
+        <div class="export-title">Practicantes (PFL)</div>
+        <div class="export-sub">E09 · E23 · E04 · E11</div>
+      </div>
+    </div>
+    <div class="export-counters">
+      <div>
+        <span class="exp-num {% if listos_prac == total_prac and total_prac > 0 %}exp-ok{% elif listos_prac > 0 %}exp-warn{% else %}exp-zero{% endif %}">{{ listos_prac }}</span>
+        <span class="exp-denom">/ {{ total_prac }}</span>
+        <div class="exp-label">listos para exportar</div>
+      </div>
+    </div>
+    <div class="export-files">
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.ide</span>
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.pfl</span>
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.lug</span>
+      <span class="file-tag">RP_{{ config.RUC_EMPLEADOR }}.per</span>
+      <span class="file-tag file-opt">.cta*</span>
+    </div>
+    {% if listos_prac > 0 %}
+    <a class="btn export-btn" href="/panel/generar/zip/practicante">
+      ⬇️ Exportar ZIP Practicantes ({{ listos_prac }})
+    </a>
+    {% else %}
+    <button class="btn export-btn" disabled>⬇️ Sin registros listos</button>
+    {% endif %}
+    {% if total_prac > listos_prac %}
+    <div class="export-warn">⚠️ {{ total_prac - listos_prac }} incompleto(s) — no se incluirán</div>
+    {% endif %}
+  </div>
+
+</div>
+<p class="muted" style="margin:-4px 0 20px;font-size:12px">* Archivos opcionales: <b>.edu</b> solo si hay formación superior declarada · <b>.cta</b> solo si pago es por depósito bancario</p>
+
+{# ═══════════════════════════════════════════════════════════════════
+   TABLA DE DETALLE — trabajadores primero, luego practicantes
+   ═══════════════════════════════════════════════════════════════════ #}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1>Estado de registros</h1>
+      <div class="sub">Solo los marcados <span class="badge badge-done">Listo</span> se incluirán en el ZIP. Corrige los incompletos desde el panel o el lote.</div>
+    </div>
+  </div>
+
+  {% if filas_trab %}
+  <div class="verif-section-title">👷 Trabajadores — {{ total_trab }} registro(s)</div>
+  <table class="tabla" style="margin-bottom:20px">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Categoría</th>
-        <th>Documento</th>
-        <th>Nombre</th>
-        <th>¿Listo?</th>
-        <th>Qué falta</th>
+        <th>#</th><th>Documento</th><th>Nombre</th>
+        <th>Estado</th><th>Archivos</th><th>Qué falta</th>
       </tr>
     </thead>
     <tbody>
-    {% for t, faltan in filas %}
+    {% for t, faltan in filas_trab %}
       <tr class="{% if faltan %}row-err{% endif %}">
         <td data-l="#">{{ t.id }}</td>
-        <td data-l="Categoría">
-          {% if t.categoria==CAT_PRACTICANTE %}
-            <span class="badge badge-prac">🎓 Practicante</span>
-          {% else %}
-            <span class="badge badge-trab">👷 Trabajador</span>
-          {% endif %}
-        </td>
         <td data-l="Documento">
-          <span class="muted" style="font-size:12px">{{ cat.descripcion('tipo_documento', t.tipo_documento) }}</span><br>
+          <span class="muted" style="font-size:11px">{{ cat.descripcion('tipo_documento', t.tipo_documento) }}</span><br>
           <b>{{ t.numero_documento }}</b>
         </td>
         <td data-l="Nombre">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
-        <td data-l="¿Listo?">
+        <td data-l="Estado">
           {% if faltan %}
-            <span class="badge badge-pending">Faltan {{ faltan|length }}</span>
+            <span class="badge badge-pending">Incompleto</span>
           {% else %}
             <span class="badge badge-done">Listo</span>
           {% endif %}
         </td>
-        <td data-l="Qué falta">
-          {% if faltan %}
-            <span class="faltan">{{ faltan|join(' · ') }}</span>
-          {% else %}
-            <span class="ok-txt">✓ Cumple el mínimo</span>
-          {% endif %}
+        <td data-l="Archivos" class="muted" style="font-size:11px;white-space:nowrap">
+          .ide .tra .est .per
         </td>
-      </tr>
-    {% else %}
-      <tr>
-        <td colspan="6" class="muted" style="padding:32px;text-align:center">
-          📭 Aún no hay registros cargados en el sistema.
+        <td data-l="Qué falta">
+          {% if faltan %}<span class="faltan">{{ faltan|join(' · ') }}</span>
+          {% else %}<span class="ok-txt">✓ Cumple el mínimo</span>{% endif %}
         </td>
       </tr>
     {% endfor %}
     </tbody>
   </table>
+  {% endif %}
+
+  {% if filas_prac %}
+  <div class="verif-section-title">🎓 Practicantes (PFL) — {{ total_prac }} registro(s)</div>
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>#</th><th>Documento</th><th>Nombre</th>
+        <th>Estado</th><th>Archivos</th><th>Qué falta</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for t, faltan in filas_prac %}
+      <tr class="{% if faltan %}row-err{% endif %}">
+        <td data-l="#">{{ t.id }}</td>
+        <td data-l="Documento">
+          <span class="muted" style="font-size:11px">{{ cat.descripcion('tipo_documento', t.tipo_documento) }}</span><br>
+          <b>{{ t.numero_documento }}</b>
+        </td>
+        <td data-l="Nombre">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
+        <td data-l="Estado">
+          {% if faltan %}
+            <span class="badge badge-pending">Incompleto</span>
+          {% else %}
+            <span class="badge badge-done">Listo</span>
+          {% endif %}
+        </td>
+        <td data-l="Archivos" class="muted" style="font-size:11px;white-space:nowrap">
+          .ide .pfl .lug .per
+        </td>
+        <td data-l="Qué falta">
+          {% if faltan %}<span class="faltan">{{ faltan|join(' · ') }}</span>
+          {% else %}<span class="ok-txt">✓ Cumple el mínimo</span>{% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if not filas %}
+  <div style="padding:40px;text-align:center;color:var(--txt-muted)">
+    📭 Aún no hay registros cargados en el sistema.
+  </div>
+  {% endif %}
+
 </div>
 {% endblock %}
