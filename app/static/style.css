@@ -424,71 +424,159 @@ input[type="checkbox"] { width: auto; height: auto; }
 
 /* ── Vista en lote ── */
 .grid-wrap {
-  overflow: auto; max-height: 65vh;
+  overflow: auto; max-height: 62vh;
   border: 1px solid var(--bord); border-radius: var(--radius); margin-top: 12px;
+  box-shadow: inset -6px 0 12px -6px rgba(0,0,0,.07); /* sombra derecha: hay más columnas */
 }
-table.lote { border-collapse: collapse; width: max-content; min-width: 100%; font-size: 13px; }
+
+/* ── Tabla lote: estructura base ── */
+table.lote {
+  border-collapse: separate; border-spacing: 0;
+  width: max-content; min-width: 100%; font-size: 13px;
+}
+
+/* ── Encabezados ── */
 table.lote th {
-  position: sticky; top: 0; background: var(--azul-dark); color: #fff;
-  padding: 10px 10px; text-align: left; white-space: nowrap; z-index: 2;
-  font-size: 11px; letter-spacing: .04em; font-weight: 700;
+  position: sticky; top: 0;
+  background: var(--azul-dark); color: #fff;
+  padding: 10px 12px; text-align: left; white-space: nowrap;
+  font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  border-bottom: 2px solid var(--azul-mid);
+  z-index: 2;
 }
-table.lote td { border: 1px solid #e0e6ef; padding: 2px 3px; vertical-align: middle; }
-table.lote .nom { white-space: nowrap; max-width: 170px; overflow: hidden; text-overflow: ellipsis; font-size: 12px; }
-table.lote select { font-size: 13px; padding: 6px 4px; height: auto; border: 1px solid transparent; background: transparent; width: 100%; }
-table.lote input  { font-size: 13px; padding: 6px 4px; height: auto; border: 1px solid transparent; background: transparent; width: 100%; }
-table.lote select:focus, table.lote input:focus { border-color: var(--azul-mid); background: #fff; outline: none; }
-tr:hover td { background: #f5f9ff; }
-.gc { position: relative; }
-.gc[data-field="modalidad_formativa"]   { min-width: 300px; }
-.gc[data-field="situacion_educativa"]  { min-width: 200px; }
-.gc[data-field="ocupacion"]            { min-width: 200px; }
-.gc[data-field="tipo_trabajador"]      { min-width: 190px; }
-.gc[data-field="regimen_laboral"]      { min-width: 190px; }
-.gc[data-field="categoria_ocupacional"]{ min-width: 130px; }
-.gc[data-field="tipo_contrato"]        { min-width: 215px; }
-.gc[data-field="periodicidad"]         { min-width: 115px; }
-.gc[data-field="tipo_pago"]            { min-width: 160px; }
-.gc[data-field="sueldo"]               { min-width: 90px; }
-.gc[data-field="fecha_inicio_vinculo"] { min-width: 145px; }
-.gc[data-field="cod_establecimiento"]  { min-width: 80px; }
-.gc.hl { background: #dbe7fb; }
+table.lote th.th-center { text-align: center; }
+
+/* ── Columnas fijas (sticky izquierda) ── */
+.lote-fix   { position: sticky !important; z-index: 1; }
+.lote-fix-1 { left: 0;     min-width: 36px;  width: 36px;  }
+.lote-fix-2 { left: 36px;  min-width: 100px; width: 100px; }
+.lote-fix-3 { left: 136px; min-width: 160px; width: 160px; }
+/* En thead las fijas necesitan z-index mayor (sobre el resto del sticky top) */
+thead .lote-fix { z-index: 4 !important; }
+/* Sombra en la 3ª columna fija para indicar scroll */
+.lote-fix-3 { box-shadow: 4px 0 8px -2px rgba(0,20,80,.10); }
+
+/* ── Celdas base ── */
+table.lote td {
+  border-right: 1px solid #e4eaf3;
+  border-bottom: 1px solid #e4eaf3;
+  padding: 0; vertical-align: middle;
+  background: #fff;
+}
+.td-num  { text-align: center; font-size: 12px; color: var(--txt-muted); padding: 0 6px; font-weight: 700; }
+.td-dni  { padding: 6px 10px; }
+.td-est  { text-align: center; padding: 4px 8px; white-space: nowrap; }
+.dni-val { font-size: 13px; font-weight: 700; color: var(--azul-dark); font-family: monospace; letter-spacing: .5px; }
+
+/* ── Columna nombre ── */
+.td-nom  { padding: 5px 10px; }
+.nom-ap  { font-size: 12px; font-weight: 700; color: var(--txt); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 155px; display: block; }
+.nom-n   { font-size: 11px; color: var(--txt-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 155px; display: block; }
+
+/* ── Inputs y selects dentro de celdas ── */
+table.lote select,
+table.lote input:not([type="hidden"]) {
+  width: 100%; height: 36px;
+  padding: 5px 8px; font-size: 12px;
+  border: none; background: transparent;
+  color: var(--txt);
+}
+table.lote select:focus,
+table.lote input:not([type="hidden"]):focus {
+  outline: 2px solid var(--azul-mid);
+  outline-offset: -2px;
+  background: #fff; border-radius: 4px;
+}
+
+/* ── Estados de celda: vacía / llena ── */
+.gc { position: relative; min-height: 36px; }
+.gc-empty { background: #FFF7ED !important; }            /* ámbar muy suave → "falta rellenar" */
+.gc-empty select,
+.gc-empty input:not([type="hidden"]) { color: #999; }
+.gc-filled { background: #fff !important; }
+.gc.hl    { background: var(--azul-light) !important; }  /* arrastre de relleno */
+
+/* ── Estados de fila ── */
+.lote-row { transition: background .1s; }
+.lote-row:hover .td-num,
+.lote-row:hover .td-dni,
+.lote-row:hover .td-nom { background: var(--azul-tint); }
+.lote-completado td.lote-fix { border-left: 3px solid var(--verde-vivo) !important; }
+.lote-exportado  td.lote-fix { border-left: 3px solid var(--azul-mid) !important; }
+.lote-pendiente  td.lote-fix { border-left: 3px solid var(--amber) !important; }
+.row-complete:not(.lote-exportado) td { background: #f8fff9 !important; }
+.lote-empty { padding: 32px; text-align: center; color: var(--txt-muted); font-size: 14px; }
+
+/* ── Anchos de columnas editables ── */
+.gc[data-field="modalidad_formativa"]   { min-width: 280px; }
+.gc[data-field="situacion_educativa"]   { min-width: 190px; }
+.gc[data-field="ocupacion"]             { min-width: 195px; }
+.gc[data-field="tipo_trabajador"]       { min-width: 180px; }
+.gc[data-field="regimen_laboral"]       { min-width: 185px; }
+.gc[data-field="categoria_ocupacional"] { min-width: 125px; }
+.gc[data-field="tipo_contrato"]         { min-width: 200px; }
+.gc[data-field="periodicidad"]          { min-width: 110px; }
+.gc[data-field="tipo_pago"]             { min-width: 150px; }
+.gc[data-field="sueldo"]                { min-width: 88px;  }
+.gc[data-field="fecha_inicio_vinculo"]  { min-width: 142px; }
+.gc[data-field="cod_establecimiento"]   { min-width: 76px;  }
+.gc[data-field="tipo_centro_formacion"] { min-width: 130px; }
+
+/* ── Handle de arrastre (fill down) ── */
 .fh {
-  position: absolute; right: 1px; bottom: 1px; width: 11px; height: 11px;
-  background: var(--azul); border: 1px solid #fff; cursor: ns-resize;
-  border-radius: 2px; z-index: 1;
+  position: absolute; right: 2px; bottom: 2px;
+  width: 10px; height: 10px;
+  background: var(--azul); border: 2px solid #fff;
+  cursor: s-resize; border-radius: 2px; z-index: 1;
+  opacity: 0; transition: opacity .15s;
 }
-.fh::after { content: "▾"; color: #fff; font-size: 8px; position: absolute; top: -2px; left: 1px; }
-body.dragging { cursor: ns-resize; user-select: none; }
-tr.row-err { background: var(--rojo-bg); }
+.gc:hover .fh, .gc.hl .fh { opacity: 1; }
+.fh::after { content: ""; }
+body.dragging { cursor: s-resize; user-select: none; }
+tr.row-err td { background: #fff3f2 !important; }
+
+/* ── Barra masiva (aplicar a todos) ── */
 .masivo {
   background: var(--azul-tint); border: 1px solid #C0D8F0;
-  border-radius: var(--radius); padding: 12px 16px; margin-bottom: 12px;
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px;
 }
 .mtitle { font-weight: 700; color: var(--azul-dark); font-size: 13px; margin-bottom: 10px; }
 .mtitle small { font-weight: 400; color: var(--txt-muted); font-size: 12px; }
 .mblocks { display: flex; flex-wrap: wrap; gap: 8px; }
 .mblock {
-  display: flex; flex-direction: column; gap: 4px; background: #fff;
-  border: 1px solid var(--bord); border-radius: 8px; padding: 8px 10px;
-  min-width: 150px; flex: 1;
+  display: flex; flex-direction: column; gap: 5px; background: #fff;
+  border: 1px solid var(--bord); border-radius: 8px; padding: 10px 12px;
+  min-width: 145px; flex: 1;
 }
-.mblock > span { font-size: 11px; font-weight: 700; color: var(--txt-mid); text-transform: uppercase; letter-spacing: .04em; }
-.mblock select, .mblock input { font-size: 13px; padding: 6px 8px; border: 1px solid var(--bord); border-radius: 6px; width: 100%; }
+.mblock > span {
+  font-size: 10px; font-weight: 800; color: var(--txt-mid);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.mblock select, .mblock input {
+  font-size: 13px; padding: 7px 8px;
+  border: 1px solid var(--bord); border-radius: 6px; width: 100%;
+  background: #fff; color: var(--txt);
+}
+.mblock select:focus, .mblock input:focus {
+  border-color: var(--azul-mid); outline: none;
+  box-shadow: 0 0 0 2px rgba(0,96,199,.12);
+}
 .aplicar {
-  margin-top: 4px; background: var(--azul); color: #fff; border: none;
-  border-radius: 6px; padding: 5px 10px; font-size: 12px; font-weight: 700;
-  cursor: pointer; width: 100%;
+  margin-top: 2px; background: var(--azul); color: #fff; border: none;
+  border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 700;
+  cursor: pointer; width: 100%; transition: background .15s;
 }
 .aplicar:hover { background: var(--azul-dark); }
+
+/* ── Tabs de categoría ── */
 .tabs { display: flex; gap: 4px; margin: 0 0 16px; border-bottom: 2px solid var(--bord); }
 .tab {
-  padding: 10px 18px; text-decoration: none; font-size: 13px; font-weight: 600;
-  color: var(--txt-muted); border-bottom: 2px solid transparent; margin-bottom: -2px;
-  border-radius: 8px 8px 0 0; transition: color .15s;
+  padding: 10px 20px; text-decoration: none; font-size: 13px; font-weight: 600;
+  color: var(--txt-muted); border-bottom: 3px solid transparent; margin-bottom: -2px;
+  border-radius: 8px 8px 0 0; transition: all .15s;
 }
 .tab:hover { color: var(--azul); background: var(--azul-tint); }
-.tab.on { color: var(--azul); border-bottom-color: var(--azul); background: #fff; }
+.tab.on { color: var(--azul); border-bottom-color: var(--azul); background: #fff; font-weight: 700; }
 
 /* ── Buscador (combobox) ── */
 .combo { position: relative; }

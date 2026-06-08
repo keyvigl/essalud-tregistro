@@ -138,20 +138,36 @@
   <div class="grid-wrap">
   <table class="lote">
     <thead><tr>
-      <th>#</th><th>DNI</th><th>Nombre</th>
+      <th class="lote-fix lote-fix-1 th-center">#</th>
+      <th class="lote-fix lote-fix-2">DNI</th>
+      <th class="lote-fix lote-fix-3">Nombre</th>
       {% if modo==CAT_PRACTICANTE %}
-        <th>Modalidad</th><th>Sit. educ.</th><th>Ocupación</th><th>Centro</th><th>Fecha inicio</th><th>Estab.</th>
+        <th>Modalidad</th><th>Sit. educ.</th><th>Ocupación</th>
+        <th>Centro formación</th><th>Fecha inicio</th><th>Estab.</th>
       {% else %}
-        <th>Tipo trab.</th><th>Rég. laboral</th><th>Cat. ocup.</th><th>Ocupación</th><th>Contrato</th><th>Periodic.</th><th>Sueldo</th><th>T. pago</th><th>Fecha inicio</th><th>Estab.</th>
+        <th>Tipo trab.</th><th>Rég. laboral</th><th>Cat. ocup.</th>
+        <th>Ocupación</th><th>Contrato</th><th>Periodic.</th>
+        <th>Sueldo S/.</th><th>T. pago</th><th>Fecha inicio</th><th>Estab.</th>
       {% endif %}
-      <th>Estado</th>
+      <th class="th-center">Estado</th>
     </tr></thead>
     <tbody>
     {% for t in regs %}
-      <tr data-id="{{ t.id }}">
-        <td>{{ loop.index }}</td>
-        <td>{{ t.numero_documento }}</td>
-        <td class="nom">{{ t.ap_paterno }} {{ t.ap_materno }}, {{ t.nombres }}</td>
+      {%- set est = t.estado -%}
+      <tr data-id="{{ t.id }}" class="lote-row lote-{{ est }}">
+        <td class="lote-fix lote-fix-1 td-num">{{ loop.index }}</td>
+        <td class="lote-fix lote-fix-2 td-dni">
+          <span class="dni-val">{{ t.numero_documento }}</span>
+        </td>
+        <td class="lote-fix lote-fix-3 td-nom nom">
+          {%- set nombre_full = ((t.ap_paterno or '') + ' ' + (t.ap_materno or '')).strip() -%}
+          {% if nombre_full %}
+            <span class="nom-ap">{{ nombre_full }}</span><br>
+            <span class="nom-n">{{ t.nombres }}</span>
+          {% else %}
+            <span class="nom-n">{{ t.nombres }}</span>
+          {% endif %}
+        </td>
         {% if modo==CAT_PRACTICANTE %}
           {{ selcell(t,loop.index0,'modalidad_formativa','modalidad_formativa') }}
           {{ selcell(t,loop.index0,'situacion_educativa','situacion_educativa') }}
@@ -171,10 +187,16 @@
           {{ incell(t,loop.index0,'fecha_inicio_vinculo','date') }}
           {{ incell(t,loop.index0,'cod_establecimiento','text',estab) }}
         {% endif %}
-        <td class="est-cel">{% if t.estado=='completado' %}<span class="badge badge-done">OK</span>{% elif t.estado=='exportado' %}<span class="badge badge-exported">Exp.</span>{% else %}<span class="badge badge-pending">Pend.</span>{% endif %}</td>
+        <td class="est-cel td-est">
+          {% if est=='completado' %}<span class="badge badge-done">✓ Listo</span>
+          {% elif est=='exportado' %}<span class="badge badge-exported">↑ Exp.</span>
+          {% else %}<span class="badge badge-pending">Pendiente</span>{% endif %}
+        </td>
       </tr>
     {% else %}
-      <tr><td colspan="20" class="muted" style="padding:16px">No hay {{ 'practicantes' if modo==CAT_PRACTICANTE else 'trabajadores' }} registrados todavía.</td></tr>
+      <tr><td colspan="20" class="lote-empty">
+        Sin {{ 'practicantes' if modo==CAT_PRACTICANTE else 'trabajadores' }} registrados aún.
+      </td></tr>
     {% endfor %}
     </tbody>
   </table>
@@ -192,6 +214,33 @@ document.querySelectorAll('.gc[data-field="ocupacion"] .combo').forEach(div => {
 document.querySelectorAll('.master-combo').forEach(div => {
   const cb = new Combobox(div); div._combo = cb; combos.push(cb);
 });
+
+/* ── Estado visual de celdas (vacía / llena) ── */
+function refreshCell(cell) {
+  const v = getVal(cell);
+  cell.classList.toggle('gc-empty', !v);
+  cell.classList.toggle('gc-filled', !!v);
+}
+function refreshRow(tr) {
+  const cells = tr.querySelectorAll('.gc');
+  const allFilled = [...cells].every(c => getVal(c));
+  tr.classList.toggle('row-complete', allFilled && cells.length > 0);
+}
+function refreshAll() {
+  document.querySelectorAll('.gc').forEach(cell => {
+    refreshCell(cell);
+    const ctrl = cell.querySelector('select, input:not([type="hidden"])');
+    if (ctrl) {
+      ctrl.addEventListener('change', () => {
+        refreshCell(cell);
+        refreshRow(cell.closest('tr'));
+      });
+    }
+  });
+  document.querySelectorAll('tr[data-id]').forEach(refreshRow);
+}
+// Espera a que Combobox esté listo antes de inicializar
+setTimeout(refreshAll, 80);
 function cargarOcup(todas){ if(!combos.length) return;
   fetch('/api/ocupaciones'+(todas?'?todas=1':'')).then(r=>r.json()).then(d => combos.forEach(c=>c.setData(d))); }
 cargarOcup(false);
