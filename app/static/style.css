@@ -1,30 +1,31 @@
 /* =====================================================================
    T-REGISTRO · EsSalud  —  Hoja de estilos principal
-   Paleta oficial: azul EsSalud #00529B, blanco, grises institucionales
+   Paleta oficial EsSalud: azul #003F8A, verde #00A651, blanco institucional
    ===================================================================== */
 
 :root {
-  --azul:      #00529B;
-  --azul-dark: #003876;
-  --azul-mid:  #0077C8;
-  --azul-light:#E8F4FD;
-  --azul-tint: #F0F7FF;
-  --verde:     #1A8C4E;
-  --verde-bg:  #E6F5ED;
+  --azul:      #003F8A;   /* Azul institucional EsSalud */
+  --azul-dark: #002560;   /* Azul oscuro para gradientes */
+  --azul-mid:  #0060C7;   /* Azul medio para hover/focus */
+  --azul-light:#D6E6F8;   /* Tint claro */
+  --azul-tint: #EBF3FC;   /* Tint muy claro para fondos */
+  --verde:     #00853F;   /* Verde EsSalud (acento) */
+  --verde-vivo:#00A651;   /* Verde vibrante para highlights */
+  --verde-bg:  #E3F5EC;
   --amber:     #B7620A;
   --amber-bg:  #FDF3E3;
   --rojo:      #C0392B;
   --rojo-bg:   #FDECEA;
-  --bord:      #D0D9E3;
-  --bord-dark: #B0BECA;
-  --bg:        #F2F5F8;
+  --bord:      #C8D5E3;
+  --bord-dark: #A8BCCC;
+  --bg:        #EEF2F7;   /* Fondo de página levemente más frío */
   --card:      #FFFFFF;
-  --txt:       #1A2332;
-  --txt-mid:   #3D4F61;
-  --txt-muted: #6C7A8D;
+  --txt:       #0D1B2E;
+  --txt-mid:   #334A62;
+  --txt-muted: #627485;
   --radius:    10px;
-  --shadow:    0 2px 8px rgba(0,0,0,.08);
-  --shadow-lg: 0 4px 20px rgba(0,0,0,.12);
+  --shadow:    0 2px 8px rgba(0,40,100,.08);
+  --shadow-lg: 0 4px 20px rgba(0,40,100,.14);
 }
 
 /* ── Reset ── */
@@ -35,35 +36,40 @@ a { color: var(--azul-mid); }
 
 /* ── Topbar institucional ── */
 .topbar {
-  background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 100%);
-  color: #fff; padding: 0; border-bottom: 3px solid var(--azul-mid);
-  box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 60%, #0050B0 100%);
+  color: #fff; padding: 0;
+  border-bottom: 4px solid var(--verde-vivo);   /* franja verde EsSalud */
+  box-shadow: 0 3px 16px rgba(0,20,80,.30);
 }
 .topbar-inner {
-  max-width: 1200px; margin: 0 auto; padding: 12px 24px;
+  max-width: 1200px; margin: 0 auto; padding: 10px 24px;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .brand-wrap { display: flex; align-items: center; gap: 14px; }
-.brand-logo {
-  width: 46px; height: 46px; background: #fff; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: 16px; color: var(--azul); letter-spacing: -1px;
-  flex-shrink: 0;
+.brand-logo-img {
+  height: 52px; width: auto;
+  background: #fff; border-radius: 8px;
+  padding: 5px 10px; flex-shrink: 0; display: block;
+  box-shadow: 0 1px 6px rgba(0,0,0,.18);
 }
-.brand-name  { font-weight: 800; font-size: 20px; letter-spacing: .5px; }
-.brand-sub   { font-size: 11px; opacity: .8; letter-spacing: .2px; }
+.brand-text { display: flex; flex-direction: column; gap: 2px; }
+.brand-name  { font-weight: 700; font-size: 14px; letter-spacing: .2px; opacity: .95; }
+.brand-sub   { font-size: 11px; opacity: .70; letter-spacing: .1px; }
 .brand-system { text-align: right; }
 .system-tag  {
-  display: inline-block; background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.3); border-radius: 5px;
-  padding: 3px 10px; font-size: 13px; font-weight: 700; letter-spacing: 1px;
-  color: #fff;
+  display: inline-block;
+  background: var(--verde-vivo);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 5px;
+  padding: 4px 12px; font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+  color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2);
 }
-.system-desc { font-size: 11px; opacity: .75; margin-top: 3px; }
+.system-desc { font-size: 11px; opacity: .75; margin-top: 4px; }
 
 /* ── Barra de navegación del panel ── */
 .panel-nav {
-  background: var(--azul); border-bottom: 1px solid rgba(255,255,255,.15);
+  background: var(--azul);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 2px 6px rgba(0,20,80,.18);
 }
 .panel-nav-inner {
   max-width: 1200px; margin: 0 auto; padding: 0 24px;
@@ -232,10 +238,10 @@ input[type="checkbox"] { width: auto; height: auto; }
   padding: 18px 20px; display: flex; flex-direction: column; gap: 4px;
   box-shadow: var(--shadow);
 }
-.stat-card.accent-blue  { border-top: 3px solid var(--azul); }
-.stat-card.accent-green { border-top: 3px solid var(--verde); }
-.stat-card.accent-amber { border-top: 3px solid var(--amber); }
-.stat-card.accent-purple{ border-top: 3px solid #7B5EA7; }
+.stat-card.accent-blue  { border-top: 4px solid var(--azul); }
+.stat-card.accent-green { border-top: 4px solid var(--verde-vivo); }
+.stat-card.accent-amber { border-top: 4px solid var(--amber); }
+.stat-card.accent-purple{ border-top: 4px solid #7B5EA7; }
 .stat-num  { font-size: 32px; font-weight: 800; color: var(--azul-dark); line-height: 1; }
 .stat-label{ font-size: 12px; font-weight: 600; color: var(--txt-muted); text-transform: uppercase; letter-spacing: .05em; }
 
@@ -284,10 +290,14 @@ input[type="checkbox"] { width: auto; height: auto; }
 
 /* ── Formulario de registro público ── */
 .form-intro {
-  background: linear-gradient(135deg, var(--azul-dark), var(--azul));
+  background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 70%, #005FB5 100%);
   color: #fff; border-radius: var(--radius); padding: 24px 28px; margin-bottom: 24px;
+  border-bottom: 4px solid var(--verde-vivo);
+  box-shadow: var(--shadow-lg);
 }
-.form-intro h1 { color: #fff; font-size: 22px; margin-bottom: 6px; }
+.form-intro-head { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+.form-intro-logo { height: 52px; width: auto; background: #fff; border-radius: 8px; padding: 4px 8px; flex-shrink: 0; }
+.form-intro h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
 .form-intro p  { margin: 0; opacity: .9; font-size: 14px; }
 .form-steps { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
 .form-step {
@@ -309,18 +319,20 @@ input[type="checkbox"] { width: auto; height: auto; }
 }
 
 /* ── Login ── */
-.login-wrap { max-width: 420px; margin: 80px auto; padding: 0 20px; }
-.login-brand {
-  text-align: center; margin-bottom: 28px;
-}
-.login-brand-logo {
-  width: 64px; height: 64px; background: var(--azul); border-radius: 14px;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: 22px; color: #fff; margin-bottom: 12px;
+.login-wrap { max-width: 420px; margin: 60px auto; padding: 0 20px; }
+.login-brand { text-align: center; margin-bottom: 28px; }
+.login-logo-img {
+  height: 88px; width: auto;
+  display: block; margin: 0 auto 16px;
+  filter: drop-shadow(0 2px 8px rgba(0,40,100,.18));
 }
 .login-brand h2 { margin: 0; color: var(--azul-dark); font-size: 20px; }
 .login-brand p  { color: var(--txt-muted); font-size: 13px; margin: 4px 0 0; }
-.login-card { background: var(--card); border: 1px solid var(--bord); border-radius: 14px; padding: 32px; box-shadow: var(--shadow-lg); }
+.login-card {
+  background: var(--card); border: 1px solid var(--bord);
+  border-radius: 14px; padding: 32px; box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--verde-vivo);
+}
 .login-card h3 { margin: 0 0 20px; font-size: 16px; color: var(--txt-mid); font-weight: 600; text-align: center; }
 .login-card .btn { width: 100%; margin-top: 4px; padding: 13px; font-size: 15px; }
 .login-card label { margin-bottom: 16px; }
@@ -430,14 +442,19 @@ tr.row-err { background: var(--rojo-bg); }
 
 /* ── Footer ── */
 .site-footer {
-  background: var(--azul-dark); color: rgba(255,255,255,.6);
-  padding: 14px 24px; margin-top: 48px;
+  background: var(--azul-dark);
+  border-top: 3px solid var(--verde-vivo);
+  color: rgba(255,255,255,.6); padding: 14px 24px; margin-top: 48px;
 }
 .footer-inner {
   max-width: 1200px; margin: 0 auto;
-  display: flex; justify-content: space-between; font-size: 12px;
+  display: flex; justify-content: space-between; align-items: center; font-size: 12px;
 }
-.footer-ver { color: rgba(255,255,255,.4); }
+.footer-ver { color: rgba(255,255,255,.35); }
+.footer-logo {
+  height: 28px; width: auto; opacity: .65;
+  filter: brightness(0) invert(1);
+}
 
 /* ── Utilidades ── */
 .text-center { text-align: center; }
