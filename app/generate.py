@@ -80,6 +80,21 @@ def _linea(campos) -> str:
 
 # ---------------- una línea por archivo ----------------
 def linea_ide(t) -> str:
+    es_dni = str(t.tipo_documento or "").strip().lstrip("0") == "1"
+    if es_dni:
+        # Para DNI: SUNAT/RENIEC provee nacionalidad y dirección automáticamente.
+        # Solo se envían los campos de contacto; los demás van vacíos.
+        return _linea([
+            z(t.tipo_documento, 2), t.numero_documento, _pais(t),
+            fdate(t.fecha_nacimiento), t.ap_paterno, t.ap_materno, t.nombres,
+            t.sexo, "",   # 9: nacionalidad vacía (RENIEC la provee)
+            "",           # 10: tel. larga distancia
+            t.telefono, t.email,
+            "", "", "", "", "", "", "", "", "", "", "", "", "", "",  # 13-26: dirección vacía (RENIEC)
+            "", "", "", "", "", "", "", "", "", "", "", "", "", "",  # 27-40
+            "1",
+        ])
+    # Para documentos extranjeros: incluir todos los campos disponibles
     return _linea([
         z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         fdate(t.fecha_nacimiento), t.ap_paterno, t.ap_materno, t.nombres,
@@ -87,11 +102,11 @@ def linea_ide(t) -> str:
         "",                       # 10: tel. larga distancia (no vigente)
         t.telefono, t.email,
         z(t.tipo_via, 2), t.nombre_via, _num_via(t.numero_via),
-        "",                       # 16: departamento (n° de dpto del inmueble; no se captura)
+        "",                       # 16: departamento
         t.interior, t.manzana, t.lote, t.km, t.block, t.etapa_dir,
         z(t.tipo_zona, 2), t.nombre_zona, t.referencia, z(t.ubigeo, 6),
-        "", "", "", "", "", "", "", "", "", "", "", "", "", "",  # 27-40: dirección 2 (opcional)
-        "1",                      # 41: indicador centro asistencial (1=dirección principal)
+        "", "", "", "", "", "", "", "", "", "", "", "", "", "",  # 27-40
+        "1",
     ])
 
 
