@@ -34,6 +34,14 @@ def z(v, n: int) -> str:
     return v.zfill(n) if v else ""
 
 
+def _pais(t) -> str:
+    """Para DNI peruano (tipo 1), pais_emisor siempre es 604 aunque esté vacío en la BD."""
+    p = (t.pais_emisor or "").strip()
+    if not p and str(t.tipo_documento or "").strip().lstrip("0") == "1":
+        return "604"
+    return z(p, 3)
+
+
 def g(v) -> str:
     return ("" if v is None else str(v)).strip()
 
@@ -56,7 +64,7 @@ def _linea(campos) -> str:
 # ---------------- una línea por archivo ----------------
 def linea_ide(t) -> str:
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         fdate(t.fecha_nacimiento), t.ap_paterno, t.ap_materno, t.nombres,
         t.sexo, t.nacionalidad,
         "",                       # 10: tel. larga distancia (no vigente)
@@ -73,7 +81,7 @@ def linea_ide(t) -> str:
 def linea_tra(t) -> str:
     cuspp = t.cuspp if t.regimen_pensionario in AFP else ""
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         z(t.regimen_laboral, 2), z(t.situacion_educativa, 2), z(t.ocupacion, 6),
         t.discapacidad or "0", cuspp, t.sctr_pension or "0",
         z(t.tipo_contrato, 2), t.sujeto_atipico or "0", t.jornada_maxima or "0",
@@ -91,7 +99,7 @@ def lineas_per(t) -> list[str]:
     es_practicante = getattr(t, "categoria", "trabajador") == "practicante"
     cat = "5" if es_practicante else "1"
     ini = fdate(t.fecha_inicio_vinculo)
-    base = [z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3), cat]
+    base = [z(t.tipo_documento, 2), t.numero_documento, _pais(t), cat]
     out = []
 
     def add(tipo, fi, ff, ind, eps=""):
@@ -122,7 +130,7 @@ def linea_pfl(t) -> str:
     # EPF6.2: para varones el campo debe ir vacío (no "0"); solo se indica si sexo=2
     madre = (t.madre_resp_familiar or "0") if t.sexo == "2" else ""
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         z(t.modalidad_formativa, 2), t.seguro_medico or "1",
         z(t.situacion_educativa, 2), z(t.ocupacion, 6),
         madre, t.discapacidad or "0",
@@ -134,7 +142,7 @@ def linea_est(t) -> str:
     """E-17: Establecimientos donde labora el TRABAJADOR. Solo para trabajadores."""
     estab = (t.cod_establecimiento or "").strip() or config.COD_ESTABLECIMIENTO
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         config.RUC_EMPLEADOR, z(estab, 4),
     ])
 
@@ -143,7 +151,7 @@ def linea_lug(t) -> str:
     """E-23: Lugar de formación del Personal en Formación (practicante). Solo para PFL."""
     estab = (t.cod_establecimiento or "").strip() or config.COD_ESTABLECIMIENTO
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         "5", z(estab, 4),
     ])
 
@@ -157,7 +165,7 @@ def linea_edu(t):
         return None
     completa = t.educ_completa_peru == "1"
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         z(t.formacion_superior, 2), t.educ_completa_peru or "0",
         t.cod_institucion if completa else "",
         t.cod_carrera if completa else "",
@@ -173,7 +181,7 @@ def linea_cta(t):
     if t.tipo_pago != "2" or not (t.entidad_bancaria and t.numero_cuenta):
         return None
     return _linea([
-        z(t.tipo_documento, 2), t.numero_documento, z(t.pais_emisor, 3),
+        z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         t.entidad_bancaria, t.numero_cuenta,
     ])
 
