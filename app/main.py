@@ -75,14 +75,20 @@ def _startup():
 
 @app.get("/healthz")
 def healthz(session: Session = Depends(get_session)):
+    from app.models import engine as _engine
+    from sqlmodel import text, SQLModel
+    info: dict = {}
     try:
-        from sqlmodel import text
+        info["db_url"] = str(_engine.url)[:80]
         session.exec(text("SELECT 1"))
-        from sqlmodel import SQLModel
-        tablas = list(SQLModel.metadata.tables.keys())
-        return {"ok": True, "tablas": tablas, "db": str(engine.url)[:60]}
+        info["select_1"] = "ok"
+        rows = session.exec(select(Trabajador)).all()
+        info["trabajador_rows"] = len(rows)
+        info["tablas_metadata"] = list(SQLModel.metadata.tables.keys())
+        return {"ok": True, **info}
     except Exception as e:
-        return JSONResponse({"ok": False, "error": str(e)}, status_code=500)
+        info["error"] = str(e)
+        return JSONResponse({"ok": False, **info}, status_code=500)
 
 
 # ── ETAPA 1: formulario público del trabajador ───────────────────────────────
