@@ -458,16 +458,16 @@ def generar_paquete(request: Request, session: Session = Depends(get_session)):
 
     # ── Una sola categoría → ZIP directo ──────────────────────────────────────
     if trab and not prac:
-        nombre = f"T-REGISTRO_TRABAJADORES_RP_{config.RUC_EMPLEADOR}.zip"
+        nombre = f"RP_{config.RUC_EMPLEADOR}.zip"
         data = generate.generar_zip(trab)
         registros_exportados = trab
     elif prac and not trab:
-        nombre = f"T-REGISTRO_PRACTICANTES_RP_{config.RUC_EMPLEADOR}.zip"
+        nombre = f"RP_{config.RUC_EMPLEADOR}.zip"
         data = generate.generar_zip(prac)
         registros_exportados = prac
     # ── Ambas categorías → ZIP maestro con dos sub-ZIPs ───────────────────────
     else:
-        nombre = f"T-REGISTRO_PAQUETE_RP_{config.RUC_EMPLEADOR}.zip"
+        nombre = f"RP_{config.RUC_EMPLEADOR}.zip"
         data, sub_zips = generate.generar_paquete(listos)
         registros_exportados = listos
 
@@ -502,8 +502,7 @@ def generar_zip_categoria(categoria: str, request: Request,
 
     data = generate.generar_zip(listos)
     ahora = datetime.utcnow()
-    etiqueta = "TRABAJADORES" if categoria == CAT_TRABAJADOR else "PRACTICANTES"
-    nombre_zip = f"T-REGISTRO_{etiqueta}_RP_{config.RUC_EMPLEADOR}.zip"
+    nombre_zip = f"RP_{config.RUC_EMPLEADOR}.zip"
     for t in listos:
         t.estado = EXPORTADO
         t.actualizado_en = ahora
