@@ -4,6 +4,7 @@ ETAPA 1: el trabajador entra por un link y llena sus datos (formulario público)
 ETAPA 2: la trabajadora de EsSalud entra al panel, completa lo laboral y genera
          los archivos de carga masiva.
 """
+import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -52,6 +53,13 @@ CAMPOS_ETAPA1 = [
 BASE = Path(__file__).resolve().parent
 app = FastAPI(title="T-Registro EsSalud")
 app.add_middleware(SessionMiddleware, secret_key=config.SECRET_KEY)
+
+
+@app.exception_handler(Exception)
+async def _debug_handler(request: Request, exc: Exception):
+    tb = traceback.format_exc()
+    print(f"[500] {request.url}\n{tb}", flush=True)
+    return JSONResponse({"error": str(exc), "trace": tb}, status_code=500)
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 templates = Jinja2Templates(directory=BASE / "templates")
 templates.env.cache = None
