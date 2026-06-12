@@ -66,7 +66,7 @@ def linea_ide(t) -> str:
         t.interior, t.manzana, t.lote, t.km, t.block, t.etapa_dir,
         z(t.tipo_zona, 2), t.nombre_zona, t.referencia, z(t.ubigeo, 6),
         "", "", "", "", "", "", "", "", "", "", "", "", "", "",  # 27-40: dirección 2 (opcional)
-        "",                       # 41: indicador centro asistencial (solo con 2 direcciones)
+        "1",                      # 41: indicador centro asistencial (1=dirección principal)
     ])
 
 
@@ -166,7 +166,10 @@ def linea_edu(t):
 
 
 def linea_cta(t):
-    """Solo si el pago es Depósito en cuenta (tipo_pago=2) y hay datos bancarios."""
+    """Solo TRABAJADORES con pago por depósito (tipo_pago=2) y datos bancarios.
+    Los PFL (practicantes) no llevan estructura de cuenta bancaria según SUNAT."""
+    if getattr(t, "categoria", "trabajador") == "practicante":
+        return None
     if t.tipo_pago != "2" or not (t.entidad_bancaria and t.numero_cuenta):
         return None
     return _linea([
