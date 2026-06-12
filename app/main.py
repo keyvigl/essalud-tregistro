@@ -73,6 +73,18 @@ def _startup():
     init_db()
 
 
+@app.get("/healthz")
+def healthz(session: Session = Depends(get_session)):
+    try:
+        from sqlmodel import text
+        session.exec(text("SELECT 1"))
+        from sqlmodel import SQLModel
+        tablas = list(SQLModel.metadata.tables.keys())
+        return {"ok": True, "tablas": tablas, "db": str(engine.url)[:60]}
+    except Exception as e:
+        return JSONResponse({"ok": False, "error": str(e)}, status_code=500)
+
+
 # ── ETAPA 1: formulario público del trabajador ───────────────────────────────
 def _render_form(request, valores=None, errores=None):
     return templates.TemplateResponse(request, "form_trabajador.html", {
