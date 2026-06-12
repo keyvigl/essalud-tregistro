@@ -42,6 +42,23 @@ def _pais(t) -> str:
     return z(p, 3)
 
 
+def _nac(t) -> str:
+    """Código de nacionalidad (3 dígitos, Tabla 5 SUNAT). Para DNI peruano = 604."""
+    n = (t.nacionalidad or "").strip()
+    if len(n) == 3:
+        return n
+    # Si está vacío o tiene longitud incorrecta, default 604 para DNI peruano
+    if str(t.tipo_documento or "").strip().lstrip("0") == "1":
+        return "604"
+    return z(n, 3)
+
+
+def _num_via(v) -> str:
+    """Número de vía: SUNAT solo acepta dígitos. 'S/N', texto libre, etc. -> vacío."""
+    v = (v or "").strip()
+    return v if v.isdigit() else ""
+
+
 def g(v) -> str:
     return ("" if v is None else str(v)).strip()
 
@@ -66,10 +83,10 @@ def linea_ide(t) -> str:
     return _linea([
         z(t.tipo_documento, 2), t.numero_documento, _pais(t),
         fdate(t.fecha_nacimiento), t.ap_paterno, t.ap_materno, t.nombres,
-        t.sexo, t.nacionalidad,
+        t.sexo, _nac(t),
         "",                       # 10: tel. larga distancia (no vigente)
         t.telefono, t.email,
-        z(t.tipo_via, 2), t.nombre_via, t.numero_via,
+        z(t.tipo_via, 2), t.nombre_via, _num_via(t.numero_via),
         "",                       # 16: departamento (n° de dpto del inmueble; no se captura)
         t.interior, t.manzana, t.lote, t.km, t.block, t.etapa_dir,
         z(t.tipo_zona, 2), t.nombre_zona, t.referencia, z(t.ubigeo, 6),
