@@ -231,6 +231,8 @@ def verificar_alta(t) -> list[str]:
             f.append("Ocupación")
         if not g("fecha_inicio_vinculo"):
             f.append("Fecha de inicio (formación)")
+        if not g("situacion_educativa"):
+            f.append("Situación educativa (requerida en .pfl para PFL)")
     else:
         reqs = [
             ("tipo_trabajador", "Tipo de trabajador"),
